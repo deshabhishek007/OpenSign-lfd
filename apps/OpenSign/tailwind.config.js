@@ -77,32 +77,38 @@ module.exports = {
   ],
   daisyui: {
     // themes: true,
+    // Colors below are peenak's "clean SaaS" reskin (Linear/Notion-inspired:
+    // thin borders over shadows, one restrained indigo accent, muted
+    // neutrals) — previously injected at runtime via nginx sub_filter
+    // (opensign-peenak/brand/theme-modern.css), now baked in here instead.
+    // See PR/commit history on the peenak-saas branch for the migration.
     themes: [
       {
         opensigndark: {
-          primary: "#007ACC", // VS Code blue - CTA & highlight color
-          "primary-content": "#FFFFFF",
+          primary: "#818CF8", // indigo-400
+          "primary-content": "#0B0F19",
 
-          secondary: "#1F2937", // Sidebar background (darker slate)
-          "secondary-content": "#E5E7EB",
+          secondary: "#64748B", // slate-500 — neutral, not a second hue
+          "secondary-content": "#0B0F19",
 
-          accent: "#4A9EFF", // Lighter VS Code blue for hover, minor CTA
-          "accent-content": "#FFFFFF",
+          accent: "#A5B4FC", // indigo-300, same family as primary
+          "accent-content": "#0B0F19",
 
-          neutral: "#3C3C3C", // VS Code inactive/disabled element background
-          "neutral-content": "#CCCCCC", // VS Code inactive text color
+          neutral: "#1E293B", // slate-800
+          "neutral-content": "#F1F5F9",
 
-          "base-100": "#121212", // App background
-          "base-200": "#181818", // Slight elevation (cards)
-          "base-300": "#1E1E1E", // Further elevated items (panels)
-          "base-content": "#F3F4F6", // Main text color (soft white)
+          "base-100": "#0F1420",
+          "base-200": "#131826",
+          "base-300": "#1A2030",
+          "base-content": "#E2E8F0",
 
-          info: "#2563EB", // For info panels like "Out for signature"
-          success: "#22C55E", // Optional: for completed docs or alerts
+          info: "#38BDF8",
+          success: "#34D399",
           warning: "#FBBF24",
-          error: "#EF4444",
+          error: "#F87171",
 
-          "--rounded-btn": "1.9rem",
+          "--rounded-box": "0.75rem",
+          "--rounded-btn": "0.5rem",
           "--tab-border": "2px",
           "--tab-radius": "0.7rem",
 
@@ -122,27 +128,28 @@ module.exports = {
       },
       {
         opensigncss: {
-          primary: "#002864",
-          "primary-content": "#cacccf",
-          secondary: "#29354a",
-          "secondary-content": "#c8d1e0",
-          accent: "#E10032",
-          "accent-content": "#ffd8d5",
-          neutral: "#c1ccdb",
-          "neutral-content": "#111312",
-          "base-100": "#ffffff",
-          "base-200": "#dedede",
-          "base-300": "#bebebe",
-          "base-content": "#161616",
-          info: "#00b6ff",
-          "info-content": "#f5f5f4",
-          success: "#00a96e",
-          "success-content": "#f5f5f4",
-          warning: "#ffbe00",
-          "warning-content": "#ccd9e8",
-          error: "#ffa1a7",
-          "error-content": "#16090a",
-          "--rounded-btn": "1.9rem",
+          primary: "#4F46E5", // indigo-600, single accent
+          "primary-content": "#F8FAFC",
+          secondary: "#475569", // slate-600 — neutral, not a second hue
+          "secondary-content": "#F8FAFC",
+          accent: "#6366F1", // indigo-500, same family as primary
+          "accent-content": "#F8FAFC",
+          neutral: "#0F172A", // slate-900
+          "neutral-content": "#F1F5F9",
+          "base-100": "#FFFFFF",
+          "base-200": "#FAFBFC", // barely-tinted white
+          "base-300": "#F1F5F9", // slate-100, hover/subtle-fill surface
+          "base-content": "#1E293B", // slate-800, soft near-black
+          info: "#3B82F6",
+          "info-content": "#F8FAFC",
+          success: "#10B981",
+          "success-content": "#F8FAFC",
+          warning: "#F59E0B",
+          "warning-content": "#1E293B",
+          error: "#EF4444",
+          "error-content": "#F8FAFC",
+          "--rounded-box": "0.75rem",
+          "--rounded-btn": "0.5rem",
           "--tab-border": "2px",
           "--tab-radius": "0.7rem"
         }

@@ -1,0 +1,158 @@
+/* peenak's "clean SaaS" visual polish (Linear/Notion-inspired: thin borders
+ * over shadows, tight typography, flat interactions, no heavy lift/shadow
+ * effects). Theme colors/radii themselves live in tailwind.config.js
+ * (daisyui.themes.opensigncss / opensigndark) — this file is the remaining
+ * layer of polish that isn't expressible as DaisyUI theme tokens.
+ *
+ * Previously injected at runtime via nginx sub_filter
+ * (opensign-peenak/brand/theme-modern.css on the serverstack-manager repo);
+ * migrated into the app source so it's one build instead of two deploy
+ * mechanisms to keep in sync.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ---- Typography: tighter, calmer weights ---- */
+html[data-theme='opensigncss'],
+html[data-theme='opensigndark'],
+html[data-theme='opensigncss'] body,
+html[data-theme='opensigndark'] body {
+  font-family: 'Inter', -apple-system, 'system-ui', 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.006em;
+  -webkit-font-smoothing: antialiased;
+}
+
+html[data-theme='opensigncss'] h1,
+html[data-theme='opensigndark'] h1,
+html[data-theme='opensigncss'] h2,
+html[data-theme='opensigndark'] h2,
+html[data-theme='opensigncss'] .text-xl,
+html[data-theme='opensigndark'] .text-xl,
+html[data-theme='opensigncss'] .text-2xl,
+html[data-theme='opensigndark'] .text-2xl {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+/* ---- Page background: flat, no gradient ---- */
+html[data-theme='opensigncss'] main {
+  background: oklch(var(--b2));
+}
+html[data-theme='opensigndark'] main {
+  background: oklch(var(--b2));
+}
+
+/* ---- Buttons: flat fill, thin border, no lift/shadow ---- */
+.op-btn {
+  font-weight: 500;
+  box-shadow: none !important;
+  border-width: 1px;
+  transition: background-color .1s ease, border-color .1s ease, filter .1s ease;
+}
+.op-btn:not(.op-btn-ghost):not(.op-btn-square):not(:disabled):hover {
+  filter: brightness(0.96);
+}
+.op-btn-outline,
+.op-btn-ghost {
+  border-color: oklch(var(--bc) / 0.14);
+}
+
+/* ---- Inputs: thin border, minimal focus ring ---- */
+.op-input,
+.op-textarea,
+.op-select {
+  border-radius: var(--rounded-btn);
+  border-color: oklch(var(--bc) / 0.16);
+  box-shadow: none !important;
+  transition: border-color .1s ease, box-shadow .1s ease;
+}
+.op-input:focus,
+.op-textarea:focus,
+.op-select:focus {
+  border-color: oklch(var(--p) / 0.6);
+  box-shadow: 0 0 0 3px oklch(var(--p) / 0.12) !important;
+}
+
+/* ---- Sidebar: flat, thin active indicator instead of solid block ---- */
+nav[aria-label='OpenSign Sidebar Navigation'] a,
+nav[aria-label='OpenSign Sidebar Navigation'] button {
+  border-radius: .4rem;
+  margin: 0 .5rem;
+  font-weight: 500;
+  transition: background-color .1s ease, color .1s ease;
+}
+nav[aria-label='OpenSign Sidebar Navigation'] [aria-current='page'],
+nav[aria-label='OpenSign Sidebar Navigation'] a.active {
+  background: oklch(var(--p) / 0.08) !important;
+  color: oklch(var(--p)) !important;
+  font-weight: 600;
+  box-shadow: inset 2px 0 0 oklch(var(--p));
+}
+aside {
+  border-right: 1px solid oklch(var(--bc) / 0.08);
+  box-shadow: none !important;
+}
+
+/* ---- Big stat tiles (Need your signature / Out for signatures): the app hardcodes
+ * white text on these, so they must stay a dark fill — muted rather than a saturated
+ * primary/secondary block, to match the calmer "clean SaaS" surfaces used elsewhere. */
+.op-bg-primary {
+  background: oklch(33% .05 267) !important;
+  box-shadow: none !important;
+}
+.op-bg-secondary {
+  background: oklch(23% .015 260) !important;
+  box-shadow: none !important;
+}
+
+/* ---- Dashboard summary cards (stat tiles + "sign yourself"/"request" launchers) ---- */
+main .bg-base-300,
+main .bg-neutral {
+  border-radius: var(--rounded-box);
+  border: 1px solid oklch(var(--bc) / 0.08);
+  box-shadow: none !important;
+  transition: border-color .12s ease, background-color .12s ease;
+}
+main a.bg-base-300:hover,
+main a.bg-neutral:hover,
+main button.bg-base-300:hover {
+  border-color: oklch(var(--bc) / 0.16);
+}
+
+/* ---- Cards/panels (white surfaces wrapping tables, forms) ---- */
+main > .flex-col > div > div.bg-base-100,
+main .shadow,
+main .shadow-sm,
+main .shadow-md {
+  border-radius: var(--rounded-box) !important;
+  border: 1px solid oklch(var(--bc) / 0.08);
+  box-shadow: none !important;
+}
+
+/* ---- Tables: quiet lines, no zebra ---- */
+.op-table thead {
+  text-transform: uppercase;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  color: oklch(var(--bc) / 0.5);
+  border-bottom: 1px solid oklch(var(--bc) / 0.1);
+}
+.op-table td, .op-table th {
+  border-color: oklch(var(--bc) / 0.08) !important;
+}
+.op-table tbody tr:hover {
+  background: oklch(var(--b3) / 0.6);
+}
+
+/* ---- Scrollbar polish (webkit) ---- */
+html[data-theme='opensigncss'] ::-webkit-scrollbar,
+html[data-theme='opensigndark'] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+html[data-theme='opensigncss'] ::-webkit-scrollbar-thumb,
+html[data-theme='opensigndark'] ::-webkit-scrollbar-thumb {
+  background: oklch(var(--bc) / 0.14);
+  border-radius: 999px;
+}
