@@ -1,10 +1,7 @@
 /**
- * Adds Free/Pro/Enterprise plan fields to partners_Tenant and creates
- * partners_TenantUsage for monthly per-tenant document-count tracking.
- * See apps/OpenSignServer/utils/PlanUtils.js for how these are used.
- *
- * partners_TenantUsage is locked to master-key-only — it's written and read
- * exclusively by cloud code (PlanUtils.js), never directly by clients.
+ * Adds Free/Pro/Org plan fields to partners_Tenant, including a LIFETIME
+ * document balance (DocLimit/DocsUsed — never resets monthly). See
+ * apps/OpenSignServer/utils/PlanUtils.js for how these are enforced.
  *
  * @param {Parse} Parse
  */
@@ -13,25 +10,10 @@ exports.up = async Parse => {
   partners_Tenant
     .addString('PlanId')
     .addString('PlanName')
-    .addNumber('DocLimit')
+    .addNumber('DocLimit') // lifetime cap; null = unlimited
+    .addNumber('DocsUsed') // lifetime count, debited on each document created
     .addString('PlanStatus');
-  await partners_Tenant.update(null, { useMasterKey: true });
-
-  const partners_TenantUsage = new Parse.Schema('partners_TenantUsage');
-  partners_TenantUsage
-    .addPointer('TenantId', 'partners_Tenant')
-    .addString('YearMonth')
-    .addNumber('DocsSent')
-    .setCLP({
-      get: {},
-      find: {},
-      count: {},
-      create: {},
-      update: {},
-      delete: {},
-      addField: {},
-    });
-  return partners_TenantUsage.save(null, { useMasterKey: true });
+  return partners_Tenant.update(null, { useMasterKey: true });
 };
 
 /**
@@ -44,9 +26,7 @@ exports.down = async Parse => {
     .deleteField('PlanId')
     .deleteField('PlanName')
     .deleteField('DocLimit')
+    .deleteField('DocsUsed')
     .deleteField('PlanStatus');
-  await partners_Tenant.update(null, { useMasterKey: true });
-
-  const partners_TenantUsage = new Parse.Schema('partners_TenantUsage');
-  return partners_TenantUsage.purge().then(() => partners_TenantUsage.delete());
+  return partners_Tenant.update(null, { useMasterKey: true });
 };

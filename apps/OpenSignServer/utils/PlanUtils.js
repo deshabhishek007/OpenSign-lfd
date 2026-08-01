@@ -1,19 +1,19 @@
-// Monthly document-signing quota enforcement for the peenak SaaS deployment.
+// Lifetime document-signing balance enforcement for the peenak SaaS deployment.
 // Not part of upstream OpenSign.
 //
-// Tenant plan fields live on partners_Tenant: PlanId, PlanName, DocLimit,
-// PlanStatus. DocLimit === null/undefined means unlimited (used for
-// Enterprise tenants that haven't had a custom cap set yet).
+// Plan fields live directly on partners_Tenant: PlanId, PlanName, DocLimit,
+// DocsUsed, PlanStatus. DocLimit is a LIFETIME cap, not monthly — it never
+// resets. DocLimit === null/undefined means unlimited (legacy tenants that
+// predate plans, or a tenant deliberately given no cap).
 //
-// Usage is tracked per tenant per calendar month in partners_TenantUsage
-// (TenantId pointer, YearMonth "YYYY-MM" string, DocsSent number), separate
-// from the existing lifetime per-user contracts_Users.DocumentCount stat
-// (see CountUtils.js) which this does not touch or replace.
-
-function currentYearMonth() {
-  const now = new Date();
-  return `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, '0')}`;
-}
+// DocLimit is expected to grow over time via plan upgrades and paid add-on
+// document packs (both just raise DocLimit) — this module only ever compares
+// DocsUsed against whatever DocLimit currently is, it doesn't care why it
+// changed.
+//
+// This is separate from the existing lifetime per-user contracts_Users
+// .DocumentCount stat (see CountUtils.js, incremented on sign-completion) —
+// that one is a display stat, this one is the enforced, per-tenant balance.
 
 // Resolve the partners_Tenant record that an ExtUserPtr (contracts_Users
 // objectId) belongs to. Mirrors the pointer-chase in getTenant.js.
@@ -28,39 +28,16 @@ export async function getTenantForExtUser(extUserId) {
   return tenantQuery.get(tenantId, { useMasterKey: true });
 }
 
-// Known v1 limitation: query-then-create has a race window under concurrent
-// first-document-of-the-month creates for the same tenant, which could in
-// theory produce a duplicate usage row for that month (undercounting by one
-// row's worth, not a security issue). Acceptable at current traffic; if it
-// ever matters, add a unique index on (TenantId, YearMonth) and catch the
-// duplicate-key error.
-async function getOrCreateUsageRow(tenantId, yearMonth) {
-  const query = new Parse.Query('partners_TenantUsage');
-  query.equalTo('TenantId', { __type: 'Pointer', className: 'partners_Tenant', objectId: tenantId });
-  query.equalTo('YearMonth', yearMonth);
-  const existing = await query.first({ useMasterKey: true });
-  if (existing) return existing;
-
-  const UsageCls = Parse.Object.extend('partners_TenantUsage');
-  const row = new UsageCls();
-  row.set('TenantId', { __type: 'Pointer', className: 'partners_Tenant', objectId: tenantId });
-  row.set('YearMonth', yearMonth);
-  // DocsSent intentionally left unset here: getMonthlyDocUsage() treats a
-  // missing value as 0 via `|| 0`, and recordDocUsage()'s increment() on an
-  // unsaved new object resolves to 0+delta server-side — setting it to 0
-  // here too would fight with that increment op in the same save.
-  return row;
-}
-
-export async function getMonthlyDocUsage(tenantId, yearMonth = currentYearMonth()) {
-  const row = await getOrCreateUsageRow(tenantId, yearMonth);
-  return row.get('DocsSent') || 0;
-}
-
-// Throws a Parse.Error (blocking the save) if this tenant is already at or
-// over its plan's monthly document limit. No-ops for unlimited/unknown
-// tenants rather than blocking — a missing tenant should never lock a user
-// out, that's a data problem to fix separately, not a quota problem.
+// Throws a Parse.Error (blocking the save) if this tenant has already used
+// up its lifetime document balance. No-ops for unlimited/unknown tenants
+// rather than blocking — a missing tenant should never lock a user out,
+// that's a data problem to fix separately, not a quota problem.
+//
+// Known v1 limitation: this check-then-increment (here, then in
+// recordDocUsage) isn't wrapped in a transaction, so concurrent creates
+// right at the limit boundary could let a tenant go over by a small amount.
+// Not worth a transaction at peenak's current traffic; revisit if that
+// changes.
 export async function enforceDocLimit(extUserId) {
   const tenant = await getTenantForExtUser(extUserId);
   if (!tenant) return;
@@ -68,24 +45,22 @@ export async function enforceDocLimit(extUserId) {
   const docLimit = tenant.get('DocLimit');
   if (docLimit === null || docLimit === undefined) return; // unlimited
 
-  const used = await getMonthlyDocUsage(tenant.id);
+  const used = tenant.get('DocsUsed') || 0;
   if (used >= docLimit) {
     throw new Parse.Error(
       Parse.Error.VALIDATION_ERROR,
-      `quotareached: monthly document limit reached (${docLimit} on the ${tenant.get('PlanName') || tenant.get('PlanId')} plan). Upgrade to continue.`
+      `quotareached: document limit reached (${docLimit} on the ${tenant.get('PlanName') || tenant.get('PlanId')} plan). Upgrade or buy an add-on pack to continue.`
     );
   }
 }
 
-// Call after a document is successfully created to record it against the
-// tenant's monthly usage. Safe to call even if enforceDocLimit was never
-// called (e.g. unlimited tenant) — it just increments.
+// Call after a document is successfully created to debit it from the
+// tenant's lifetime balance. Safe to call even if enforceDocLimit was never
+// called (e.g. unlimited tenant) — it just increments DocsUsed.
 export async function recordDocUsage(extUserId) {
   const tenant = await getTenantForExtUser(extUserId);
   if (!tenant) return;
 
-  const yearMonth = currentYearMonth();
-  const row = await getOrCreateUsageRow(tenant.id, yearMonth);
-  row.increment('DocsSent', 1);
-  await row.save(null, { useMasterKey: true });
+  tenant.increment('DocsUsed', 1);
+  await tenant.save(null, { useMasterKey: true });
 }

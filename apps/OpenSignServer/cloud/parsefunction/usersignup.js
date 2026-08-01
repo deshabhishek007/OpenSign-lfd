@@ -83,7 +83,8 @@ export default async function usersignup(request) {
       const startingPlan = planDefaults(PLAN_FREE);
       partnerQuery.set('PlanId', PLAN_FREE);
       partnerQuery.set('PlanName', startingPlan.name);
-      partnerQuery.set('DocLimit', startingPlan.docLimit);
+      partnerQuery.set('DocLimit', startingPlan.docLimit); // lifetime balance, see PlanUtils.js
+      partnerQuery.set('DocsUsed', 0);
       partnerQuery.set('PlanStatus', 'active');
       partnerQuery.set('CreatedBy', {
         __type: 'Pointer',
