@@ -18,7 +18,7 @@ const Tooltip = ({
     >
       <sup>
         <i
-          className="fa-light fa-question rounded-full border-[1px] py-[1.5px] px-[4px] text-[13px]"
+          className="fa-solid fa-question rounded-full border-[1px] py-[1.5px] px-[4px] text-[13px]"
           style={{
             borderColor: iconColor ? iconColor : "#33bbff",
             color: iconColor ? iconColor : "#33bbff"
@@ -35,7 +35,7 @@ const Tooltip = ({
       >
         <sup>
           <i
-            className="fa-light fa-question rounded-full border-[1px] py-[1.5px] px-[4px] text-[13px]"
+            className="fa-solid fa-question rounded-full border-[1px] py-[1.5px] px-[4px] text-[13px]"
             style={{
               borderColor: iconColor ? iconColor : "#33bbff",
               color: iconColor ? iconColor : "#33bbff"

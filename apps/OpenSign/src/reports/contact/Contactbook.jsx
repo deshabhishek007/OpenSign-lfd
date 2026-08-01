@@ -259,14 +259,14 @@ const Contactbook = (props) => {
               className="cursor-pointer flex"
               onClick={() => handleImportBtn()}
             >
-              <i className="fa-light fa-upload text-[23px] md:text-[25px]"></i>
+              <i className="fa-solid fa-upload text-[23px] md:text-[25px]"></i>
             </div>
             {/* add contact icon*/}
             <div
               className="cursor-pointer flex"
               onClick={() => handleContactFormModal()}
             >
-              <i className="fa-light fa-square-plus text-accent text-[30px] md:text-[32px]"></i>
+              <i className="fa-solid fa-square-plus text-accent text-[30px] md:text-[32px]"></i>
             </div>
             {/* search icon/magnifer icon */}
             {titleElement?.width < 500 && (
@@ -277,7 +277,7 @@ const Contactbook = (props) => {
                   props.setMobileSearchOpen(!props.mobileSearchOpen)
                 }
               >
-                <i className="fa-light fa-magnifying-glass"></i>
+                <i className="fa-solid fa-magnifying-glass"></i>
               </button>
             )}
           </div>
@@ -320,8 +320,8 @@ const Contactbook = (props) => {
                           <i
                             className={
                               sortOrder === "asc"
-                                ? "fa-light fa-arrow-down-a-z"
-                                : "fa-light fa-arrow-up-a-z"
+                                ? "fa-solid fa-arrow-down-a-z"
+                                : "fa-solid fa-arrow-up-a-z"
                             }
                           ></i>
                         </button>

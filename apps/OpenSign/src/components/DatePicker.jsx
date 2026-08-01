@@ -30,7 +30,7 @@ const DatePicker = ({
       ref={ref}
     >
       <span className={`${dateClassName} truncate`}>{value}</span>
-      <i className={`fa-light fa-calendar`}></i>
+      <i className={`fa-solid fa-calendar`}></i>
     </div>
   ));
   CustomInput.displayName = "CustomInput";

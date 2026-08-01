@@ -10,7 +10,7 @@ const getWidgetType = (item, widgetName) => {
       <div className="w-full h-full flex md:justify-between items-center">
         <div className="flex justify-start items-center ml-1 overflow-hidden">
           {!isMobile && (
-            <i className="fa-light fa-grip-vertical ml-[3px] text-[13px] lg:text-[13px]"></i>
+            <i className="fa-solid fa-grip-vertical ml-[3px] text-[13px] lg:text-[13px]"></i>
           )}
           <span className="md:inline-block text-center text-[11px] lg:text-[13px] mx-[3px] truncate font-medium capitalize">
             {widgetName}

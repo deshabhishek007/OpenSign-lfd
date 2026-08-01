@@ -218,7 +218,7 @@ const AddUser = (props) => {
                           <div className="break-all">{formdata?.password}</div>
                           <i
                             onClick={() => copytoclipboard(formdata?.password)}
-                            className="fa-light fa-copy rounded-full hover:bg-base-300 p-[8px] cursor-pointer "
+                            className="fa-solid fa-copy rounded-full hover:bg-base-300 p-[8px] cursor-pointer "
                           ></i>
                         </div>
                         <div className="text-[12px] ml-2 mb-0 text-[red] select-none">

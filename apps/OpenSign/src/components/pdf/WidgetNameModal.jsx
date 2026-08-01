@@ -291,7 +291,7 @@ const WidgetNameModal = (props) => {
                     style={{ fontSize: 12 }}
                   >
                     <i
-                      className="fa-light fa-exclamation-circle text-[15px] mr-1"
+                      className="fa-solid fa-exclamation-circle text-[15px] mr-1"
                       style={{ color: "#fab005" }}
                     ></i>
                     {t("invalid-default-value")}

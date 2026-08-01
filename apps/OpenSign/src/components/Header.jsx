@@ -135,7 +135,7 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
             className="op-btn op-btn-square op-btn-ghost focus:outline-none hover:bg-transparent op-btn-sm no-animation"
             onClick={showSidebar}
           >
-            <i className="fa-light fa-bars text-xl text-base-content"></i>
+            <i className="fa-solid fa-bars text-xl text-base-content"></i>
           </button>
         </div>
         <div className="flex-1 ml-2">
@@ -192,7 +192,7 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
               onClick={toggleDropdown}
               className="op-btn op-btn-ghost op-btn-xs w-[10px] h-[20px] hover:bg-transparent"
             >
-              <i className="fa-light fa-angle-down text-base-content"></i>
+              <i className="fa-solid fa-angle-down text-base-content"></i>
             </div>
             <ul
               tabIndex={0}
@@ -209,7 +209,7 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
                     }}
                   >
                     <span>
-                      <i className="fa-light fa-user"></i> {t("profile")}
+                      <i className="fa-solid fa-user"></i> {t("profile")}
                     </span>
                   </li>
                     <li
@@ -219,7 +219,7 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
                       }}
                     >
                       <span>
-                        <i className="fa-light fa-lock"></i>{" "}
+                        <i className="fa-solid fa-lock"></i>{" "}
                         {t("change-password")}
                       </span>
                     </li>
@@ -230,13 +230,13 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
                     }}
                   >
                     <span>
-                      <i className="fa-light fa-check-square"></i>{" "}
+                      <i className="fa-solid fa-check-square"></i>{" "}
                       {t("verify-document")}
                     </span>
                   </li>
                   <li>
                     <span>
-                      <i className="fa-light fa-moon"></i>
+                      <i className="fa-solid fa-moon"></i>
                       {t("dark-mode")}
                       <span className="text-[10px] font-semibold bg-base-300 text-base-content px-1 rounded-md">
                         BETA
@@ -248,7 +248,7 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
               )}
               <li onClick={handleLogout}>
                 <span>
-                  <i className="fa-light fa-arrow-right-from-bracket"></i>{" "}
+                  <i className="fa-solid fa-arrow-right-from-bracket"></i>{" "}
                   {t("log-out")}
                 </span>
               </li>

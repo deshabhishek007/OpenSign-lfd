@@ -39,8 +39,8 @@
 
   /* Better icon visibility for various states */
   .icon-disabled,
-  .fa-light.text-gray-400,
-  .fa-light.text-gray-500 {
+  .fa-solid.text-gray-400,
+  .fa-solid.text-gray-500 {
     color: #858585 !important;
   }
 

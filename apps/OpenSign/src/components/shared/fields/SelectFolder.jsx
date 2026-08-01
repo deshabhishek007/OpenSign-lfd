@@ -197,7 +197,7 @@ const SelectFolder = ({ required, onSuccess, folderCls, isReset }) => {
               </p>
               <div className="text-sm">
                 <i
-                  className="fa-light fa-pencil cursor-pointer"
+                  className="fa-solid fa-pencil cursor-pointer"
                   title={t("select-folder")}
                   aria-hidden="true"
                 ></i>
@@ -296,7 +296,7 @@ const SelectFolder = ({ required, onSuccess, folderCls, isReset }) => {
             )}
             {isLoader && (
               <div className="flex justify-center my-4">
-                <i className="fa-light fa-spinner fa-spin-pulse text-[30px]"></i>
+                <i className="fa-solid fa-spinner fa-spin-pulse text-[30px]"></i>
               </div>
             )}
           </div>
@@ -309,7 +309,7 @@ const SelectFolder = ({ required, onSuccess, folderCls, isReset }) => {
               title={t("save-here")}
               onClick={handleSubmit}
             >
-              <i className="fa-light fa-save" aria-hidden="true"></i>
+              <i className="fa-solid fa-save" aria-hidden="true"></i>
               {t("save-here")}
             </div>
             <div
@@ -317,7 +317,7 @@ const SelectFolder = ({ required, onSuccess, folderCls, isReset }) => {
               title={t("add-folder")}
               onClick={handleCreate}
             >
-              <i className="fa-light fa-square-plus" aria-hidden="true"></i>
+              <i className="fa-solid fa-square-plus" aria-hidden="true"></i>
               <span className="">{t("add-folder")}</span>
             </div>
           </div>

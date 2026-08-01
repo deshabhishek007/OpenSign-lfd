@@ -97,7 +97,7 @@ const DocSuccessPage = () => {
                   className="font-medium text-sm md:text-[13px] md:px-4 py-2 op-btn op-btn-primary"
                   onClick={() => handleDownload()}
                 >
-                  <i className="fa-light fa-download" aria-hidden="true"></i>
+                  <i className="fa-solid fa-download" aria-hidden="true"></i>
                   <span>{t("download")}</span>
                 </button>
 
@@ -114,7 +114,7 @@ const DocSuccessPage = () => {
                         className="font-medium text-sm md:text-[13px] md:px-4 py-2 op-btn op-btn-secondary"
                       >
                         <i
-                          className="fa-light fa-award mx-[3px] md:mx-0"
+                          className="fa-solid fa-award mx-[3px] md:mx-0"
                           aria-hidden="true"
                         ></i>
                         <span>{t("certificate")}</span>
@@ -128,7 +128,7 @@ const DocSuccessPage = () => {
                   type="button"
                   className="font-medium text-sm md:text-[13px] px-4 py-2 op-btn op-btn-neutral"
                 >
-                  <i className="fa-light fa-print" aria-hidden="true"></i>
+                  <i className="fa-solid fa-print" aria-hidden="true"></i>
                   <span>{t("print")}</span>
                 </button>
               </div>

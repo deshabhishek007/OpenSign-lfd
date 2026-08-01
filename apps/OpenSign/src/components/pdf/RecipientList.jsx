@@ -113,7 +113,7 @@ const RecipientList = (props) => {
             onClick={(e) => handleSelectRecipient(e, ind, obj, true)}
           >
             <i
-              className={`${props.uniqueId === obj.Id ? "bg-white op-text-primary" : "op-bg-primary text-white"} w-[20px] h-[20px] flex justify-center items-center text-[10px] fa-light fa-signature rounded-full`}
+              className={`${props.uniqueId === obj.Id ? "bg-white op-text-primary" : "op-bg-primary text-white"} w-[20px] h-[20px] flex justify-center items-center text-[10px] fa-solid fa-signature rounded-full`}
             ></i>
             <span>{obj.Name}</span>
           </div>
@@ -167,7 +167,7 @@ const RecipientList = (props) => {
                 >
                   <span className="text-white uppercase font-bold text-center text-[12px]">
                     {isWidgetExist(obj.Id) ? (
-                      <i className="fa-light fa-check"></i>
+                      <i className="fa-solid fa-check"></i>
                     ) : (
                       <>{getFirstLetter(obj?.Name ?? obj?.Role)}</>
                     )}
@@ -259,7 +259,7 @@ const RecipientList = (props) => {
                   }}
                   className={`${isSelected(ind) ? "text-[#424242]" : "text-base-content"} cursor-pointer`}
                 >
-                  <i className="fa-light fa-trash-can 2xl:text-[22px]"></i>
+                  <i className="fa-solid fa-trash-can 2xl:text-[22px]"></i>
                 </div>
               )}
               <hr />

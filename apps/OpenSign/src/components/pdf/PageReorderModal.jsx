@@ -65,14 +65,14 @@ export default function PageReorderModal({
                 disabled={i === 0}
                 onClick={() => move(i, -1)}
               >
-                <i className="fa-light fa-arrow-up"></i>
+                <i className="fa-solid fa-arrow-up"></i>
               </button>
               <button
                 className="op-btn op-btn-xs op-btn-ghost text-base-content"
                 disabled={i === order.length - 1}
                 onClick={() => move(i, 1)}
               >
-                <i className="fa-light fa-arrow-down"></i>
+                <i className="fa-solid fa-arrow-down"></i>
               </button>
             </div>
           </div>

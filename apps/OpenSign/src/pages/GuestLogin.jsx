@@ -344,7 +344,7 @@ function GuestLogin() {
                     }}
                     disabled={loading}
                   >
-                        <i className="fa-light fa-message-sms mr-2"></i>
+                        <i className="fa-solid fa-message-sms mr-2"></i>
                         {loading ? t("loading") : t("get-verification-code")}
                   </button>
                 </div>

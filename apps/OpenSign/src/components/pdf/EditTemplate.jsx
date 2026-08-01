@@ -458,7 +458,7 @@ const EditTemplate = ({
                   {t("enable-tour")}
                   <a data-tooltip-id="istourenabled-tooltip" className="ml-1">
                     <sup>
-                      <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                      <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                     </sup>
                   </a>{" "}
                 </span>
@@ -511,7 +511,7 @@ const EditTemplate = ({
                 {t("notify-on-signatures")}
                 <a data-tooltip-id="nos-tooltip" className="ml-1">
                   <sup>
-                    <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                    <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                   </sup>
                 </a>{" "}
                 <Tooltip id="nos-tooltip" className="z-[999]">
@@ -556,7 +556,7 @@ const EditTemplate = ({
                 {t("pen-colors")}
                 <a data-tooltip-id="pen-colors-tooltip" className="ml-1">
                   <sup>
-                    <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                    <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                   </sup>
                 </a>
                 <Tooltip id="pen-colors-tooltip" className="z-[999]">

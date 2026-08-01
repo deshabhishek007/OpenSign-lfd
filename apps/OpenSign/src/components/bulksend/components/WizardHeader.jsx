@@ -50,7 +50,7 @@ function WizardHeader({ steps, step, onStepClick }) {
                   ].join(" ")}
                   aria-hidden="true"
                 >
-                  <i className="fa-light fa-question rounded-full text-[13px]"></i>
+                  <i className="fa-solid fa-question rounded-full text-[13px]"></i>
                 </span>
               </a>
               <span className="text-left">{s.help}</span>

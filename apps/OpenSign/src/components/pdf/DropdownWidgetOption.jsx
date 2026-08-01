@@ -221,14 +221,14 @@ function DropdownWidgetOption(props) {
                   />
 
                   <i
-                    className="fa-light fa-trash-can text-[25px] ml-[10px] text-accent cursor-pointer"
+                    className="fa-solid fa-trash-can text-[25px] ml-[10px] text-accent cursor-pointer"
                     onClick={() => handleDeleteInput(index)}
                   ></i>
                 </div>
               ))}
               <div>
                 <i
-                  className="fa-light fa-square-plus text-[25px] ml-[10px] op-text-primary cursor-pointer"
+                  className="fa-solid fa-square-plus text-[25px] ml-[10px] op-text-primary cursor-pointer"
                   aria-label="Add option"
                   onClick={handleAddInput}
                 ></i>

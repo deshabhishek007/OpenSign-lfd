@@ -70,9 +70,9 @@ const FullScreenButton = () => {
         className="text-base-content p-2 text-sm focus:outline-none"
       >
         {isFullScreen ? (
-          <i className="fa-light fa-compress"></i>
+          <i className="fa-solid fa-compress"></i>
         ) : (
-          <i className="fa-light fa-maximize"></i>
+          <i className="fa-solid fa-maximize"></i>
         )}
       </button>
     </div>

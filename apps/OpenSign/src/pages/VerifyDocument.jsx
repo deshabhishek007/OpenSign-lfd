@@ -749,7 +749,7 @@ const VerifyDocument = () => {
                       {/* Header Section */}
                       <div className="bg-gradient-to-r from-primary to-indigo-600 text-white p-6">
                         <div className="flex items-center space-x-3">
-                          <i className="fa-light fa-signature text-2xl"></i>
+                          <i className="fa-solid fa-signature text-2xl"></i>
                           <div>
                             <h4 className="text-xl font-bold">
                               Signature Details
@@ -778,7 +778,7 @@ const VerifyDocument = () => {
                             </span>
                             <div className="mt-1 flex items-center space-x-2">
                               <i
-                                className={`fa-light ${isSuccessStatus(res.status) ? "fa-circle-check text-green-600" : "fa-circle-xmark text-red-600"} text-lg`}
+                                className={`fa-solid ${isSuccessStatus(res.status) ? "fa-circle-check text-green-600" : "fa-circle-xmark text-red-600"} text-lg`}
                               ></i>
                               <span className="text-lg font-semibold text-base-content">
                                 {res.status}
@@ -797,7 +797,7 @@ const VerifyDocument = () => {
                           >
                             <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-3">
-                                <i className="fa-light fa-id-card text-xl text-primary"></i>
+                                <i className="fa-solid fa-id-card text-xl text-primary"></i>
                                 <h5 className="text-lg font-semibold text-base-content">
                                   Signer Information
                                 </h5>
@@ -854,7 +854,7 @@ const VerifyDocument = () => {
                           >
                             <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-3">
-                                <i className="fa-light fa-building text-xl text-primary"></i>
+                                <i className="fa-solid fa-building text-xl text-primary"></i>
                                 <h5 className="text-lg font-semibold text-base-content">
                                   Issuer Details
                                 </h5>
@@ -906,7 +906,7 @@ const VerifyDocument = () => {
                       {res.certificateValidity && (
                         <div className="p-6 bg-base-200">
                           <div className="flex items-center space-x-3 mb-4">
-                            <i className="fa-light fa-clock text-xl text-primary"></i>
+                            <i className="fa-solid fa-clock text-xl text-primary"></i>
                             <h5 className="text-lg font-semibold text-base-content">
                               Certificate Validity
                             </h5>
@@ -914,7 +914,7 @@ const VerifyDocument = () => {
                           <div className="bg-base-100 rounded-lg p-4 border border-base-300">
                             <div className="flex items-center space-x-2">
                               <i
-                                className={`fa-light ${isCertificateValid(res.certificateValidity) ? "fa-circle-check text-green-600" : "fa-circle-xmark text-red-600"} text-lg`}
+                                className={`fa-solid ${isCertificateValid(res.certificateValidity) ? "fa-circle-check text-green-600" : "fa-circle-xmark text-red-600"} text-lg`}
                               ></i>
                               <span className="text-sm font-mono text-base-content">
                                 {res.certificateValidity}
@@ -936,7 +936,7 @@ const VerifyDocument = () => {
                           <details className="group">
                             <summary className="flex items-center justify-between cursor-pointer text-sm font-medium text-base-content/80 hover:text-base-content">
                               <span>
-                                <i className="fa-light fa-wrench mr-1.5"></i>
+                                <i className="fa-solid fa-wrench mr-1.5"></i>
                                 Technical Details
                               </span>
                               <svg

@@ -709,7 +709,7 @@ function Opensigndrive() {
               >
                 <div data-tut="reactourSecond">
                   <i
-                    className="fa-light fa-plus-square text-[24px]"
+                    className="fa-solid fa-plus-square text-[24px]"
                     aria-hidden="true"
                     style={{ color: `${getThemeIconColor()}` }}
                   ></i>
@@ -725,7 +725,7 @@ function Opensigndrive() {
                       onClick={() => setIsFolder(true)}
                     >
                       <i
-                        className="fa-light fa-plus mr-[5px]"
+                        className="fa-solid fa-plus mr-[5px]"
                         aria-hidden="true"
                       ></i>
                       {t("create-folder")}
@@ -734,14 +734,14 @@ function Opensigndrive() {
                       className="dropdown-item text-[10px] md:text-[13px]"
                       onClick={() => navigate("/form/sHAnZphf69")}
                     >
-                      <i className="fa-light fa-pen-nib mr-[5px]"></i>
+                      <i className="fa-solid fa-pen-nib mr-[5px]"></i>
                       {t("Sign Yourself")}
                     </span>
                     <span
                       className="dropdown-item text-[10px] md:text-[13px]"
                       onClick={() => navigate("/form/8mZzFxbG1z")}
                     >
-                      <i className="fa-light fa-file-signature mr-[5px]"></i>
+                      <i className="fa-solid fa-file-signature mr-[5px]"></i>
                       {t("Request Signatures")}
                     </span>
                   </div>
@@ -758,7 +758,7 @@ function Opensigndrive() {
                   data-toggle="dropdown"
                 >
                   <i
-                    className="fa-light fa-sort-amount-asc mr-[5px] text-[19px]"
+                    className="fa-solid fa-sort-amount-asc mr-[5px] text-[19px]"
                     aria-hidden="true"
                     style={{ color: `${getThemeIconColor()}` }}
                   ></i>
@@ -789,7 +789,7 @@ function Opensigndrive() {
                       }}
                     >
                       {selectedSort === value && (
-                        <i className="fa-light fa-check" aria-hidden="true"></i>
+                        <i className="fa-solid fa-check" aria-hidden="true"></i>
                       )}
                       <span className="ml-[5px]">
                         {t(`sort-order.${value}`)}
@@ -810,7 +810,7 @@ function Opensigndrive() {
                       }}
                     >
                       {sortingOrder === order && (
-                        <i className="fa-light fa-check" aria-hidden="true"></i>
+                        <i className="fa-solid fa-check" aria-hidden="true"></i>
                       )}
                       <span className="ml-[5px]">
                         {t(`sort-order.${order}`)}
@@ -825,7 +825,7 @@ function Opensigndrive() {
                 onClick={handleViewOption}
               >
                 <i
-                  className={`${isList ? "fa-light fa-th-large" : "fa-light fa-list"} text-[20px]`}
+                  className={`${isList ? "fa-solid fa-th-large" : "fa-solid fa-list"} text-[20px]`}
                   style={{ color: `${getThemeIconColor()}` }}
                   aria-hidden="true"
                 ></i>
@@ -840,7 +840,7 @@ function Opensigndrive() {
                   data-tut="reactourSecond"
                 >
                   <i
-                    className="fa-light fa-ellipsis-vertical fa-lg"
+                    className="fa-solid fa-ellipsis-vertical fa-lg"
                     aria-hidden="true"
                     style={{ color: `${getThemeIconColor()}` }}
                   ></i>
@@ -856,7 +856,7 @@ function Opensigndrive() {
                       onClick={() => setIsFolder(true)}
                     >
                       <i
-                        className="fa-light fa-plus mr-[5px]"
+                        className="fa-solid fa-plus mr-[5px]"
                         aria-hidden="true"
                       ></i>
                       {t("create-folder")}
@@ -865,14 +865,14 @@ function Opensigndrive() {
                       className="dropdown-item text-[10px] md:text-[13px]"
                       onClick={() => navigate("/form/sHAnZphf69")}
                     >
-                      <i className="fa-light fa-pen-nib mr-[5px]"></i>
+                      <i className="fa-solid fa-pen-nib mr-[5px]"></i>
                       {t("Sign Yourself")}
                     </span>
                     <span
                       className="dropdown-item text-[10px] md:text-[13px]"
                       onClick={() => navigate("/form/8mZzFxbG1z")}
                     >
-                      <i className="fa-light fa-file-signature mr-[5px]"></i>
+                      <i className="fa-solid fa-file-signature mr-[5px]"></i>
                       {t("Request Signatures")}
                     </span>
                   </div>

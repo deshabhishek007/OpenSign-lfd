@@ -34,7 +34,7 @@ const DashboardButton = (props) => {
           <span className="rounded-xl bg-primary/10 text-primary w-14 h-14 self-start flex justify-center items-center shrink-0 transition-colors group-hover:bg-primary group-hover:text-primary-content">
             <i
               className={`${
-                props.Icon ? props.Icon : "fa-light fa-info"
+                props.Icon ? props.Icon : "fa-solid fa-info"
               } text-2xl`}
             ></i>
           </span>

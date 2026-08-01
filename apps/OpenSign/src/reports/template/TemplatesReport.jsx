@@ -1036,7 +1036,7 @@ const TemplatesReport = (props) => {
               type="button"
               className="flex flex-row items-center op-link op-link-primary"
             >
-              <i className="fa-light fa-copy" />
+              <i className="fa-solid fa-copy" />
               <span className=" hidden md:block ml-1 ">{t("copy-link")}</span>
             </button>
             <ShareButton
@@ -1044,7 +1044,7 @@ const TemplatesReport = (props) => {
               text={t("sign-url")}
               url={data.url}
             >
-              <i className="fa-light fa-share-from-square op-link op-link-secondary no-underline"></i>
+              <i className="fa-solid fa-share-from-square op-link op-link-secondary no-underline"></i>
             </ShareButton>
           </div>
         </div>
@@ -1093,7 +1093,7 @@ const TemplatesReport = (props) => {
           <div className="font-light">
             {t(`report-name.${props.ReportName}`)}{" "}
             <sup className="cursor-pointer" onClick={() => setIsTour(true)}>
-              <i className="border-[#33bbff] text-[#33bbff] fa-light fa-question rounded-full border-[1px] py-[1.5px] px-[4px] text-[13px]"></i>
+              <i className="border-[#33bbff] text-[#33bbff] fa-solid fa-question rounded-full border-[1px] py-[1.5px] px-[4px] text-[13px]"></i>
             </sup>
           </div>
           <div className="flex flex-row justify-center items-center gap-3 mb-2">
@@ -1116,7 +1116,7 @@ const TemplatesReport = (props) => {
               className="cursor-pointer flex"
               onClick={() => navigate("/form/template")}
             >
-              <i className="cursor-pointer fa-light fa-square-plus text-accent text-[30px] md:text-[32px]"></i>
+              <i className="cursor-pointer fa-solid fa-square-plus text-accent text-[30px] md:text-[32px]"></i>
             </div>
             {/* search icon/magnifer icon  */}
             {titleElement?.width < 500 && (
@@ -1127,7 +1127,7 @@ const TemplatesReport = (props) => {
                   props.setMobileSearchOpen(!props.mobileSearchOpen)
                 }
               >
-                <i className="fa-light fa-magnifying-glass"></i>
+                <i className="fa-solid fa-magnifying-glass"></i>
               </button>
             )}
             {props.openColumnModal && (
@@ -1136,7 +1136,7 @@ const TemplatesReport = (props) => {
                 aria-label="Columns"
                 onClick={props.openColumnModal}
               >
-                <i className="fa-light fa-table-columns"></i>
+                <i className="fa-solid fa-table-columns"></i>
               </button>
             )}
           </div>
@@ -1460,7 +1460,7 @@ const TemplatesReport = (props) => {
                                     url={share.url}
                                     className="op-btn op-btn-primary op-btn-outline op-btn-xs md:op-btn-sm "
                                   >
-                                    <i className="fa-light fa-share-from-square"></i>
+                                    <i className="fa-solid fa-share-from-square"></i>
                                     {t("btnLabel.Share")}
                                   </ShareButton>
                                   <button
@@ -1469,7 +1469,7 @@ const TemplatesReport = (props) => {
                                       copybtn(share.url, share.email)
                                     }
                                   >
-                                    <i className="fa-light fa-copy" />
+                                    <i className="fa-solid fa-copy" />
                                     {copied[share.email]
                                       ? t("copied")
                                       : t("copy")}

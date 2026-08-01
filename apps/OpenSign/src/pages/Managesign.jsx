@@ -386,7 +386,7 @@ const ManageSign = () => {
                             <i
                               key={key}
                               onClick={() => setPenColor(color)}
-                              className={`${COLOR_CLASS[color] ?? ""} ${selected ? "border-current" : "border-white"} cursor-pointer border-b-[2px] pb-[2px] text-[16px] fa-light fa-pen-nib`}
+                              className={`${COLOR_CLASS[color] ?? ""} ${selected ? "border-current" : "border-white"} cursor-pointer border-b-[2px] pb-[2px] text-[16px] fa-solid fa-pen-nib`}
                             ></i>
                           );
                         })}
@@ -412,7 +412,7 @@ const ManageSign = () => {
                 </div>
                 {warning && (
                   <span className="customwarning signWarning text-[12px] w-[220px] md:w-[300px]">
-                    <i className="fa-light fa-exclamation-circle text-[#fab005] text-[15px] mr-[4px]"></i>
+                    <i className="fa-solid fa-exclamation-circle text-[#fab005] text-[15px] mr-[4px]"></i>
                     {t("upload-signature/Image")}
                   </span>
                 )}
@@ -463,7 +463,7 @@ const ManageSign = () => {
                             <i
                               key={key}
                               onClick={() => setInitialPen(color)}
-                              className={`${COLOR_CLASS[color] ?? ""} ${selected ? "border-current" : "border-white"} cursor-pointer border-b-[2px] pb-[2px] text-[16px] fa-light fa-pen-nib`}
+                              className={`${COLOR_CLASS[color] ?? ""} ${selected ? "border-current" : "border-white"} cursor-pointer border-b-[2px] pb-[2px] text-[16px] fa-solid fa-pen-nib`}
                             ></i>
                           );
                         })}
@@ -516,7 +516,7 @@ const ManageSign = () => {
                       hidden
                       ref={stampRef}
                     />
-                    <i className="fa-light text-base-content fa-cloud-upload-alt text-[28px]"></i>
+                    <i className="fa-solid text-base-content fa-cloud-upload-alt text-[28px]"></i>
                     <div className="text-[15px] text-base-content">
                       {t("upload")}
                     </div>

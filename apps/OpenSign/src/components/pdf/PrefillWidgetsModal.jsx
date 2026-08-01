@@ -108,7 +108,7 @@ const ImageComponent = (props) => {
             ref={(el) => (imageRefs.current[props?.id] = el)} // Assign ref dynamically
             hidden
           />
-          <i className="fa-light text-base-content fa-cloud-upload-alt text-[25px]"></i>
+          <i className="fa-solid text-base-content fa-cloud-upload-alt text-[25px]"></i>
           <div className="text-[10px] text-base-content">{t("upload")}</div>
         </div>
       )}
@@ -228,7 +228,7 @@ function PrefillWidgetModal(props) {
       ref={ref}
     >
       {value}
-      <i className="fa-light fa-calendar ml-[5px]"></i>
+      <i className="fa-solid fa-calendar ml-[5px]"></i>
     </div>
   ));
   ExampleCustomInput.displayName = "ExampleCustomInput";
@@ -862,7 +862,7 @@ function PrefillWidgetModal(props) {
                             onClick={(e) => handleCreateNew(e, field.value)}
                             className="op-btn op-btn-accent op-btn-outline op-btn-sm"
                           >
-                            <i className="fa-light fa-plus"></i>
+                            <i className="fa-solid fa-plus"></i>
                           </button>
                         </div>
                       </div>

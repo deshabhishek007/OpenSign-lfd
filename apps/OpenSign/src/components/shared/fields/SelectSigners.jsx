@@ -166,7 +166,7 @@ const SelectSigners = (props) => {
                 onClick={() => props.setIsContact(true)}
                 className="op-btn op-btn-accent  op-btn-outline op-btn-sm  "
               >
-                <i className="fa-light fa-plus"></i>
+                <i className="fa-solid fa-plus"></i>
               </button>
             )}
           </div>

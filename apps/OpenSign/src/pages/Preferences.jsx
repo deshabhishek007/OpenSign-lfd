@@ -43,7 +43,7 @@ const Preferences = () => {
   const generaltab = {
     name: "general",
     title: t("general"),
-    icon: "fa-light fa-gears"
+    icon: "fa-solid fa-gears"
   };
   const [tab, setTab] = useState([generaltab]);
   const [sendinOrder, setSendinOrder] = useState(true);
@@ -69,12 +69,12 @@ const Preferences = () => {
   const fetchSignType = withSessionValidation(async () => {
     dispatch(setTopLoader(true));
     const EmailTab = [
-      { name: "email", title: t("email"), icon: "fa-light fa-envelope" }
+      { name: "email", title: t("email"), icon: "fa-solid fa-envelope" }
     ];
 
     const arr = [
       generaltab,
-      { name: "widgets", title: t("widgets"), icon: "fa-light fa-list" },
+      { name: "widgets", title: t("widgets"), icon: "fa-solid fa-list" },
       ...EmailTab,
     ];
     setTab(arr);
@@ -315,7 +315,7 @@ const Preferences = () => {
                             className="ml-1"
                           >
                             <sup>
-                              <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                              <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                             </sup>
                           </a>
                           <ReactTooltip
@@ -394,7 +394,7 @@ const Preferences = () => {
                           {t("notify-on-signatures")}
                           <a data-tooltip-id="nos-tooltip" className="ml-1">
                             <sup>
-                              <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                              <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                             </sup>
                           </a>
                           <ReactTooltip id="nos-tooltip" className="z-[999]">
@@ -458,7 +458,7 @@ const Preferences = () => {
                             className="ml-1"
                           >
                             <sup>
-                              <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                              <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                             </sup>
                           </a>
                           <ReactTooltip
@@ -539,7 +539,7 @@ const Preferences = () => {
                           className="ml-1"
                         >
                           <sup>
-                            <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                            <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                           </sup>
                         </a>
                         <ReactTooltip
@@ -576,7 +576,7 @@ const Preferences = () => {
                             className="ml-1"
                           >
                             <sup>
-                              <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                              <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                             </sup>
                           </a>
                           <ReactTooltip

@@ -61,7 +61,7 @@ const FilenameFormatSelector = ({ fileNameFormat, setFileNameFormat }) => {
         <span className="text-sm">
           <a data-tooltip-id="filename-tooltip" className="ml-1" href="/">
             <sup>
-              <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+              <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
             </sup>
           </a>
           <ReactTooltip id="filename-tooltip" className="z-50">

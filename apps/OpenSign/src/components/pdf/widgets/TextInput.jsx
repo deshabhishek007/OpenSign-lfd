@@ -59,7 +59,7 @@ export default function TextInput(props) {
         <>
           <i
             data-tooltip-id="toggle-multiline"
-            className="fa-light fa-file-lines"
+            className="fa-solid fa-file-lines"
             size={20}
             style={{
               position: "absolute",

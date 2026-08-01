@@ -2010,7 +2010,7 @@ function PdfRequestFiles(
                                 className="font-[500] text-[13px] mr-[5px] op-btn op-btn-neutral"
                               >
                                 <i
-                                  className="fa-light fa-print"
+                                  className="fa-solid fa-print"
                                   aria-hidden="true"
                                 ></i>
                                 <span className="hidden lg:block">
@@ -2028,7 +2028,7 @@ function PdfRequestFiles(
                                   className="font-[500] text-[13px] mr-[5px] op-btn op-btn-secondary"
                                 >
                                   <i
-                                    className="fa-light fa-award mx-[3px] lg:mx-0"
+                                    className="fa-solid fa-award mx-[3px] lg:mx-0"
                                     aria-hidden="true"
                                   ></i>
                                   <span className="hidden lg:block">
@@ -2041,7 +2041,7 @@ function PdfRequestFiles(
                                 onClick={handleDownload}
                               >
                                 <i
-                                  className="fa-light fa-download"
+                                  className="fa-solid fa-download"
                                   aria-hidden="true"
                                 ></i>
                                 <span className="hidden lg:block">
@@ -2198,7 +2198,7 @@ function PdfRequestFiles(
                                 <span>
                                   {t("yet-to-sign")}
                                   <sup onClick={handleTourHelp}>
-                                    <i className="ml-1 cursor-pointer fa-light fa-question rounded-full border-[1px] border-base-content text-[11px] py-[1px] px-[3px]"></i>
+                                    <i className="ml-1 cursor-pointer fa-solid fa-question rounded-full border-[1px] border-base-content text-[11px] py-[1px] px-[3px]"></i>
                                   </sup>
                                 </span>
                               </div>

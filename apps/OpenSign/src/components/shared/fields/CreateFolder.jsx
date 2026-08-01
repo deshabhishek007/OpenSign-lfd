@@ -94,7 +94,7 @@ const CreateFolder = ({ parentFolderId, onSuccess, folderCls, onBack }) => {
             disabled={isLoader}
             className="op-btn op-btn-primary op-btn-sm"
           >
-            <i className="fa-light fa-plus"></i>
+            <i className="fa-solid fa-plus"></i>
             <span>{t("create")}</span>
           </button>
           {onBack && (
@@ -103,7 +103,7 @@ const CreateFolder = ({ parentFolderId, onSuccess, folderCls, onBack }) => {
               title={t("back")}
               onClick={() => onBack()}
             >
-              <i className="fa-light fa-arrow-left" aria-hidden="true"></i>
+              <i className="fa-solid fa-arrow-left" aria-hidden="true"></i>
               <span className="text-xs">{t("back")}</span>
             </div>
           )}

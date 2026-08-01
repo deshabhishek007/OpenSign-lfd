@@ -182,7 +182,7 @@ function WidgetComponent(props) {
                       onClick={() => props.handleAddSigner()}
                       className="op-btn op-btn-accent"
                     >
-                      <i className="fa-light fa-plus "></i>
+                      <i className="fa-solid fa-plus "></i>
                     </button>
                   ) : (
                     props.setIsAddSigner && (
@@ -191,7 +191,7 @@ function WidgetComponent(props) {
                         onClick={() => props.setIsAddSigner(true)}
                         className="op-btn op-btn-accent"
                       >
-                        <i className="fa-light fa-plus"></i>
+                        <i className="fa-solid fa-plus"></i>
                       </button>
                     )
                   )}
@@ -228,7 +228,7 @@ function WidgetComponent(props) {
               {t("widgets")}
               {props?.isSignYourself && (
                 <sup onClick={() => props.setIsTour && props.setIsTour(true)}>
-                  <i className="ml-1 cursor-pointer fa-light fa-question rounded-full border-[1px] border-base-content text-[11px] py-[1px] px-[3px]"></i>
+                  <i className="ml-1 cursor-pointer fa-solid fa-question rounded-full border-[1px] border-base-content text-[11px] py-[1px] px-[3px]"></i>
                 </sup>
               )}
             </span>

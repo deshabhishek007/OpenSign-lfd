@@ -216,21 +216,21 @@ function PdfTools(props) {
                 ref={mergePdfInputRef}
                 onChange={handleFileUpload}
               />
-              <i className="fa-light fa-plus text-base-content/70 2xl:text-[25px]"></i>
+              <i className="fa-solid fa-plus text-base-content/70 2xl:text-[25px]"></i>
             </span>
             <span
               className="bg-base-200 hover:bg-primary/10 rounded-md px-[4px] 2xl:py-[10px] cursor-pointer transition-colors"
               onClick={handleDeletePage}
               title={t("delete-page")}
             >
-              <i className="fa-light fa-trash text-base-content/70 2xl:text-[25px]"></i>
+              <i className="fa-solid fa-trash text-base-content/70 2xl:text-[25px]"></i>
             </span>
             <span
               className="bg-base-200 hover:bg-primary/10 rounded-md px-[4px] 2xl:py-[10px] cursor-pointer transition-colors"
               onClick={handleReorderPages}
               title={t("reorder-pages")}
             >
-              <i className="fa-light fa-list-ol text-base-content/70 2xl:text-[25px]"></i>
+              <i className="fa-solid fa-list-ol text-base-content/70 2xl:text-[25px]"></i>
             </span>
           </>
         )}
@@ -239,7 +239,7 @@ function PdfTools(props) {
           onClick={handleZoomIn}
           title={t("zoom-in")}
         >
-          <i className="fa-light fa-magnifying-glass-plus text-base-content/70 2xl:text-[25px]"></i>
+          <i className="fa-solid fa-magnifying-glass-plus text-base-content/70 2xl:text-[25px]"></i>
         </span>
 
         {!props.isDisableEditTools && (
@@ -249,14 +249,14 @@ function PdfTools(props) {
               onClick={handleRotate}
               title={t("rotate-right")}
             >
-              <i className="fa-light fa-rotate-right text-base-content/70 2xl:text-[25px]"></i>
+              <i className="fa-solid fa-rotate-right text-base-content/70 2xl:text-[25px]"></i>
             </span>
             <span
               className="bg-base-200 hover:bg-primary/10 rounded-md px-[4px] 2xl:py-[10px] cursor-pointer transition-colors"
               title={t("rotate-left")}
               onClick={handleAntiRotate}
             >
-              <i className="fa-light fa-rotate-left text-base-content/70 2xl:text-[25px]"></i>
+              <i className="fa-solid fa-rotate-left text-base-content/70 2xl:text-[25px]"></i>
             </span>
           </>
         )}
@@ -265,7 +265,7 @@ function PdfTools(props) {
           onClick={handleZoomOut}
           title={t("zoom-out")}
         >
-          <i className="fa-light fa-magnifying-glass-minus text-base-content/70 2xl:text-[30px]"></i>
+          <i className="fa-solid fa-magnifying-glass-minus text-base-content/70 2xl:text-[30px]"></i>
         </span>
       </span>
 

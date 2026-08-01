@@ -30,7 +30,7 @@ function UploadImage(props) {
               ref={getImageRef(props?.currWidgetsDetails?.key)}
               hidden
             />
-            <i className="fa-light fa-cloud-upload-alt uploadImgLogo text-base-content"></i>
+            <i className="fa-solid fa-cloud-upload-alt uploadImgLogo text-base-content"></i>
             <div className="text-[10px] text-base-content">{t("upload")}</div>
           </div>
         </div>

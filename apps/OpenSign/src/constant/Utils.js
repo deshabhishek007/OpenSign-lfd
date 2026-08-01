@@ -436,26 +436,26 @@ export const handleWidgetResize = (
 };
 
 export const widgets = [
-  { type: "signature", icon: "fa-light fa-pen-nib", iconSize: "20px" },
-  { type: "stamp", icon: "fa-light fa-stamp", iconSize: "19px" },
-  { type: "initials", icon: "fa-light fa-signature", iconSize: "15px" },
-  { type: textInputWidget, icon: "fa-light fa-font", iconSize: "21px" },
-  { type: "name", icon: "fa-light fa-user", iconSize: "21px" },
-  { type: "job title", icon: "fa-light fa-address-card", iconSize: "17px" },
-  { type: "company", icon: "fa-light fa-building", iconSize: "25px" },
-  { type: "email", icon: "fa-light fa-envelope", iconSize: "20px" },
-  { type: "date", icon: "fa-light fa-calendar-days", iconSize: "20px" },
-  { type: textWidget, icon: "fa-light fa-text-width", iconSize: "20px" },
-  { type: cellsWidget, icon: "fa-light fa-table-cells", iconSize: "20px" },
-  { type: "checkbox", icon: "fa-light fa-square-check", iconSize: "22px" },
+  { type: "signature", icon: "fa-solid fa-pen-nib", iconSize: "20px" },
+  { type: "stamp", icon: "fa-solid fa-stamp", iconSize: "19px" },
+  { type: "initials", icon: "fa-solid fa-signature", iconSize: "15px" },
+  { type: textInputWidget, icon: "fa-solid fa-font", iconSize: "21px" },
+  { type: "name", icon: "fa-solid fa-user", iconSize: "21px" },
+  { type: "job title", icon: "fa-solid fa-address-card", iconSize: "17px" },
+  { type: "company", icon: "fa-solid fa-building", iconSize: "25px" },
+  { type: "email", icon: "fa-solid fa-envelope", iconSize: "20px" },
+  { type: "date", icon: "fa-solid fa-calendar-days", iconSize: "20px" },
+  { type: textWidget, icon: "fa-solid fa-text-width", iconSize: "20px" },
+  { type: cellsWidget, icon: "fa-solid fa-table-cells", iconSize: "20px" },
+  { type: "checkbox", icon: "fa-solid fa-square-check", iconSize: "22px" },
   {
     type: "dropdown",
-    icon: "fa-light fa-circle-chevron-down",
+    icon: "fa-solid fa-circle-chevron-down",
     iconSize: "19px"
   },
-  { type: radioButtonWidget, icon: "fa-light fa-circle-dot", iconSize: "20px" },
-  { type: "image", icon: "fa-light fa-image", iconSize: "20px" },
-  { type: drawWidget, icon: "fa-light fa-pen-nib", iconSize: "20px" }
+  { type: radioButtonWidget, icon: "fa-solid fa-circle-dot", iconSize: "20px" },
+  { type: "image", icon: "fa-solid fa-image", iconSize: "20px" },
+  { type: drawWidget, icon: "fa-solid fa-pen-nib", iconSize: "20px" }
 ];
 
 export const getDate = (dateformat) => {
@@ -1506,7 +1506,7 @@ export const embedDocId = async (pdfOriginalWH, pdfDoc, documentId) => {
   const appName = "LDF Sign";
   // `fontBytes` is used to embed custom font in pdf
   const fontBytes = await fileasbytes(
-    "https://cdn.opensignlabs.com/webfonts/times.ttf"
+    "/fonts/Tinos-Regular.ttf"
   );
   pdfDoc.registerFontkit(fontkit);
   const font = await pdfDoc.embedFont(fontBytes, { subset: true });
@@ -2052,7 +2052,7 @@ export const embedWidgetsToDoc = async (
 ) => {
   // `fontBytes` is used to embed custom font in pdf
   const fontBytes = await fileasbytes(
-    "https://cdn.opensignlabs.com/webfonts/times.ttf"
+    "/fonts/Tinos-Regular.ttf"
   );
   pdfDoc.registerFontkit(fontkit);
   const font = await pdfDoc.embedFont(fontBytes, { subset: true });

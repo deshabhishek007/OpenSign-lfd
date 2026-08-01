@@ -228,7 +228,7 @@ function RenderAllPdfPage(props) {
               ref={mergePdfInputRef}
               onChange={handleFileUpload}
             />
-            <i className="fa-light fa-plus text-gray-500"></i>
+            <i className="fa-solid fa-plus text-gray-500"></i>
             <span className="text-xs lg:text-sm text-base-content">
               {t("add-pages")}
             </span>

@@ -164,7 +164,7 @@ const WidgetsTab = () => {
               {t("date-widget")}
               <a data-tooltip-id="date-widget-tooltip" className="ml-1">
                 <sup>
-                  <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                  <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                 </sup>
               </a>
               <ReactTooltip id="date-widget-tooltip" className="z-[999]">

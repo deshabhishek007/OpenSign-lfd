@@ -21,10 +21,10 @@ function DriveBody(props) {
   const [selectDoc, setSelectDoc] = useState();
   const [isDeleteDoc, setIsDeleteDoc] = useState({});
   const contextMenu = [
-    { type: "Download", icon: "fa-light fa-arrow-down" },
-    { type: "Rename", icon: "fa-light fa-font" },
-    { type: "Move", icon: "fa-light fa-file-export" },
-    { type: "Delete", icon: "fa-light fa-trash" }
+    { type: "Download", icon: "fa-solid fa-arrow-down" },
+    { type: "Rename", icon: "fa-solid fa-font" },
+    { type: "Move", icon: "fa-solid fa-file-export" },
+    { type: "Delete", icon: "fa-solid fa-trash" }
   ];
   const navigate = useNavigate();
 
@@ -383,7 +383,7 @@ function DriveBody(props) {
                 e.stopPropagation();
                 handleMenuItemClick("Download", data);
               }}
-              className="fa-light fa-download mr-[8px] op-text-primary cursor-pointer"
+              className="fa-solid fa-download mr-[8px] op-text-primary cursor-pointer"
               aria-hidden="true"
             ></i>
           </td>
@@ -442,14 +442,14 @@ function DriveBody(props) {
                 onClick={() => handleMenuItemClick("Rename", data)}
                 className="ContextMenuItem"
               >
-                <i className="fa-light fa-font mr-[8px]"></i>
+                <i className="fa-solid fa-font mr-[8px]"></i>
                 <span>{t(`context-menu.Rename`)}</span>
               </ContextMenu.Item>
               <ContextMenu.Item
                 onClick={() => handleMenuItemClick("Delete", data, data.Type)}
                 className="ContextMenuItem"
               >
-                <i className="fa-light fa-trash mr-[8px]"></i>
+                <i className="fa-solid fa-trash mr-[8px]"></i>
                 <span>{t(`context-menu.Delete`)}</span>
               </ContextMenu.Item>
             </ContextMenu.Content>
@@ -513,24 +513,24 @@ function DriveBody(props) {
                 </ContextMenu.Trigger>
                 {status === "Completed" ? (
                   <div className="status-badge completed">
-                    <i className="fa-light fa-check-circle"></i>
+                    <i className="fa-solid fa-check-circle"></i>
                   </div>
                 ) : status === "Declined" ? (
                   <div className="status-badge declined">
-                    <i className="fa-light fa-thumbs-down"></i>
+                    <i className="fa-solid fa-thumbs-down"></i>
                   </div>
                 ) : status === "Expired" ? (
                   <div className="status-badge expired">
-                    <i className="fa-light fa-hourglass-end"></i>
+                    <i className="fa-solid fa-hourglass-end"></i>
                   </div>
                 ) : status === "Draft" ? (
                   <div className="status-badge draft">
-                    <i className="fa-light fa-file"></i>
+                    <i className="fa-solid fa-file"></i>
                   </div>
                 ) : (
                   status === "In Progress" && (
                     <div className="status-badge in-progress">
-                      <i className="fa-light fa-paper-plane"></i>
+                      <i className="fa-solid fa-paper-plane"></i>
                     </div>
                   )
                 )}

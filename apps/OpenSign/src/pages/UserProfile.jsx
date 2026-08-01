@@ -317,7 +317,7 @@ function UserProfile() {
                   alt="dp"
                 />
                 <span className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-black/0 group-hover:bg-black/50 transition-colors">
-                  <i className="fa-light fa-camera text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                  <i className="fa-solid fa-camera text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
                   <span className="text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                     {t("edit")}
                   </span>

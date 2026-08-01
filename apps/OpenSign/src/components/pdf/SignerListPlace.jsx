@@ -16,7 +16,7 @@ function SignerListPlace(props) {
         <span className="relative">
           {props.title ? props.title : "Recipients"}
           <sup onClick={() => props.setIsTour && props.setIsTour(true)}>
-            <i className="ml-1 cursor-pointer fa-light fa-question rounded-full border-[1px] border-base-content text-[11px] py-[1px] px-[3px]"></i>
+            <i className="ml-1 cursor-pointer fa-solid fa-question rounded-full border-[1px] border-base-content text-[11px] py-[1px] px-[3px]"></i>
           </sup>
         </span>
       </div>
@@ -34,7 +34,7 @@ function SignerListPlace(props) {
             className="op-btn op-btn-accent op-btn-outline w-full mt-[14px]"
             onClick={() => props.handleAddSigner()}
           >
-            <i className="fa-light fa-plus"></i> {t("add-role")}
+            <i className="fa-solid fa-plus"></i> {t("add-role")}
           </div>
         ) : (
           <div
@@ -44,7 +44,7 @@ function SignerListPlace(props) {
             disabled={props?.isMailSend ? true : false}
             onClick={handleAddRecipient}
           >
-            <i className="fa-light fa-plus"></i> {t("add-recipients")}
+            <i className="fa-solid fa-plus"></i> {t("add-recipients")}
           </div>
         )}
       </div>

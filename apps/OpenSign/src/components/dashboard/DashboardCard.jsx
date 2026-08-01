@@ -324,7 +324,7 @@ const DashboardCard = (props) => {
         <span className="rounded-xl bg-white/15 w-14 h-14 flex justify-center items-center shrink-0">
           <i
             className={`${
-              props.Icon ? props.Icon : "fa-light fa-info"
+              props.Icon ? props.Icon : "fa-solid fa-info"
             } text-2xl text-white`}
           ></i>
         </span>

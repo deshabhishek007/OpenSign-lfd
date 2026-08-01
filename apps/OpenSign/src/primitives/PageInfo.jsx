@@ -23,7 +23,7 @@ const PageInfo = ({ i18nKey, className = "" }) => {
     <div
       className={`flex items-start gap-2.5 rounded-box border border-primary/20 bg-primary/5 px-4 py-3 mb-3 text-sm text-base-content ${className}`}
     >
-      <i className="fa-light fa-circle-info text-primary mt-0.5 shrink-0"></i>
+      <i className="fa-solid fa-circle-info text-primary mt-0.5 shrink-0"></i>
       <p className="flex-1">{t(i18nKey)}</p>
       <button
         type="button"
@@ -31,7 +31,7 @@ const PageInfo = ({ i18nKey, className = "" }) => {
         aria-label={t("close")}
         className="text-base-content/40 hover:text-base-content transition-colors shrink-0"
       >
-        <i className="fa-light fa-xmark"></i>
+        <i className="fa-solid fa-xmark"></i>
       </button>
     </div>
   );

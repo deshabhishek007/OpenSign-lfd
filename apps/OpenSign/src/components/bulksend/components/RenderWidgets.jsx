@@ -48,7 +48,7 @@ const DateWidget = ({ widget, isRequired, onChange, showLabel }) => {
       ref={ref}
     >
       {value ? value : format}
-      <i className="fa-light fa-calendar ml-[5px]"></i>
+      <i className="fa-solid fa-calendar ml-[5px]"></i>
     </div>
   ));
   PrefillDateInput.displayName = "PrefillDateInput";
@@ -410,7 +410,7 @@ const ImageWidget = ({ widget, isRequired, onChange, showLabel }) => {
             className={`cursor-pointer rounded-box ${canavasTheme} overflow-hidden w-full h-full aspect-[5/2] flex flex-col justify-center items-center`}
             onClick={() => imageRef.current?.click()}
           >
-            <i className="fa-light text-base-content fa-cloud-upload-alt text-[25px]"></i>
+            <i className="fa-solid text-base-content fa-cloud-upload-alt text-[25px]"></i>
             <div className="text-[10px] text-base-content">{t("upload")}</div>
             <input
               type="file"

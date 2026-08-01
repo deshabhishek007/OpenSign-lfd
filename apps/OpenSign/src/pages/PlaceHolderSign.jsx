@@ -1193,7 +1193,7 @@ function PlaceHolderSign() {
               type="button"
               className="flex flex-row items-center op-link op-link-primary"
             >
-              <i className="fa-light fa-copy" />
+              <i className="fa-solid fa-copy" />
               <span className="hidden md:block ml-1 ">{t("copy-link")}</span>
             </button>
             <ShareButton
@@ -1201,7 +1201,7 @@ function PlaceHolderSign() {
               text={t("sign-url")}
               url={data.url}
             >
-              <i className="fa-light fa-share-from-square op-link opensigncss:op-link-secondary opensigndark:op-link-primary no-underline"></i>
+              <i className="fa-solid fa-share-from-square op-link opensigncss:op-link-secondary opensigndark:op-link-primary no-underline"></i>
             </ShareButton>
           </div>
         </div>

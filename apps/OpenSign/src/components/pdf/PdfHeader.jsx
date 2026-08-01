@@ -200,7 +200,7 @@ function Header(props) {
           <div className="flex justify-between items-center py-[5px] pl-[10px] ">
             <div onClick={() => window.history.go(-2)}>
               <i
-                className="fa-light fa-arrow-left text-base-content"
+                className="fa-solid fa-arrow-left text-base-content"
                 aria-hidden="true"
               ></i>
             </div>
@@ -214,7 +214,7 @@ function Header(props) {
                 <DropdownMenu.Trigger asChild>
                   <div className="op-link op-link-primary no-underline text-[16px] font-semibold px-3">
                     <i
-                      className="fa-light fa-ellipsis-v"
+                      className="fa-solid fa-ellipsis-v"
                       aria-hidden="true"
                     ></i>
                   </div>
@@ -230,7 +230,7 @@ function Header(props) {
                     >
                       <div className="flex flex-row">
                         <i
-                          className="fa-light fa-arrow-down mr-[3px]"
+                          className="fa-solid fa-arrow-down mr-[3px]"
                           aria-hidden="true"
                         ></i>
                         {t("download")}
@@ -249,7 +249,7 @@ function Header(props) {
                           >
                             <div className="border-none bg-[#fff]">
                               <i
-                                className="fa-light fa-award mr-[3px]"
+                                className="fa-solid fa-award mr-[3px]"
                                 aria-hidden="true"
                               ></i>
                               {t("certificate")}
@@ -264,7 +264,7 @@ function Header(props) {
                       >
                         <div className="flex flex-row">
                           <i
-                            className="fa-light fa-envelope mr-[3px]"
+                            className="fa-solid fa-envelope mr-[3px]"
                             aria-hidden="true"
                           ></i>
                           {t("mail")}
@@ -279,7 +279,7 @@ function Header(props) {
                     >
                       <div className="flex flex-row">
                         <i
-                          className="fa-light fa-print mr-[3px]"
+                          className="fa-solid fa-print mr-[3px]"
                           aria-hidden="true"
                         ></i>
                         {t("print")}
@@ -341,7 +341,7 @@ function Header(props) {
                       <DropdownMenu.Trigger asChild>
                         <div className="font-[650] text-[18px] px-3  text-base-content no-underline">
                           <i
-                            className="fa-light fa-ellipsis-v"
+                            className="fa-solid fa-ellipsis-v"
                             aria-hidden="true"
                           ></i>
                         </div>
@@ -358,7 +358,7 @@ function Header(props) {
                             >
                               <div className="flex flex-row">
                                 <i
-                                  className="fa-light fa-gear mr-[3px]"
+                                  className="fa-solid fa-gear mr-[3px]"
                                   aria-hidden="true"
                                 ></i>
                                 <span className="font-[500]">{t("Edit")}</span>
@@ -371,7 +371,7 @@ function Header(props) {
                           >
                             <div className="flex flex-row">
                               <i
-                                className="fa-light fa-arrow-down mr-[3px]"
+                                className="fa-solid fa-arrow-down mr-[3px]"
                                 aria-hidden="true"
                               ></i>
                               <span className="font-[500]">
@@ -386,7 +386,7 @@ function Header(props) {
                                 onClick={() => mergePdfInputRef.current.click()}
                               >
                                 <div className="flex flex-row">
-                                  <i className="fa-light fa-plus text-gray-500 2xl:text-[30px] mr-[3px]"></i>
+                                  <i className="fa-solid fa-plus text-gray-500 2xl:text-[30px] mr-[3px]"></i>
                                   <span className="font-[500]">
                                     {t("add-pages")}
                                   </span>
@@ -397,7 +397,7 @@ function Header(props) {
                                 onClick={() => setIsDeletePage(true)}
                               >
                                 <div className="flex flex-row">
-                                  <i className="fa-light fa-trash text-gray-500 2xl:text-[30px] mr-[3px]"></i>
+                                  <i className="fa-solid fa-trash text-gray-500 2xl:text-[30px] mr-[3px]"></i>
                                   <span className="font-[500]">
                                     {t("delete-page")}
                                   </span>
@@ -408,7 +408,7 @@ function Header(props) {
                                 onClick={() => setIsReorderModal(true)}
                               >
                                 <div className="flex flex-row">
-                                  <i className="fa-light fa-list-ol text-gray-500 2xl:text-[30px] mr-[3px]"></i>
+                                  <i className="fa-solid fa-list-ol text-gray-500 2xl:text-[30px] mr-[3px]"></i>
                                   <span className="font-[500]">
                                     {t("reorder-pages")}
                                   </span>
@@ -420,7 +420,7 @@ function Header(props) {
                                 onClick={() => props?.handleRotationFun(90)}
                               >
                                 <div className="flex flex-row">
-                                  <i className="fa-light fa-rotate-right text-gray-500 2xl:text-[30px] mr-[3px]"></i>
+                                  <i className="fa-solid fa-rotate-right text-gray-500 2xl:text-[30px] mr-[3px]"></i>
                                   <span className="font-[500]">
                                     {t("rotate-right")}
                                   </span>
@@ -431,7 +431,7 @@ function Header(props) {
                                 onClick={() => props?.handleRotationFun(-90)}
                               >
                                 <div className="flex flex-row">
-                                  <i className="fa-light fa-rotate-left text-gray-500 2xl:text-[30px] mr-[3px]"></i>
+                                  <i className="fa-solid fa-rotate-left text-gray-500 2xl:text-[30px] mr-[3px]"></i>
                                   <span className="font-[500]">
                                     {t("rotate-left")}
                                   </span>
@@ -445,7 +445,7 @@ function Header(props) {
                             onClick={() => props?.clickOnZoomIn()}
                           >
                             <div className="flex flex-row">
-                              <i className="fa-light fa-magnifying-glass-plus text-gray-500 2xl:text-[30px] mr-[3px]"></i>
+                              <i className="fa-solid fa-magnifying-glass-plus text-gray-500 2xl:text-[30px] mr-[3px]"></i>
                               <span className="font-[500]">{t("zoom-in")}</span>
                             </div>
                           </DropdownMenu.Item>
@@ -454,7 +454,7 @@ function Header(props) {
                             onClick={() => props?.clickOnZoomOut()}
                           >
                             <div className="flex flex-row">
-                              <i className="fa-light fa-magnifying-glass-minus text-gray-500 2xl:text-[30px] mr-[3px]"></i>
+                              <i className="fa-solid fa-magnifying-glass-minus text-gray-500 2xl:text-[30px] mr-[3px]"></i>
                               <span className="font-[500]">
                                 {t("zoom-out")}
                               </span>
@@ -494,7 +494,7 @@ function Header(props) {
                     onClick={() => props?.setIsEditTemplate(true)}
                     className="outline-none border-none text-center mr-[3px]"
                   >
-                    <i className="fa-light fa-gear fa-lg text-base-content"></i>
+                    <i className="fa-solid fa-gear fa-lg text-base-content"></i>
                   </button>
                 )}
                 {enabledBackBtn && (
@@ -531,7 +531,7 @@ function Header(props) {
                   className="op-btn op-btn-neutral op-btn-sm mr-[3px] shadow"
                 >
                   <i
-                    className="fa-light fa-print py-[3px]"
+                    className="fa-solid fa-print py-[3px]"
                     aria-hidden="true"
                   ></i>
                   <span className="hidden lg:block">{t("print")}</span>
@@ -549,7 +549,7 @@ function Header(props) {
                         className="op-btn op-btn-secondary op-btn-sm mr-[3px] shadow"
                       >
                         <i
-                          className="fa-light fa-award py-[3px]"
+                          className="fa-solid fa-award py-[3px]"
                           aria-hidden="true"
                         ></i>
                         <span className="hidden lg:block">
@@ -564,7 +564,7 @@ function Header(props) {
                   onClick={() => handleDownloadBtn()}
                 >
                   <i
-                    className="fa-light fa-download py-[3px]"
+                    className="fa-solid fa-download py-[3px]"
                     aria-hidden="true"
                   ></i>
                   <span className="hidden lg:block">{t("download")}</span>
@@ -597,7 +597,7 @@ function Header(props) {
                         className="op-btn op-btn-ghost text-base-content op-btn-sm mr-[3px]"
                         onClick={() => handleDownloadDoc()}
                       >
-                        <i className="fa-light fa-arrow-down font-semibold lg:hidden"></i>
+                        <i className="fa-solid fa-arrow-down font-semibold lg:hidden"></i>
                         <span className="hidden lg:block">{t("download")}</span>
                       </button>
                     )}
@@ -628,7 +628,7 @@ function Header(props) {
                       }
                       className="op-btn op-btn-secondary op-btn-sm gap-0 font-medium text-[12px] mr-[3px] shadow"
                     >
-                      <i className="fa-light fa-award" aria-hidden="true"></i>
+                      <i className="fa-solid fa-award" aria-hidden="true"></i>
                       <span className="hidden lg:block ml-1">
                         {t("certificate")}
                       </span>
@@ -642,7 +642,7 @@ function Header(props) {
                 type="button"
                 className="op-btn op-btn-neutral op-btn-sm gap-0 font-medium text-[12px] mr-[3px] shadow"
               >
-                <i className="fa-light fa-print" aria-hidden="true"></i>
+                <i className="fa-solid fa-print" aria-hidden="true"></i>
                 <span className="hidden lg:block ml-1">{t("print")}</span>
               </button>
               <button
@@ -651,7 +651,7 @@ function Header(props) {
                 // onClick={() => props?.setIsDownloadModal(true)}
                 onClick={() => handleDownloadBtn()}
               >
-                <i className="fa-light fa-download" aria-hidden="true"></i>
+                <i className="fa-solid fa-download" aria-hidden="true"></i>
                 <span className="hidden lg:block ml-1">{t("download")}</span>
               </button>
               <button
@@ -659,7 +659,7 @@ function Header(props) {
                 className="op-btn op-btn-info op-btn-sm gap-0 font-medium text-[12px] mr-[3px] shadow"
                 onClick={() => props?.setIsEmail(true)}
               >
-                <i className="fa-light fa-envelope" aria-hidden="true"></i>
+                <i className="fa-solid fa-envelope" aria-hidden="true"></i>
                 <span className="hidden lg:block ml-1">{t("mail")}</span>
               </button>
             </div>

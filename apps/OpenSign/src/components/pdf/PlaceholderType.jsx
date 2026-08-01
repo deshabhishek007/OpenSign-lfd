@@ -94,7 +94,7 @@ function PlaceholderType(props) {
       ref={ref}
     >
       {value}
-      <i className="fa-light fa-calendar ml-[5px]"></i>
+      <i className="fa-solid fa-calendar ml-[5px]"></i>
     </div>
   ));
   ExampleCustomInput.displayName = "ExampleCustomInput";
@@ -390,7 +390,7 @@ function PlaceholderType(props) {
           className="select-none-cls flex justify-between items-center"
         >
           {widgetData?.trim() || t("choose-one")}
-          <i className="fa-light fa-circle-chevron-down mr-1 "></i>
+          <i className="fa-solid fa-circle-chevron-down mr-1 "></i>
         </div>
       );
     case "initials": {
@@ -515,7 +515,7 @@ function PlaceholderType(props) {
             className={`${isReadOnly ? `select-none opacity-25` : ``} ${selectWidgetCls} overflow-hidden`}
           >
             {date}
-            <i className="fa-light fa-calendar text-[10px] ml-[5px]"></i>
+            <i className="fa-solid fa-calendar text-[10px] ml-[5px]"></i>
           </span>
         </div>
       ) : (

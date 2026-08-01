@@ -849,7 +849,7 @@ const Forms = (props) => {
                       }}
                       className="cursor-pointer ml-[10px] text-[20px] font-bold"
                     >
-                      <i className="fa-light fa-xmark inline-flex h-7 w-7 items-center justify-center rounded-full hover:bg-red-100 text-red-500" />
+                      <i className="fa-solid fa-xmark inline-flex h-7 w-7 items-center justify-center rounded-full hover:bg-red-100 text-red-500" />
                     </div>
                   </div>
                 </div>
@@ -956,7 +956,7 @@ const Forms = (props) => {
                             className="ml-1"
                           >
                             <sup>
-                              <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                              <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                             </sup>
                           </a>
                           <Tooltip id="sendInOrder-tooltip" className="z-[999]">
@@ -1069,7 +1069,7 @@ const Forms = (props) => {
                                 className="ml-1"
                               >
                                 <sup>
-                                  <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                                  <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                                 </sup>
                               </a>
                               <Tooltip
@@ -1251,7 +1251,7 @@ const Forms = (props) => {
                             className="ml-1"
                           >
                             <sup>
-                              <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                              <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                             </sup>
                           </a>
                         </span>
@@ -1308,7 +1308,7 @@ const Forms = (props) => {
                         {t("notify-on-signatures")}
                         <a data-tooltip-id="nos-tooltip" className="ml-1">
                           <sup>
-                            <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                            <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                           </sup>
                         </a>
                         <Tooltip id="nos-tooltip" className="z-[999]">
@@ -1372,7 +1372,7 @@ const Forms = (props) => {
                             className="ml-1"
                           >
                             <sup>
-                              <i className="fa-light fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
+                              <i className="fa-solid fa-question rounded-full border-[#33bbff] text-[#33bbff] text-[13px] border-[1px] py-[1.5px] px-[4px]"></i>
                             </sup>
                           </a>
                           <Tooltip id="pen-colors-tooltip" className="z-[999]">

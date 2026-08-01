@@ -122,7 +122,7 @@ function EmailComponent({
                   }
                   className="op-btn op-btn-neutral op-btn-sm text-xs md:text-[15px]"
                 >
-                  <i className="fa-light fa-print" aria-hidden="true"></i>
+                  <i className="fa-solid fa-print" aria-hidden="true"></i>
                   {t("print")}
                 </button>
               )}
@@ -133,7 +133,7 @@ function EmailComponent({
                   setIsDownloadModal(true);
                 }}
               >
-                <i className="fa-light fa-download" aria-hidden="true"></i>
+                <i className="fa-solid fa-download" aria-hidden="true"></i>
                 {t("download")}
               </button>
             </div>
@@ -158,7 +158,7 @@ function EmailComponent({
                           className="text-base-100 text-[13px] font-semibold ml-[7px] cursor-pointer"
                           onClick={() => removeChip(ind)}
                         >
-                          <i className="fa-light fa-xmark"></i>
+                          <i className="fa-solid fa-xmark"></i>
                         </span>
                       </div>
                     );

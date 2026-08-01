@@ -10,13 +10,13 @@ const buttonList = [
     label: "Sign yourself",
     redirectId: "sHAnZphf69",
     redirectType: "Form",
-    icon: "fa-light fa-pen-nib"
+    icon: "fa-solid fa-pen-nib"
   },
   {
     label: "Request signatures",
     redirectId: "8mZzFxbG1z",
     redirectType: "Form",
-    icon: "fa-light fa-paper-plane"
+    icon: "fa-solid fa-paper-plane"
   }
 ];
 const GetDashboard = (props) => {

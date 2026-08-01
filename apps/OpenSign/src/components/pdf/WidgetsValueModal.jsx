@@ -1022,7 +1022,7 @@ function WidgetsValueModal(props) {
       ref={ref}
     >
       {value ? value : "Select date"}
-      <i className="fa-light fa-calendar ml-[5px]"></i>
+      <i className="fa-solid fa-calendar ml-[5px]"></i>
     </div>
   ));
   ExampleCustomInput.displayName = "ExampleCustomInput";
@@ -2116,7 +2116,7 @@ function WidgetsValueModal(props) {
                       disabled={handleDisable()}
                     >
                       {t("next-field")}
-                      <i className="fa-light fa-forward-step"></i>
+                      <i className="fa-solid fa-forward-step"></i>
                     </button>
                   )}
                 </div>

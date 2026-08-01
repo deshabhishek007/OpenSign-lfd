@@ -613,7 +613,7 @@ const BulkSendUi = (props) => {
                         type="submit"
                         className="op-btn op-btn-accent w-[150px] focus:outline-none"
                       >
-                        <i className="fa-light fa-paper-plane"></i>
+                        <i className="fa-solid fa-paper-plane"></i>
                         <span>{t("send")}</span>
                       </button>
                     </div>

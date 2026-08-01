@@ -1031,7 +1031,7 @@ const DocumentsReport = (props) => {
               type="button"
               className="flex flex-row items-center op-link op-link-primary"
             >
-              <i className="fa-light fa-copy" />
+              <i className="fa-solid fa-copy" />
               <span className=" hidden md:block ml-1 ">{t("copy-link")}</span>
             </button>
             <ShareButton
@@ -1039,7 +1039,7 @@ const DocumentsReport = (props) => {
               text={t("sign-url")}
               url={data.url}
             >
-              <i className="fa-light fa-share-from-square op-link op-link-secondary no-underline"></i>
+              <i className="fa-solid fa-share-from-square op-link op-link-secondary no-underline"></i>
             </ShareButton>
           </div>
         </div>
@@ -1121,7 +1121,7 @@ const DocumentsReport = (props) => {
                   props.setMobileSearchOpen(!props.mobileSearchOpen)
                 }
               >
-                <i className="fa-light fa-magnifying-glass"></i>
+                <i className="fa-solid fa-magnifying-glass"></i>
               </button>
             )}
             {props.openColumnModal && (
@@ -1130,7 +1130,7 @@ const DocumentsReport = (props) => {
                 aria-label="Columns"
                 onClick={props.openColumnModal}
               >
-                <i className="fa-light fa-table-columns"></i>
+                <i className="fa-solid fa-table-columns"></i>
               </button>
             )}
             {props?.ReportName === "In-progress documents" && (
@@ -1140,7 +1140,7 @@ const DocumentsReport = (props) => {
                   role="button"
                   className="focus:outline-none rounded-md text-[18px]"
                 >
-                  <i className="fa-light fa-filter"></i>
+                  <i className="fa-solid fa-filter"></i>
                 </div>
                 <ul
                   tabIndex="-1"
@@ -1353,7 +1353,7 @@ const DocumentsReport = (props) => {
                                     handleUseTemplate(templateId, item)
                                   }
                                 >
-                                  <i className="fa-light fa-plus"></i>{" "}
+                                  <i className="fa-solid fa-plus"></i>{" "}
                                   {t("btnLabel.Use")}
                                 </button>
                                 <button
@@ -1365,7 +1365,7 @@ const DocumentsReport = (props) => {
                                     )
                                   }
                                 >
-                                  <i className="fa-light fa-plus"></i>{" "}
+                                  <i className="fa-solid fa-plus"></i>{" "}
                                   {
                                         `${t(`btnLabel.Quick send`)}`
                                   }
@@ -1376,7 +1376,7 @@ const DocumentsReport = (props) => {
                                     navigate(`/template/${templateId}`)
                                   }
                                 >
-                                  <i className="fa-light fa-pen"></i>{" "}
+                                  <i className="fa-solid fa-pen"></i>{" "}
                                   {t(`btnLabel.Edit`)}
                                 </button>
                               </div>
@@ -1584,7 +1584,7 @@ const DocumentsReport = (props) => {
                                     url={share.url}
                                     className="op-btn op-btn-primary op-btn-outline op-btn-xs md:op-btn-sm "
                                   >
-                                    <i className="fa-light fa-share-from-square"></i>
+                                    <i className="fa-solid fa-share-from-square"></i>
                                     {t("btnLabel.Share")}
                                   </ShareButton>
                                   <button
@@ -1593,7 +1593,7 @@ const DocumentsReport = (props) => {
                                       copybtn(share.url, share.email)
                                     }
                                   >
-                                    <i className="fa-light fa-copy" />
+                                    <i className="fa-solid fa-copy" />
                                     {copied[share.email]
                                       ? t("copied")
                                       : t("copy")}

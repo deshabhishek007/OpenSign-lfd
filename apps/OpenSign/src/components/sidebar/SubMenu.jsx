@@ -29,8 +29,8 @@ const Submenu = ({ item, closeSidebar, toggleSubmenu, submenuOpen }) => {
           <i
             className={`${
               submenuOpen[item.title]
-                ? "fa-light fa-angle-down"
-                : "fa-light fa-angle-right"
+                ? "fa-solid fa-angle-down"
+                : "fa-solid fa-angle-right"
             }`}
             aria-hidden="true"
           ></i>

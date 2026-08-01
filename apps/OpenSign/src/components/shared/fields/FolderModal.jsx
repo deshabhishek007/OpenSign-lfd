@@ -231,7 +231,7 @@ const FolderModal = (props) => {
             )}
             {isLoader && (
               <div className="flex justify-center my-4">
-                <i className="fa-light fa-spinner fa-spin-pulse text-[30px]"></i>
+                <i className="fa-solid fa-spinner fa-spin-pulse text-[30px]"></i>
               </div>
             )}
           </div>
@@ -244,7 +244,7 @@ const FolderModal = (props) => {
               title={t("save-here")}
               onClick={handleSubmit}
             >
-              <i className="fa-light fa-save" aria-hidden="true"></i>
+              <i className="fa-solid fa-save" aria-hidden="true"></i>
               {t("save-here")}
             </div>
             <div
@@ -252,7 +252,7 @@ const FolderModal = (props) => {
               title={t("add-folder")}
               onClick={handleCreate}
             >
-              <i className="fa-light fa-square-plus" aria-hidden="true"></i>
+              <i className="fa-solid fa-square-plus" aria-hidden="true"></i>
               <span className="">{t("add-folder")}</span>
             </div>
           </div>

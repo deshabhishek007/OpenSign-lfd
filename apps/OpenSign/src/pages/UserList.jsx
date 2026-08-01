@@ -312,7 +312,7 @@ const UserList = () => {
                         className="cursor-pointer"
                         onClick={() => handleModal("form")}
                       >
-                        <i className="fa-light fa-square-plus text-accent text-[30px] md:text-[40px]"></i>
+                        <i className="fa-solid fa-square-plus text-accent text-[30px] md:text-[40px]"></i>
                       </div>
                     </div>
                   </div>
