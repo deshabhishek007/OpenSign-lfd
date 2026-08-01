@@ -1085,7 +1085,7 @@ const DocumentsReport = (props) => {
           ref={titleRef}
           className="flex flex-row items-center justify-between my-2 mx-3 text-[20px] md:text-[23px]"
         >
-          <div className="font-light">
+          <div className="font-bold">
             {t(`report-name.${props.ReportName}`)}{" "}
             {props.report_help && (
               <span className="text-xs md:text-[13px] font-normal">
@@ -1805,7 +1805,7 @@ const DocumentsReport = (props) => {
             <div
               className={`${
                 isDashboard ? "h-[317px]" : ""
-              } flex flex-col items-center justify-center w-ful bg-base-100 text-base-content rounded-xl py-4`}
+              } flex flex-col items-center justify-center w-ful bg-base-100 text-base-content rounded-xl py-8`}
             >
               {props.searchLoader ? (
                 <>
@@ -1814,14 +1814,14 @@ const DocumentsReport = (props) => {
                 </>
               ) : (
                 <>
-                  <div className="w-[60px] h-[60px] overflow-hidden">
+                  <div className="w-[72px] h-[72px] overflow-hidden opacity-40">
                     <img
                       className="w-full h-full object-contain"
                       src={pad}
                       alt={t("no-data-available")}
                     />
                   </div>
-                  <div className="text-sm font-semibold">
+                  <div className="text-sm font-semibold text-base-content/60 mt-2">
                     {t("no-data-available")}
                   </div>
                 </>
