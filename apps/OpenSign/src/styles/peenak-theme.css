@@ -74,15 +74,15 @@ html[data-theme='opensigndark'] main {
 }
 
 /* ---- Sidebar: flat, thin active indicator instead of solid block ---- */
-nav[aria-label='OpenSign Sidebar Navigation'] a,
-nav[aria-label='OpenSign Sidebar Navigation'] button {
+nav[aria-label='LDF Sign Sidebar Navigation'] a,
+nav[aria-label='LDF Sign Sidebar Navigation'] button {
   border-radius: .4rem;
   margin: 0 .5rem;
   font-weight: 500;
   transition: background-color .1s ease, color .1s ease;
 }
-nav[aria-label='OpenSign Sidebar Navigation'] [aria-current='page'],
-nav[aria-label='OpenSign Sidebar Navigation'] a.active {
+nav[aria-label='LDF Sign Sidebar Navigation'] [aria-current='page'],
+nav[aria-label='LDF Sign Sidebar Navigation'] a.active {
   background: oklch(var(--p) / 0.08) !important;
   color: oklch(var(--p)) !important;
   font-weight: 600;

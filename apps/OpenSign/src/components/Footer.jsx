@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Package from "../../package.json";
 import axios from "axios";
-import { openInNewTab } from "../constant/Utils";
 import { useTranslation } from "react-i18next";
 const Footer = () => {
-  const appName = "OpenSign™";
+  const appName = "LDF Sign";
   const { t } = useTranslation();
   const [showButton, setShowButton] = useState(false);
   const [version, setVersion] = useState("");
@@ -40,18 +39,13 @@ const Footer = () => {
     };
   }, []);
 
-  const openUrl = () => {
-    openInNewTab(
-      "https://github.com/OpenSignLabs/OpenSign/releases/tag/" + version
-    );
-  };
   return (
     <>
       <footer className="op-footer op-footer-center py-3 bg-base-300 text-base-content text-center text-[13px]">
         <aside>
           <p>
             {t("all-right")} &copy; {new Date().getFullYear()} &nbsp;
-            <span onClick={openUrl} className="hover:underline cursor-pointer">
+            <span>
               {appName} ( {t("version")}:{" "}
               {version ? version : `${Package.version} `})
             </span>

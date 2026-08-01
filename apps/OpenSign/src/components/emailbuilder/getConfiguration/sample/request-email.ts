@@ -2,8 +2,7 @@ import { TEditorConfiguration } from "../../documents/editor/core";
 
 const getRequestEmail = (
 ): TEditorConfiguration => {
-  const appName =
-    "OpenSign™";
+  const appName = "LDF Sign";
 
   const logoBlock =
         {

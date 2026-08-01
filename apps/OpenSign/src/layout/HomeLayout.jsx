@@ -19,7 +19,7 @@ import SessionExpiredModal from "../primitives/SessionExpiredModal";
 
 const HomeLayout = () => {
   const appName =
-    "OpenSign™";
+    "LDF Sign";
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const tourArr = useSelector((state) => state.TourSteps);
@@ -81,7 +81,6 @@ const HomeLayout = () => {
   }, [tourArr]);
 
   const handleDynamicSteps = () => {
-    const github = "https://github.com/OpenSignLabs/OpenSign";
     if (tourArr && tourArr.length > 0) {
       const resArr = tourArr.map((obj, index) => {
         if (tourArr.length - 1 === index) {
@@ -106,22 +105,7 @@ const HomeLayout = () => {
         ...resArr,
         {
           selector: '[data-tut="nonpresentmask"]',
-          content: () => (
-            <div>
-              {t("tour-mssg.home-layout-3", { appName })}
-              <p className="mt-[3px]">
-                ⭐ Star us on
-                <a
-                  href={github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline font-medium pl-1 cursor-pointer"
-                >
-                  GitHub
-                </a>
-              </p>
-            </div>
-          ),
+          content: () => <div>{t("tour-mssg.home-layout-3", { appName })}</div>,
           position: "center",
           styles: { fontSize: "13px", maskArea: nonPresentMaskCss }
         }

@@ -7,7 +7,6 @@ import Parse from "parse";
 import { useWindowSize } from "../hook/useWindowSize";
 import {
   getAppLogo,
-  openInNewTab,
   saveLanguageInLocal
 } from "../constant/Utils";
 import { useTranslation } from "react-i18next";
@@ -203,15 +202,6 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
             >
               {!isConsole && (
                 <>
-                    <li
-                      onClick={() =>
-                        openInNewTab("https://docs.opensignlabs.com")
-                      }
-                    >
-                      <span>
-                        <i className="fa-light fa-book"></i> {t("docs")}
-                      </span>
-                    </li>
                   <li
                     onClick={() => {
                       setIsOpen(false);

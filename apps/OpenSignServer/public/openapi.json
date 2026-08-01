@@ -1,43 +1,22 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "OpenSign API v1",
-    "description": "This is API documentation for OpenSign API v1 based on the OpenAPI 3.1 specification. \n\nSome useful links:\n- [Official Website](https://www.opensignlabs.com)\n- [Github repo](https://github.com/opensignlabs/opensign)",
-    "termsOfService": "http://www.opensignlabs.com/terms/",
-    "contact": {
-      "email": "contact@opensignlabs.com"
-    },
+    "title": "LDF Sign API v1",
+    "description": "This is the API documentation for LDF Sign API v1 based on the OpenAPI 3.1 specification.",
     "license": {
-      "name": "AGPL 3.0",
-      "url": "http://github.com/opensignlabs/opensign/LICENSE"
+      "name": "AGPL 3.0"
     },
     "version": "1.0.0"
   },
-  "externalDocs": {
-    "description": "Find out more about OpenSign",
-    "url": "http://docs.opensignlabs.com"
-  },
   "servers": [
     {
-      "url": "https://app.opensignlabs.com/api/v1"
+      "url": "https://esign.peenak.com/api/v1"
     }
   ],
   "tags": [
     {
-      "name": "OpenSign",
-      "description": "OpenSource DocuSign alternative",
-      "externalDocs": {
-        "description": "Find out more",
-        "url": "http://www.opensignlabs.com"
-      }
-    },
-    {
-      "name": "Github repo",
-      "description": "Access the source code",
-      "externalDocs": {
-        "description": "Visit github",
-        "url": "http://github.com/opensignlabs/opensign"
-      }
+      "name": "LDF Sign",
+      "description": "Legal Data Forensic Sign — self-hosted e-signature platform"
     },
     {
       "name": "templates",

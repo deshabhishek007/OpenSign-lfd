@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Parse from "parse";
 import Menu from "./Menu";
 import Submenu from "./SubMenu";
-import SocialMedia from "../SocialMedia";
 import dp from "../../assets/images/dp.png";
 import sidebarList, { subSetting } from "../../json/menuJson";
 import { useNavigate } from "react-router";
@@ -131,12 +130,12 @@ const Sidebar = () => {
       </div>
       <nav
         className="op-menu op-menu-sm"
-        aria-label="OpenSign Sidebar Navigation"
+        aria-label="LDF Sign Sidebar Navigation"
       >
         <ul
           className="text-sm"
           role="menubar"
-          aria-label="OpenSign Sidebar Navigation"
+          aria-label="LDF Sign Sidebar Navigation"
         >
           {menuList.map((item) =>
             !item.children ? (
@@ -158,9 +157,6 @@ const Sidebar = () => {
           )}
         </ul>
       </nav>
-        <footer className="my-3 flex justify-center items-center text-[25px] text-base-content gap-3">
-          <SocialMedia />
-        </footer>
     </aside>
   );
 };
