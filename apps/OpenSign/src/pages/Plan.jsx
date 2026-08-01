@@ -27,6 +27,11 @@ function Plan() {
   const [adminRequests, setAdminRequests] = useState(null);
   const [adminBusyId, setAdminBusyId] = useState(null);
 
+  const [tenants, setTenants] = useState(null);
+  const [tenantSearch, setTenantSearch] = useState("");
+  const [tenantEdits, setTenantEdits] = useState({}); // { [objectId]: draftDocLimit }
+  const [tenantBusyId, setTenantBusyId] = useState(null);
+
   const showMsg = (type, text) => {
     setMsg({ type, text });
     setTimeout(() => setMsg({ type: "", text: "" }), 4000);
@@ -38,6 +43,7 @@ function Plan() {
       setPlan(res);
       if (res.isSaasAdmin) {
         loadAdminRequests();
+        loadTenants();
       }
     } catch (err) {
       console.error("getMyPlan error", err);
@@ -53,6 +59,54 @@ function Plan() {
       setAdminRequests(list);
     } catch (err) {
       console.error("listUpgradeRequests error", err);
+    }
+  };
+
+  const loadTenants = async (search = "") => {
+    try {
+      const list = await Parse.Cloud.run("listTenants", { search });
+      setTenants(list);
+    } catch (err) {
+      console.error("listTenants error", err);
+    }
+  };
+
+  const handleTenantSearch = async (e) => {
+    e.preventDefault();
+    await loadTenants(tenantSearch);
+  };
+
+  const saveTenantDocLimit = async (tenantId) => {
+    const draft = tenantEdits[tenantId];
+    if (draft === undefined || draft === "") return;
+    setTenantBusyId(tenantId);
+    try {
+      const docLimit = draft === "unlimited" ? null : Number(draft);
+      await Parse.Cloud.run("updateTenantAdmin", { tenantId, docLimit });
+      setTenantEdits(prev => {
+        const next = { ...prev };
+        delete next[tenantId];
+        return next;
+      });
+      await loadTenants(tenantSearch);
+    } catch (err) {
+      console.error("updateTenantAdmin error", err);
+      showMsg("danger", err?.message || t("something-went-wrong-mssg"));
+    } finally {
+      setTenantBusyId(null);
+    }
+  };
+
+  const toggleTenantActive = async (tenantId, nextActive) => {
+    setTenantBusyId(tenantId);
+    try {
+      await Parse.Cloud.run("updateTenantAdmin", { tenantId, isActive: nextActive });
+      await loadTenants(tenantSearch);
+    } catch (err) {
+      console.error("updateTenantAdmin error", err);
+      showMsg("danger", err?.message || t("something-went-wrong-mssg"));
+    } finally {
+      setTenantBusyId(null);
     }
   };
 
@@ -222,6 +276,106 @@ function Plan() {
                             className="op-btn op-btn-ghost op-btn-xs"
                           >
                             {t("plan-admin-reject")}
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {plan.isSaasAdmin && (
+        <div className="w-full bg-base-100 text-base-content shadow rounded-box p-2">
+          <div className="text-xl font-bold border-b-[1px] border-gray-300 pb-2 mb-2">
+            {t("plan-admin-tenants-title")}
+          </div>
+          <div className="m-2 flex flex-col gap-3">
+            <form onSubmit={handleTenantSearch} className="flex gap-2 max-w-md">
+              <input
+                type="text"
+                className="op-input op-input-bordered op-input-sm text-xs w-full"
+                placeholder={t("plan-admin-tenants-search")}
+                value={tenantSearch}
+                onChange={e => setTenantSearch(e.target.value)}
+              />
+              <button type="submit" className="op-btn op-btn-sm">
+                {t("plan-admin-tenants-search-btn")}
+              </button>
+            </form>
+
+            {!tenants || tenants.length === 0 ? (
+              <div className="text-xs text-base-content/60">{t("plan-admin-tenants-empty")}</div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="op-table w-full text-xs">
+                  <thead>
+                    <tr>
+                      <th>{t("plan-admin-col-tenant")}</th>
+                      <th>{t("plan-admin-tenants-col-email")}</th>
+                      <th>{t("plan-admin-col-current")}</th>
+                      <th>{t("plan-admin-tenants-col-usage")}</th>
+                      <th>{t("plan-admin-tenants-col-limit")}</th>
+                      <th>{t("plan-admin-tenants-col-status")}</th>
+                      <th>{t("plan-admin-col-actions")}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tenants.map(row => (
+                      <tr key={row.objectId}>
+                        <td>{row.tenantName}</td>
+                        <td>{row.email}</td>
+                        <td>{row.planName}</td>
+                        <td>{row.docsUsed}</td>
+                        <td>
+                          <div className="flex gap-1 items-center">
+                            <input
+                              type="text"
+                              className="op-input op-input-bordered op-input-xs w-20 text-xs"
+                              placeholder={row.docLimit === null ? "unlimited" : String(row.docLimit)}
+                              value={
+                                tenantEdits[row.objectId] !== undefined
+                                  ? tenantEdits[row.objectId]
+                                  : ""
+                              }
+                              onChange={e =>
+                                setTenantEdits(prev => ({ ...prev, [row.objectId]: e.target.value }))
+                              }
+                            />
+                            <button
+                              type="button"
+                              disabled={
+                                tenantBusyId === row.objectId ||
+                                tenantEdits[row.objectId] === undefined ||
+                                tenantEdits[row.objectId] === ""
+                              }
+                              onClick={() => saveTenantDocLimit(row.objectId)}
+                              className="op-btn op-btn-primary op-btn-xs"
+                            >
+                              {t("plan-admin-tenants-save")}
+                            </button>
+                          </div>
+                        </td>
+                        <td>
+                          {row.isActive ? (
+                            <span className="text-success">{t("plan-admin-tenants-active")}</span>
+                          ) : (
+                            <span className="text-error">{t("plan-admin-tenants-suspended")}</span>
+                          )}
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            disabled={tenantBusyId === row.objectId}
+                            onClick={() => toggleTenantActive(row.objectId, !row.isActive)}
+                            className={`op-btn op-btn-xs ${row.isActive ? "op-btn-error" : "op-btn-success"}`}
+                          >
+                            {row.isActive
+                              ? t("plan-admin-tenants-suspend-btn")
+                              : t("plan-admin-tenants-activate-btn")}
                           </button>
                         </td>
                       </tr>

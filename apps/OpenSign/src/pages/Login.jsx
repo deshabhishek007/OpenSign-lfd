@@ -130,6 +130,8 @@ function Login() {
       console.error("Error while logging in user", error);
       if (error?.code === 1001) {
         showToast("danger", t("action-prohibited"));
+      } else if (error?.message?.startsWith("suspended")) {
+        showToast("danger", t("account-suspended-mssg"));
       } else {
         showToast("danger", t("invalid-username-password-region"));
       }

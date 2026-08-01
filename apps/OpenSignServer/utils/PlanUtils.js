@@ -28,10 +28,11 @@ export async function getTenantForExtUser(extUserId) {
   return tenantQuery.get(tenantId, { useMasterKey: true });
 }
 
-// Throws a Parse.Error (blocking the save) if this tenant has already used
-// up its lifetime document balance. No-ops for unlimited/unknown tenants
-// rather than blocking — a missing tenant should never lock a user out,
-// that's a data problem to fix separately, not a quota problem.
+// Throws a Parse.Error (blocking the save) if this tenant is suspended or
+// has already used up its lifetime document balance. No-ops for
+// unknown/missing tenants rather than blocking — a missing tenant should
+// never lock a user out, that's a data problem to fix separately, not a
+// quota or suspension problem.
 //
 // Known v1 limitation: this check-then-increment (here, then in
 // recordDocUsage) isn't wrapped in a transaction, so concurrent creates
@@ -41,6 +42,8 @@ export async function getTenantForExtUser(extUserId) {
 export async function enforceDocLimit(extUserId) {
   const tenant = await getTenantForExtUser(extUserId);
   if (!tenant) return;
+
+  assertTenantActive(tenant);
 
   const docLimit = tenant.get('DocLimit');
   if (docLimit === null || docLimit === undefined) return; // unlimited
@@ -52,6 +55,32 @@ export async function enforceDocLimit(extUserId) {
       `quotareached: document limit reached (${docLimit} on the ${tenant.get('PlanName') || tenant.get('PlanId')} plan). Upgrade or buy an add-on pack to continue.`
     );
   }
+}
+
+// Throws if a tenant has been suspended by the SaaS admin (IsActive===false
+// — an explicit false, not just falsy/unset, since existing tenants default
+// to true and many predate this field entirely).
+export function assertTenantActive(tenant) {
+  if (tenant.get('IsActive') === false) {
+    throw new Parse.Error(
+      Parse.Error.OPERATION_FORBIDDEN,
+      'suspended: this account has been suspended. Contact support.'
+    );
+  }
+}
+
+// Resolve the partners_Tenant for a given Parse.User (by email, via
+// contracts_Users). Used both by cloud-function callers (via
+// getTenantForCaller below, which passes request.user) and by loginUser.js,
+// which has a freshly-logged-in Parse.User but no `request.user` yet.
+export async function getTenantForUser(user) {
+  if (!user) return null;
+  const email = user.get('email');
+  const query = new Parse.Query('contracts_Users');
+  query.equalTo('Email', email);
+  query.include('TenantId');
+  const extUser = await query.first({ useMasterKey: true });
+  return extUser?.get('TenantId') || null;
 }
 
 // Call after a document is successfully created to debit it from the
@@ -69,13 +98,7 @@ export async function recordDocUsage(extUserId) {
 // request.user), rather than from an ExtUserPtr id. Mirrors the lookup in
 // getUserDetails.js (contracts_Users by Email, TenantId included).
 export async function getTenantForCaller(request) {
-  if (!request?.user) return null;
-  const email = request.user.get('email');
-  const query = new Parse.Query('contracts_Users');
-  query.equalTo('Email', email);
-  query.include('TenantId');
-  const extUser = await query.first({ useMasterKey: true });
-  return extUser?.get('TenantId') || null;
+  return getTenantForUser(request?.user);
 }
 
 // Platform-admin check for the peenak SaaS owner — a static allowlist of

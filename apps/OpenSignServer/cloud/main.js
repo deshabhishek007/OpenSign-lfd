@@ -8,6 +8,7 @@ import {
   approveUpgradeRequest,
   rejectUpgradeRequest,
 } from './parsefunction/planUpgrade.js';
+import { listTenants, updateTenantAdmin } from './parsefunction/adminTenants.js';
 import DocumentAftersave from './parsefunction/DocumentAftersave.js';
 import ContactbookAftersave from './parsefunction/ContactBookAftersave.js';
 import sendMailOTPv1 from './parsefunction/SendMailOTPv1.js';
@@ -98,6 +99,8 @@ Parse.Cloud.define('requestPlanUpgrade', requestPlanUpgrade);
 Parse.Cloud.define('listUpgradeRequests', listUpgradeRequests);
 Parse.Cloud.define('approveUpgradeRequest', approveUpgradeRequest);
 Parse.Cloud.define('rejectUpgradeRequest', rejectUpgradeRequest);
+Parse.Cloud.define('listTenants', listTenants);
+Parse.Cloud.define('updateTenantAdmin', updateTenantAdmin);
 Parse.Cloud.define('SendOTPMailV1', sendMailOTPv1);
 Parse.Cloud.define('AuthLoginAsMail', AuthLoginAsMail);
 Parse.Cloud.define('getUserId', getUserId);
