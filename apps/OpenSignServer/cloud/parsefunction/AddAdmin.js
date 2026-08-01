@@ -1,63 +1,9 @@
 import axios from 'axios';
 import { cloudServerUrl, serverAppId } from '../../Utils.js';
+import { ensureOrgAndTeam } from '../../utils/OrgUtils.js';
 const serverUrl = cloudServerUrl; //process.env.SERVER_URL;
 const APPID = serverAppId;
 const masterKEY = process.env.MASTER_KEY;
-async function addTeamAndOrg(extUser) {
-  try {
-    const extUserCls = new Parse.Query('contracts_Users');
-    const updateUser = await extUserCls.get(extUser.objectId, { useMasterKey: true });
-    if (updateUser && !updateUser?.get('OrganizationId')) {
-      const orgCls = new Parse.Object('contracts_Organizations');
-      orgCls.set('Name', extUser.Company);
-      orgCls.set('IsActive', true);
-      orgCls.set('ExtUserId', {
-        __type: 'Pointer',
-        className: 'contracts_Users',
-        objectId: extUser?.objectId,
-      });
-      orgCls.set('CreatedBy', {
-        __type: 'Pointer',
-        className: '_User',
-        objectId: extUser?.UserId?.objectId,
-      });
-      orgCls.set('TenantId', {
-        __type: 'Pointer',
-        className: 'partners_Tenant',
-        objectId: extUser?.TenantId?.objectId,
-      });
-
-      const orgRes = await orgCls.save(null, { useMasterKey: true });
-      const teamCls = new Parse.Object('contracts_Teams');
-      teamCls.set('Name', 'All Users');
-      teamCls.set('OrganizationId', {
-        __type: 'Pointer',
-        className: 'contracts_Organizations',
-        objectId: orgRes.id,
-      });
-      teamCls.set('IsActive', true);
-      const teamRes = await teamCls.save(null, { useMasterKey: true });
-      // const updateUser = new Parse.Object('contracts_Users');
-      // updateUser.id = extUser.objectId;
-      updateUser.set('UserRole', 'contracts_Admin');
-      updateUser.set('OrganizationId', {
-        __type: 'Pointer',
-        className: 'contracts_Organizations',
-        objectId: orgRes.id,
-      });
-      updateUser.set('TeamIds', [
-        {
-          __type: 'Pointer',
-          className: 'contracts_Teams',
-          objectId: teamRes.id,
-        },
-      ]);
-      const extUserRes = await updateUser.save(null, { useMasterKey: true });
-    }
-  } catch (err) {
-    console.log('err in add team, role, org', err);
-  }
-}
 
 async function saveUser(userDetails) {
   const userQuery = new Parse.Query(Parse.User);
@@ -184,7 +130,7 @@ export default async function AddAdmin(request) {
         Company: userDetails.company,
         JobTitle: userDetails.jobTitle,
       };
-      await addTeamAndOrg(extUser);
+      await ensureOrgAndTeam(extUser);
       return { message: 'User sign up', sessionToken: user.sessionToken };
     }
   } catch (err) {

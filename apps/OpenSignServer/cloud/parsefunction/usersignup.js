@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { cloudServerUrl, serverAppId } from '../../Utils.js';
 import { PLAN_FREE, planDefaults } from '../constant/plans.js';
+import { ensureOrgAndTeam } from '../../utils/OrgUtils.js';
 const serverUrl = cloudServerUrl; //process.env.SERVER_URL;
 const APPID = serverAppId;
 const masterKEY = process.env.MASTER_KEY;
@@ -142,6 +143,18 @@ export default async function usersignup(request) {
         newObj.set('Timezone', userDetails.timezone);
       }
       const extRes = await newObj.save(null, { useMasterKey: true });
+
+      // Without this, "Add user" (addUser.js) always fails for a self-serve
+      // tenant — it requires organization.objectId, and nothing else in this
+      // signup path ever created one. Same helper AddAdmin.js's bootstrap
+      // flow uses.
+      await ensureOrgAndTeam({
+        objectId: extRes.id,
+        Company: userDetails.company,
+        TenantId: { objectId: tenantRes.id },
+        UserId: { objectId: user.id },
+      });
+
       return { message: 'User sign up', sessionToken: user.sessionToken };
     }
   } catch (err) {
