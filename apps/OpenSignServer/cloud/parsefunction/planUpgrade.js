@@ -7,6 +7,7 @@
 // approves/rejects from the same /plan page in the client.
 import { PLAN_PRO, PLAN_ORG, planDefaults } from '../constant/plans.js';
 import { getTenantForCaller, isSaasAdmin, requireSaasAdmin } from '../../utils/PlanUtils.js';
+import { notifyAdminsOfUpgradeRequest, notifyTenantOfUpgradeDecision } from '../../utils/NotifyUtils.js';
 
 const REQUESTABLE_PLANS = [PLAN_PRO, PLAN_ORG];
 
@@ -76,6 +77,14 @@ export async function requestPlanUpgrade(request) {
   upgradeRequest.set('Note', note);
   const saved = await upgradeRequest.save(null, { useMasterKey: true });
   saved.set('TenantId', tenant); // for serializeRequest's tenant name/plan lookup below
+
+  notifyAdminsOfUpgradeRequest({
+    tenantName: tenant.get('TenantName') || '',
+    requesterEmail: request.user.get('email'),
+    requestedPlanName: planDefaults(planId).name,
+    note,
+  });
+
   return serializeRequest(saved);
 }
 
@@ -124,6 +133,13 @@ export async function approveUpgradeRequest(request) {
   upgradeRequest.set('ResolvedByUserId', { __type: 'Pointer', className: '_User', objectId: request.user.id });
   await upgradeRequest.save(null, { useMasterKey: true });
 
+  notifyTenantOfUpgradeDecision({
+    requesterEmail: tenant.get('EmailAddress'),
+    tenantName: tenant.get('TenantName') || '',
+    requestedPlanName: plan.name,
+    approved: true,
+  });
+
   return serializeRequest(upgradeRequest);
 }
 
@@ -143,6 +159,15 @@ export async function rejectUpgradeRequest(request) {
   upgradeRequest.set('RejectReason', reason);
   upgradeRequest.set('ResolvedByUserId', { __type: 'Pointer', className: '_User', objectId: request.user.id });
   await upgradeRequest.save(null, { useMasterKey: true });
+
+  const tenant = upgradeRequest.get('TenantId');
+  notifyTenantOfUpgradeDecision({
+    requesterEmail: tenant?.get('EmailAddress'),
+    tenantName: tenant?.get('TenantName') || '',
+    requestedPlanName: planDefaults(upgradeRequest.get('RequestedPlanId')).name,
+    approved: false,
+    reason,
+  });
 
   return serializeRequest(upgradeRequest);
 }
