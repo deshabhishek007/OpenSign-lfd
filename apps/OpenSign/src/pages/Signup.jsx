@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import Parse from "parse";
 import { NavLink, useNavigate } from "react-router";
-import login_img from "../assets/images/login_img.svg";
-import { useWindowSize } from "../hook/useWindowSize";
 import { emailRegex } from "../constant/const";
 import Alert from "../primitives/Alert";
 import { appInfo } from "../constant/appinfo";
 import { getAppLogo, usertimezone } from "../constant/Utils";
+import { randomAuthBackground } from "../constant/authBackgrounds";
 import { useTranslation } from "react-i18next";
 
 // New self-serve tenant signup — not part of upstream OpenSign, which only
@@ -17,7 +16,6 @@ import { useTranslation } from "react-i18next";
 function Signup() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { width } = useWindowSize();
   const [form, setForm] = useState({
     name: "",
     company: "",
@@ -28,6 +26,7 @@ function Signup() {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({ type: "danger", msg: "" });
   const [logo, setLogo] = useState(appInfo?.applogo);
+  const [bgImage] = useState(randomAuthBackground);
 
   useEffect(() => {
     // Same tenant-branding lookup Login.jsx uses (getlogobydomain, keyed on
@@ -103,124 +102,116 @@ function Signup() {
     <div
       aria-labelledby="signupHeading"
       role="region"
-      className="pb-1 md:pb-4 pt-10 md:px-10 lg:px-16 h-full"
+      className="min-h-screen w-full flex items-center justify-center relative bg-cover bg-center py-10 px-4"
+      style={{ backgroundImage: `url(${bgImage})` }}
     >
-      <div className="md:p-4 lg:p-10 p-4 bg-base-100 text-base-content op-card">
-        <div className="w-[250px] h-[66px] inline-block overflow-hidden">
-          <img
-            src={logo}
-            className="object-contain h-full"
-            alt="applogo"
-          />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2">
-          <div>
-            <form onSubmit={handleSubmit} aria-label="Signup Form">
-              <h1 className="text-[30px] mt-6">{t("signup-heading")}</h1>
-              <fieldset>
-                <legend className="text-[12px] text-[#878787]">
-                  {t("signup-subheading")}
-                </legend>
-                <div className="w-full px-6 py-3 my-1 op-card bg-base-100 shadow-md outline outline-1 outline-slate-300/50">
-                  <label className="block text-xs" htmlFor="name">
-                    {t("name")}
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    className="op-input op-input-bordered op-input-sm focus:outline-none hover:border-base-content w-full text-xs"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                  />
-                  <hr className="my-1 border-none" />
-                  <label className="block text-xs" htmlFor="company">
-                    {t("company")}
-                  </label>
-                  <input
-                    id="company"
-                    type="text"
-                    className="op-input op-input-bordered op-input-sm focus:outline-none hover:border-base-content w-full text-xs"
-                    name="company"
-                    value={form.company}
-                    onChange={handleChange}
-                    required
-                  />
-                  <hr className="my-1 border-none" />
-                  <label className="block text-xs" htmlFor="email">
-                    {t("email")}
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    className="op-input op-input-bordered op-input-sm focus:outline-none hover:border-base-content w-full text-xs"
-                    name="email"
-                    autoComplete="username"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                  <hr className="my-1 border-none" />
-                  <label className="block text-xs" htmlFor="password">
-                    {t("password")}
-                  </label>
-                  <input
-                    id="password"
-                    type="password"
-                    className="op-input op-input-bordered op-input-sm focus:outline-none hover:border-base-content w-full text-xs"
-                    name="password"
-                    autoComplete="new-password"
-                    value={form.password}
-                    onChange={handleChange}
-                    required
-                  />
-                  <hr className="my-1 border-none" />
-                  <label className="block text-xs" htmlFor="confirmPassword">
-                    {t("signup-confirm-password")}
-                  </label>
-                  <input
-                    id="confirmPassword"
-                    type="password"
-                    className="op-input op-input-bordered op-input-sm focus:outline-none hover:border-base-content w-full text-xs"
-                    name="confirmPassword"
-                    autoComplete="new-password"
-                    value={form.confirmPassword}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </fieldset>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-center text-xs font-bold mt-2">
-                <button
-                  type="submit"
-                  className="op-btn op-btn-primary"
-                  disabled={loading}
-                >
-                  {loading ? t("loading") : t("signup-create-account")}
-                </button>
-              </div>
-              <div className="mt-3 text-xs">
-                {t("signup-have-account")}{" "}
-                <NavLink
-                  to="/"
-                  className="op-link op-link-primary underline-offset-1"
-                >
-                  {t("login")}
-                </NavLink>
-              </div>
-            </form>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/55 via-black/35 to-black/55" />
+
+      <div className="relative z-10 w-full max-w-md">
+        <div className="backdrop-blur-xl bg-base-100/90 text-base-content op-card shadow-2xl p-6 md:p-8">
+          <div className="w-[200px] h-[52px] mb-4 overflow-hidden">
+            <img src={logo} className="object-contain h-full" alt="applogo" />
           </div>
-          {width >= 768 && (
-            <div className="place-self-center">
-              <div className="mx-auto md:w-[300px] lg:w-[400px] xl:w-[500px]">
-                <img src={login_img} alt="" width="100%" />
+          <form onSubmit={handleSubmit} aria-label="Signup Form">
+            <h1 className="text-[26px] font-bold">{t("signup-heading")}</h1>
+            <p className="text-xs text-base-content/60 mb-4">
+              {t("signup-subheading")}
+            </p>
+            <fieldset className="flex flex-col gap-2">
+              <div>
+                <label className="block text-xs" htmlFor="name">
+                  {t("name")}
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  className="op-input op-input-bordered op-input-sm w-full text-xs"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                />
               </div>
+              <div>
+                <label className="block text-xs" htmlFor="company">
+                  {t("company")}
+                </label>
+                <input
+                  id="company"
+                  type="text"
+                  className="op-input op-input-bordered op-input-sm w-full text-xs"
+                  name="company"
+                  value={form.company}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-xs" htmlFor="email">
+                  {t("email")}
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  className="op-input op-input-bordered op-input-sm w-full text-xs"
+                  name="email"
+                  autoComplete="username"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-xs" htmlFor="password">
+                  {t("password")}
+                </label>
+                <input
+                  id="password"
+                  type="password"
+                  className="op-input op-input-bordered op-input-sm w-full text-xs"
+                  name="password"
+                  autoComplete="new-password"
+                  value={form.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-xs" htmlFor="confirmPassword">
+                  {t("signup-confirm-password")}
+                </label>
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  className="op-input op-input-bordered op-input-sm w-full text-xs"
+                  name="confirmPassword"
+                  autoComplete="new-password"
+                  value={form.confirmPassword}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </fieldset>
+            <button
+              type="submit"
+              className="op-btn op-btn-primary w-full mt-4"
+              disabled={loading}
+            >
+              {loading ? t("loading") : t("signup-create-account")}
+            </button>
+            <div className="mt-3 text-xs text-center">
+              {t("signup-have-account")}{" "}
+              <NavLink
+                to="/"
+                className="op-link op-link-primary underline-offset-1"
+              >
+                {t("login")}
+              </NavLink>
             </div>
-          )}
+          </form>
         </div>
+        {alert.msg && <Alert type={alert.type}>{alert.msg}</Alert>}
       </div>
-      {alert.msg && <Alert type={alert.type}>{alert.msg}</Alert>}
     </div>
   );
 }
