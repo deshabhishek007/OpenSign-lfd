@@ -16,12 +16,13 @@ function serializeTenant(t) {
     planName: t.get('PlanName') || 'Free',
     docLimit: t.get('DocLimit') ?? null, // null = unlimited
     docsUsed: t.get('DocsUsed') || 0,
+    isPlatformAdmin: t.get('IsPlatformAdmin') === true,
     createdAt: t.get('createdAt'),
   };
 }
 
 export async function listTenants(request) {
-  requireSaasAdmin(request);
+  await requireSaasAdmin(request);
 
   const search = (request.params.search || '').trim();
   let query;
@@ -47,9 +48,9 @@ export async function listTenants(request) {
 // or reassign PlanId/PlanName for record-keeping. All fields optional —
 // only what's passed gets changed.
 export async function updateTenantAdmin(request) {
-  requireSaasAdmin(request);
+  await requireSaasAdmin(request);
 
-  const { tenantId, isActive, docLimit, planId, planName } = request.params;
+  const { tenantId, isActive, docLimit, planId, planName, isPlatformAdmin } = request.params;
   if (!tenantId) {
     throw new Parse.Error(Parse.Error.VALIDATION_ERROR, 'tenantId is required.');
   }
@@ -69,6 +70,13 @@ export async function updateTenantAdmin(request) {
   }
   if (planName !== undefined) {
     tenant.set('PlanName', planName);
+  }
+  if (isPlatformAdmin !== undefined) {
+    // Grants/revokes platform-admin rights to every current and future user
+    // under this tenant — see PlanUtils.isSaasAdmin. Only reachable by an
+    // existing admin (this whole function is requireSaasAdmin-gated above),
+    // so this can't be used to self-escalate from outside.
+    tenant.set('IsPlatformAdmin', !!isPlatformAdmin);
   }
   await tenant.save(null, { useMasterKey: true });
   return serializeTenant(tenant);

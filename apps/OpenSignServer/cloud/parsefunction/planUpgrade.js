@@ -51,7 +51,7 @@ export async function getMyPlan(request) {
     // reject the add.
     multiUser: planDefaults(planId).multiUser,
     pendingRequest: pending ? serializeRequest(pending) : null,
-    isSaasAdmin: isSaasAdmin(request),
+    isSaasAdmin: await isSaasAdmin(request),
   };
 }
 
@@ -97,7 +97,7 @@ export async function requestPlanUpgrade(request) {
 }
 
 export async function listUpgradeRequests(request) {
-  requireSaasAdmin(request);
+  await requireSaasAdmin(request);
 
   const query = new Parse.Query('partners_UpgradeRequest');
   const status = request.params.status || 'pending';
@@ -112,7 +112,7 @@ export async function listUpgradeRequests(request) {
 }
 
 export async function approveUpgradeRequest(request) {
-  requireSaasAdmin(request);
+  await requireSaasAdmin(request);
   const requestId = request.params.requestId;
 
   const query = new Parse.Query('partners_UpgradeRequest');
@@ -152,7 +152,7 @@ export async function approveUpgradeRequest(request) {
 }
 
 export async function rejectUpgradeRequest(request) {
-  requireSaasAdmin(request);
+  await requireSaasAdmin(request);
   const requestId = request.params.requestId;
   const reason = request.params.reason || '';
 

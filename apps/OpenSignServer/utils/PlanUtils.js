@@ -103,22 +103,32 @@ export async function getTenantForCaller(request) {
   return getTenantForUser(request?.user);
 }
 
-// Platform-admin check for the peenak SaaS owner — a static allowlist of
-// emails via SAAS_ADMIN_EMAILS (comma-separated), not a Parse role, since
-// there's no cross-tenant role system yet. Checked server-side only; the
-// env var is never sent to the client.
-export function isSaasAdmin(request) {
+// Platform-admin check for the peenak SaaS owner. Two paths, either grants it:
+//   1. SAAS_ADMIN_EMAILS (comma-separated env var) — the original bootstrap
+//      mechanism, root-controlled, can't be self-escalated from inside the app.
+//   2. The caller's tenant has IsPlatformAdmin===true — makes admin rights a
+//      property of the ORG, not one hardcoded email, so anyone added to that
+//      org (e.g. a future Peenak teammate) is automatically a platform admin
+//      too. Set on partners_Tenant directly (see updateTenantAdmin in
+//      adminTenants.js, or a one-off DB update for the initial org).
+// Neither is a Parse role — there's no cross-tenant role system. Checked
+// server-side only; nothing here is ever sent to the client.
+export async function isSaasAdmin(request) {
   const email = request?.user?.get('email');
-  if (!email) return false;
-  const allowlist = (process.env.SAAS_ADMIN_EMAILS || '')
-    .split(',')
-    .map(e => e.trim().toLowerCase())
-    .filter(Boolean);
-  return allowlist.includes(email.toLowerCase());
+  if (email) {
+    const allowlist = (process.env.SAAS_ADMIN_EMAILS || '')
+      .split(',')
+      .map(e => e.trim().toLowerCase())
+      .filter(Boolean);
+    if (allowlist.includes(email.toLowerCase())) return true;
+  }
+
+  const tenant = await getTenantForCaller(request);
+  return tenant?.get('IsPlatformAdmin') === true;
 }
 
-export function requireSaasAdmin(request) {
-  if (!isSaasAdmin(request)) {
+export async function requireSaasAdmin(request) {
+  if (!(await isSaasAdmin(request))) {
     throw new Parse.Error(Parse.Error.OPERATION_FORBIDDEN, 'Admin access required.');
   }
 }

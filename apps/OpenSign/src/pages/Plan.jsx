@@ -110,6 +110,19 @@ function Plan() {
     }
   };
 
+  const toggleTenantPlatformAdmin = async (tenantId, nextValue) => {
+    setTenantBusyId(tenantId);
+    try {
+      await Parse.Cloud.run("updateTenantAdmin", { tenantId, isPlatformAdmin: nextValue });
+      await loadTenants(tenantSearch);
+    } catch (err) {
+      console.error("updateTenantAdmin error", err);
+      showMsg("danger", err?.message || t("something-went-wrong-mssg"));
+    } finally {
+      setTenantBusyId(null);
+    }
+  };
+
   useEffect(() => {
     loadPlan();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -195,7 +208,11 @@ function Plan() {
             </div>
           )}
 
-          {plan.pendingRequest ? (
+          {plan.docLimit === null ? (
+            <div className="text-xs px-3 py-2 rounded-box bg-success/10 text-success max-w-md">
+              {t("plan-already-unlimited")}
+            </div>
+          ) : plan.pendingRequest ? (
             <div className="text-xs px-3 py-2 rounded-box bg-warning/10 text-warning-content max-w-md">
               {t("plan-request-pending", { plan: PLAN_OPTIONS.find(p => p.id === plan.pendingRequest.requestedPlanId)?.name || plan.pendingRequest.requestedPlanId })}
             </div>
@@ -326,7 +343,14 @@ function Plan() {
                   <tbody>
                     {tenants.map(row => (
                       <tr key={row.objectId}>
-                        <td>{row.tenantName}</td>
+                        <td>
+                          {row.tenantName}
+                          {row.isPlatformAdmin && (
+                            <span className="ml-1 op-badge op-badge-primary op-badge-xs align-middle">
+                              {t("plan-admin-tenants-platform-admin-badge")}
+                            </span>
+                          )}
+                        </td>
                         <td>{row.email}</td>
                         <td>{row.planName}</td>
                         <td>{row.docsUsed}</td>
@@ -366,7 +390,7 @@ function Plan() {
                             <span className="text-error">{t("plan-admin-tenants-suspended")}</span>
                           )}
                         </td>
-                        <td>
+                        <td className="flex gap-1 flex-wrap">
                           <button
                             type="button"
                             disabled={tenantBusyId === row.objectId}
@@ -376,6 +400,16 @@ function Plan() {
                             {row.isActive
                               ? t("plan-admin-tenants-suspend-btn")
                               : t("plan-admin-tenants-activate-btn")}
+                          </button>
+                          <button
+                            type="button"
+                            disabled={tenantBusyId === row.objectId}
+                            onClick={() => toggleTenantPlatformAdmin(row.objectId, !row.isPlatformAdmin)}
+                            className="op-btn op-btn-ghost op-btn-xs"
+                          >
+                            {row.isPlatformAdmin
+                              ? t("plan-admin-tenants-revoke-admin-btn")
+                              : t("plan-admin-tenants-make-admin-btn")}
                           </button>
                         </td>
                       </tr>
