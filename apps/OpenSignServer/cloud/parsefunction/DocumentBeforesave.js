@@ -1,5 +1,6 @@
 import { MAX_DESCRIPTION_LENGTH, MAX_NAME_LENGTH, MAX_NOTE_LENGTH } from '../../Utils.js';
 import { setDocumentCount } from '../../utils/CountUtils.js';
+import { enforceDocLimit } from '../../utils/PlanUtils.js';
 
 async function DocumentBeforesave(request) {
   if (!request.original) {
@@ -18,6 +19,10 @@ async function DocumentBeforesave(request) {
         );
       }
     }
+
+    // Block new document creation once the tenant is over its plan's
+    // monthly document-signing limit (Free/Pro/Enterprise — see PlanUtils.js).
+    await enforceDocLimit(request?.object?.get('ExtUserPtr')?.id);
 
     const TimeToCompleteDays = request?.object?.get('TimeToCompleteDays') || 15;
     const RemindOnceInEvery = request?.object?.get('RemindOnceInEvery') || 5;

@@ -542,6 +542,11 @@ const Forms = (props) => {
             type: "danger",
             message: t("only-15-reminder-allowed")
           });
+        } else if (err?.message?.startsWith("quotareached")) {
+          setIsAlert({
+            type: "danger",
+            message: t("doc-quota-reached-mssg")
+          });
         } else {
           setIsAlert({
             type: "danger",

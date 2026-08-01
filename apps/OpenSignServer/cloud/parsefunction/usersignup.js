@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { cloudServerUrl, serverAppId } from '../../Utils.js';
+import { PLAN_FREE, planDefaults } from '../constant/plans.js';
 const serverUrl = cloudServerUrl; //process.env.SERVER_URL;
 const APPID = serverAppId;
 const masterKEY = process.env.MASTER_KEY;
@@ -76,6 +77,14 @@ export default async function usersignup(request) {
       partnerQuery.set('TenantName', userDetails.company);
       partnerQuery.set('EmailAddress', userDetails?.email?.toLowerCase()?.replace(/\s/g, ''));
       partnerQuery.set('IsActive', true);
+
+      // New tenants start on the Free plan; upgrading to Pro/Enterprise
+      // happens via billing (see PlanUtils.js for how DocLimit is enforced).
+      const startingPlan = planDefaults(PLAN_FREE);
+      partnerQuery.set('PlanId', PLAN_FREE);
+      partnerQuery.set('PlanName', startingPlan.name);
+      partnerQuery.set('DocLimit', startingPlan.docLimit);
+      partnerQuery.set('PlanStatus', 'active');
       partnerQuery.set('CreatedBy', {
         __type: 'Pointer',
         className: '_User',

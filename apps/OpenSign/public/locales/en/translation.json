@@ -802,6 +802,7 @@
   "quota-mail": "You've reached your limit of 15 signature request emails for this month. Upgrade now to continue sending emails directly.",
   "quota-mail-tip": "Tip: You can still sign <1>unlimited documents</1> by manually sharing the signing request link.",
   "quota-mail-head": "Quota reached",
+  "doc-quota-reached-mssg": "You've reached your plan's monthly document limit. Upgrade your plan to sign or send more documents this month.",
   "unauthorized-modal": "You don't have permission to perform this action, please contact {{adminEmail}}.",
   "sent-this-month": "Sent this month",
   "available-seats": "Available seats",

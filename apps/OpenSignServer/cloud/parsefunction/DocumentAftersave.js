@@ -1,3 +1,5 @@
+import { recordDocUsage } from '../../utils/PlanUtils.js';
+
 async function DocumentAftersave(request) {
   try {
     if (!request.original) {
@@ -11,6 +13,13 @@ async function DocumentAftersave(request) {
       if (createdAt) {
         await updateDocumentMeta({ objId, createdAt, folder, ip, originIp });
       }
+
+      // Count this document against the tenant's monthly plan usage.
+      // Mirrors the block in DocumentBeforesave.js's enforceDocLimit() —
+      // that check already ran before this create was allowed through.
+      recordDocUsage(obj?.get?.('ExtUserPtr')?.id).catch(err =>
+        console.log('err recording doc usage', err.message)
+      );
 
       const signers = obj?.get?.('Signers');
       const hasSigners = Array.isArray(signers) && signers.length > 0;

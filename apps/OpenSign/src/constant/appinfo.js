@@ -9,6 +9,12 @@ export function serverUrl_fn() {
   let baseUrl = serverurl ? serverurl : window.location.origin + "/api/app";
   return baseUrl;
 }
+export function googleClientId_fn() {
+  const env = getEnv();
+  return env?.REACT_APP_GOOGLECLIENTID
+    ? env.REACT_APP_GOOGLECLIENTID // runtime-injected in prod (see entrypoint.sh)
+    : process.env.REACT_APP_GOOGLECLIENTID || ""; // build-time fallback for dev (locally)
+}
 export const appInfo = {
   applogo: logo,
   appId: process.env.REACT_APP_APPID ? process.env.REACT_APP_APPID : "opensign",
@@ -16,9 +22,7 @@ export const appInfo = {
   defaultRole: "contracts_User",
   fev_Icon:
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAALlJREFUaEPtmN0NwjAMBpNxYDKYiM1Yp90g93CKStH1NbIdfz921Dker2Pc+Js1cDF7MXAxASMGYkAigBI6vh9ZwoXP53uZoAYcvhwdA3mAVbI2aSb+9zFKU4IURB6j/HoPUIEa2G3iGIAhQQDlAUIoE2diabIklISS0NoFPebo77RF6OenEF3QntOm128he0GKrwHyACFoz2MgBqSGkpAEcHs47oHtN5AFakACqMNjQEMoE8SABFCHn4HE2zGHSLeEAAAAAElFTkSuQmCC",
-  googleClientId: process.env.REACT_APP_GOOGLECLIENTID
-    ? `${process.env.REACT_APP_GOOGLECLIENTID}`
-    : "",
+  googleClientId: googleClientId_fn(),
   metaDescription:
     "The fastest way to sign PDFs & request signatures from others.",
   settings: [
