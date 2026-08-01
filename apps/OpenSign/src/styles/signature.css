@@ -1,7 +1,31 @@
-@import url("https://fonts.googleapis.com/css2?family=Fasthand&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
+@font-face {
+  font-family: "Fasthand";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Fasthand-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Dancing Script";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/DancingScript-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Delicious Handrawn";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/DeliciousHandrawn-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Cedarville Cursive";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/CedarvilleCursive-Regular.ttf") format("truetype");
+}
 
 .react-datepicker__input-container {
   position: initial !important;
