@@ -108,24 +108,24 @@ function Signup() {
       <div className="absolute inset-0 bg-gradient-to-br from-black/55 via-black/35 to-black/55" />
 
       <div className="relative z-10 w-full max-w-md">
-        <div className="backdrop-blur-xl bg-base-100/90 text-base-content op-card shadow-2xl p-6 md:p-8">
+        <div className="bg-base-100 text-base-content op-card shadow-2xl p-6 md:p-8 border-t-4 border-t-primary">
           <div className="w-[200px] h-[52px] mb-4 overflow-hidden">
             <img src={logo} className="object-contain h-full" alt="applogo" />
           </div>
           <form onSubmit={handleSubmit} aria-label="Signup Form">
-            <h1 className="text-[26px] font-bold">{t("signup-heading")}</h1>
+            <h1 className="text-[32px] font-extrabold tracking-tight">{t("signup-heading")}</h1>
             <p className="text-xs text-base-content/60 mb-4">
               {t("signup-subheading")}
             </p>
             <fieldset className="flex flex-col gap-2">
               <div>
-                <label className="block text-xs" htmlFor="name">
+                <label className="block text-xs font-bold uppercase tracking-wide text-base-content/70 mb-1" htmlFor="name">
                   {t("name")}
                 </label>
                 <input
                   id="name"
                   type="text"
-                  className="op-input op-input-bordered op-input-sm w-full text-xs"
+                  className="op-input op-input-bordered op-input-md w-full text-sm"
                   name="name"
                   value={form.name}
                   onChange={handleChange}
@@ -133,13 +133,13 @@ function Signup() {
                 />
               </div>
               <div>
-                <label className="block text-xs" htmlFor="company">
+                <label className="block text-xs font-bold uppercase tracking-wide text-base-content/70 mb-1" htmlFor="company">
                   {t("company")}
                 </label>
                 <input
                   id="company"
                   type="text"
-                  className="op-input op-input-bordered op-input-sm w-full text-xs"
+                  className="op-input op-input-bordered op-input-md w-full text-sm"
                   name="company"
                   value={form.company}
                   onChange={handleChange}
@@ -147,13 +147,13 @@ function Signup() {
                 />
               </div>
               <div>
-                <label className="block text-xs" htmlFor="email">
+                <label className="block text-xs font-bold uppercase tracking-wide text-base-content/70 mb-1" htmlFor="email">
                   {t("email")}
                 </label>
                 <input
                   id="email"
                   type="email"
-                  className="op-input op-input-bordered op-input-sm w-full text-xs"
+                  className="op-input op-input-bordered op-input-md w-full text-sm"
                   name="email"
                   autoComplete="username"
                   value={form.email}
@@ -162,13 +162,13 @@ function Signup() {
                 />
               </div>
               <div>
-                <label className="block text-xs" htmlFor="password">
+                <label className="block text-xs font-bold uppercase tracking-wide text-base-content/70 mb-1" htmlFor="password">
                   {t("password")}
                 </label>
                 <input
                   id="password"
                   type="password"
-                  className="op-input op-input-bordered op-input-sm w-full text-xs"
+                  className="op-input op-input-bordered op-input-md w-full text-sm"
                   name="password"
                   autoComplete="new-password"
                   value={form.password}
@@ -177,13 +177,13 @@ function Signup() {
                 />
               </div>
               <div>
-                <label className="block text-xs" htmlFor="confirmPassword">
+                <label className="block text-xs font-bold uppercase tracking-wide text-base-content/70 mb-1" htmlFor="confirmPassword">
                   {t("signup-confirm-password")}
                 </label>
                 <input
                   id="confirmPassword"
                   type="password"
-                  className="op-input op-input-bordered op-input-sm w-full text-xs"
+                  className="op-input op-input-bordered op-input-md w-full text-sm"
                   name="confirmPassword"
                   autoComplete="new-password"
                   value={form.confirmPassword}
@@ -194,7 +194,7 @@ function Signup() {
             </fieldset>
             <button
               type="submit"
-              className="op-btn op-btn-primary w-full mt-4"
+              className="op-btn op-btn-primary w-full mt-4 text-base font-bold"
               disabled={loading}
             >
               {loading ? t("loading") : t("signup-create-account")}

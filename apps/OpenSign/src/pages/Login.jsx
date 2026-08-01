@@ -433,7 +433,7 @@ function Login() {
             <div className="absolute inset-0 bg-gradient-to-br from-black/55 via-black/35 to-black/55" />
 
             <div className="relative z-10 w-full max-w-md">
-              <div className="backdrop-blur-xl bg-base-100/90 text-base-content op-card shadow-2xl p-6 md:p-8">
+              <div className="bg-base-100 text-base-content op-card shadow-2xl p-6 md:p-8 border-t-4 border-t-primary">
                 <div className="w-[200px] h-[52px] mb-4 overflow-hidden">
                   {image && (
                     <img
@@ -444,19 +444,19 @@ function Login() {
                   )}
                 </div>
                 <form onSubmit={handleLoginBtn} aria-label="Login Form">
-                  <h1 className="text-[26px] font-bold">{t("welcome")}</h1>
+                  <h1 className="text-[32px] font-extrabold tracking-tight">{t("welcome")}</h1>
                   <p className="text-xs text-base-content/60 mb-4">
                     {t("Login-to-your-account")}
                   </p>
                   <fieldset className="flex flex-col gap-2">
                     <div>
-                      <label className="block text-xs" htmlFor="email">
+                      <label className="block text-xs font-bold uppercase tracking-wide text-base-content/70 mb-1" htmlFor="email">
                         {t("email")}
                       </label>
                       <input
                         id="email"
                         type="email"
-                        className="op-input op-input-bordered op-input-sm w-full text-xs"
+                        className="op-input op-input-bordered op-input-md w-full text-sm"
                         name="email"
                         autoComplete="username"
                         value={state.email}
@@ -469,14 +469,14 @@ function Login() {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs" htmlFor="password">
+                      <label className="block text-xs font-bold uppercase tracking-wide text-base-content/70 mb-1" htmlFor="password">
                         {t("password")}
                       </label>
                       <div className="relative">
                         <input
                           id="password"
                           type={state.passwordVisible ? "text" : "password"}
-                          className="op-input op-input-bordered op-input-sm w-full text-xs"
+                          className="op-input op-input-bordered op-input-md w-full text-sm"
                           name="password"
                           value={state.password}
                           autoComplete="current-password"
@@ -510,7 +510,7 @@ function Login() {
                   </fieldset>
                   <button
                     type="submit"
-                    className="op-btn op-btn-primary w-full mt-4"
+                    className="op-btn op-btn-primary w-full mt-4 text-base font-bold"
                     disabled={state.loading}
                   >
                     {state.loading ? t("loading") : t("login")}
