@@ -517,6 +517,15 @@ function Login() {
                         {state.loading ? t("loading") : t("login")}
                       </button>
                     </div>
+                    <div className="mt-3 text-xs">
+                      {t("signup-no-account")}{" "}
+                      <NavLink
+                        to="/signup"
+                        className="op-link op-link-primary underline-offset-1"
+                      >
+                        {t("signup-create-account")}
+                      </NavLink>
+                    </div>
                   </form>
                 </div>
                 {width >= 768 && (

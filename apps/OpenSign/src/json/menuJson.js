@@ -146,6 +146,14 @@ const sidebarList = [
     objectId: "contacts"
   },
   {
+    icon: "fa-light fa-arrow-up-right-dots",
+    title: "Plan & Billing",
+    target: "_self",
+    pageType: "",
+    description: "",
+    objectId: "plan"
+  },
+  {
     icon: "fa-light fa-cog",
     title: "Settings",
     target: "_self",

@@ -64,3 +64,36 @@ export async function recordDocUsage(extUserId) {
   tenant.increment('DocsUsed', 1);
   await tenant.save(null, { useMasterKey: true });
 }
+
+// Resolve the partners_Tenant for the CALLER of a cloud function (from
+// request.user), rather than from an ExtUserPtr id. Mirrors the lookup in
+// getUserDetails.js (contracts_Users by Email, TenantId included).
+export async function getTenantForCaller(request) {
+  if (!request?.user) return null;
+  const email = request.user.get('email');
+  const query = new Parse.Query('contracts_Users');
+  query.equalTo('Email', email);
+  query.include('TenantId');
+  const extUser = await query.first({ useMasterKey: true });
+  return extUser?.get('TenantId') || null;
+}
+
+// Platform-admin check for the peenak SaaS owner — a static allowlist of
+// emails via SAAS_ADMIN_EMAILS (comma-separated), not a Parse role, since
+// there's no cross-tenant role system yet. Checked server-side only; the
+// env var is never sent to the client.
+export function isSaasAdmin(request) {
+  const email = request?.user?.get('email');
+  if (!email) return false;
+  const allowlist = (process.env.SAAS_ADMIN_EMAILS || '')
+    .split(',')
+    .map(e => e.trim().toLowerCase())
+    .filter(Boolean);
+  return allowlist.includes(email.toLowerCase());
+}
+
+export function requireSaasAdmin(request) {
+  if (!isSaasAdmin(request)) {
+    throw new Parse.Error(Parse.Error.OPERATION_FORBIDDEN, 'Admin access required.');
+  }
+}

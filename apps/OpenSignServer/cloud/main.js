@@ -1,6 +1,13 @@
 import PDF from './parsefunction/pdf/PDF.js';
 import sendmailv3 from './parsefunction/sendMailv3.js';
 import usersignup from './parsefunction/usersignup.js';
+import {
+  getMyPlan,
+  requestPlanUpgrade,
+  listUpgradeRequests,
+  approveUpgradeRequest,
+  rejectUpgradeRequest,
+} from './parsefunction/planUpgrade.js';
 import DocumentAftersave from './parsefunction/DocumentAftersave.js';
 import ContactbookAftersave from './parsefunction/ContactBookAftersave.js';
 import sendMailOTPv1 from './parsefunction/SendMailOTPv1.js';
@@ -86,6 +93,11 @@ Parse.Cloud.afterFind('partners_Tenant', TenantAterFind);
 Parse.Cloud.define('signPdf', PDF);
 Parse.Cloud.define('sendmailv3', sendmailv3);
 Parse.Cloud.define('usersignup', usersignup);
+Parse.Cloud.define('getMyPlan', getMyPlan);
+Parse.Cloud.define('requestPlanUpgrade', requestPlanUpgrade);
+Parse.Cloud.define('listUpgradeRequests', listUpgradeRequests);
+Parse.Cloud.define('approveUpgradeRequest', approveUpgradeRequest);
+Parse.Cloud.define('rejectUpgradeRequest', rejectUpgradeRequest);
 Parse.Cloud.define('SendOTPMailV1', sendMailOTPv1);
 Parse.Cloud.define('AuthLoginAsMail', AuthLoginAsMail);
 Parse.Cloud.define('getUserId', getUserId);
