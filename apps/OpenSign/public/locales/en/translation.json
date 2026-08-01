@@ -1657,5 +1657,11 @@
   "access-code-warning": "This access code cannot be changed or retrieved once the document is sent out.",
   "copy-access-code": "Copy access code",
   "access-code-upgrade-msg": "Access codes are available on paid plans only. Upgrade your plan to add access codes for recipients.",
-  "already-copied-to-clipboard": "Already copied to clipboard"
+  "already-copied-to-clipboard": "Already copied to clipboard",
+  "page-info": {
+    "dashboard": "This is your dashboard — start a signature from \"Sign yourself\" or \"Request signatures\" above, and track documents that need your attention below.",
+    "managesign": "Draw, type, or upload your signature, initials, and stamp here. They're saved to your profile and reused automatically whenever you sign a document.",
+    "preferences": "Control how documents are signed and delivered for your account — allowed signature types, notifications, timezone, date format, and download filenames.",
+    "verify-document": "Upload any signed PDF to independently verify its digital signatures and certificates — useful for confirming a document wasn't altered after signing."
+  }
 }

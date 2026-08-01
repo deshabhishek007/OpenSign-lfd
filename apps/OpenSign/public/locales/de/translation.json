@@ -1658,5 +1658,11 @@
   "doc-quota-reached-mssg": "Sie haben alle in Ihrem Tarif enthaltenen Dokumente verbraucht. Aktualisieren Sie Ihren Tarif oder kaufen Sie ein Zusatzpaket, um fortzufahren.",
   "account-suspended-mssg": "Dieses Konto wurde gesperrt. Wenden Sie sich an den Support, um Hilfe zu erhalten.",
   "seat-limit-reached-mssg": "Ihr Tarif unterstützt nur einen Benutzer. Wechseln Sie zu Org, um Teammitglieder hinzuzufügen.",
-  "attachement-note": "Hinweis: Mit diesem Widget können Unterzeichner während des Signaturvorgangs eine Datei hochladen. Die hochgeladene Datei wird als zusätzliche Seiten am Ende des vorhandenen PDFs angehängt"
+  "attachement-note": "Hinweis: Mit diesem Widget können Unterzeichner während des Signaturvorgangs eine Datei hochladen. Die hochgeladene Datei wird als zusätzliche Seiten am Ende des vorhandenen PDFs angehängt",
+  "page-info": {
+    "dashboard": "Dies ist Ihr Dashboard — starten Sie eine Signatur über „Selbst signieren“ oder „Signaturen anfordern“ oben, und verfolgen Sie unten Dokumente, die Ihre Aufmerksamkeit benötigen.",
+    "managesign": "Zeichnen, tippen oder laden Sie hier Ihre Signatur, Initialen und Ihren Stempel hoch. Sie werden in Ihrem Profil gespeichert und automatisch bei jeder Dokumentsignatur wiederverwendet.",
+    "preferences": "Steuern Sie, wie Dokumente für Ihr Konto signiert und zugestellt werden — erlaubte Signaturarten, Benachrichtigungen, Zeitzone, Datumsformat und Dateinamen für Downloads.",
+    "verify-document": "Laden Sie ein signiertes PDF hoch, um dessen digitale Signaturen und Zertifikate unabhängig zu überprüfen — nützlich, um zu bestätigen, dass ein Dokument nach der Signatur nicht verändert wurde."
+  }
 }

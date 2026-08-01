@@ -1083,7 +1083,9 @@ const DocumentsReport = (props) => {
         )}
         <div
           ref={titleRef}
-          className="flex flex-row items-center justify-between my-2 mx-3 text-[20px] md:text-[23px]"
+          className={`flex flex-row items-center justify-between my-2 mx-3 gap-2 ${
+            isDashboard ? "text-[16px] md:text-[18px]" : "text-[20px] md:text-[23px]"
+          }`}
         >
           <div className="font-bold">
             {t(`report-name.${props.ReportName}`)}{" "}

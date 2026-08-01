@@ -11,6 +11,7 @@ import Parse from "parse";
 import { SaveFileSize } from "../constant/saveFileSize";
 import Alert from "../primitives/Alert";
 import Loader from "../primitives/Loader";
+import PageInfo from "../primitives/PageInfo";
 import { useTranslation } from "react-i18next";
 import { sanitizeFileName, withSessionValidation } from "../utils";
 
@@ -335,6 +336,9 @@ const ManageSign = () => {
         <div className="ml-[5px] my-[20px] md:m-[20px]">
           <div className="text-[20px] font-semibold m-[10px] md:m-0 mb-2">
             {t("my-signature")}
+          </div>
+          <div className="mx-[10px] md:mx-0">
+            <PageInfo i18nKey="page-info.managesign" />
           </div>
           <div className="flex flex-col md:flex-row gap-2 md:gap-5">
             <div className="relative">

@@ -8,6 +8,7 @@ import {
   SignedData,
   IssuerAndSerialNumber
 } from "pkijs";
+import PageInfo from "../primitives/PageInfo";
 
 const VerifyDocument = () => {
   const { t } = useTranslation();
@@ -601,7 +602,7 @@ const VerifyDocument = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 bg-base-100 shadow-xl rounded-lg mt-10">
+    <div className="container mx-auto p-6 bg-base-100 text-base-content shadow-md rounded-box">
       <style>{`
         .checkmark__circle {
           stroke-dasharray: 166;
@@ -654,9 +655,10 @@ const VerifyDocument = () => {
           }
         }
       `}</style>
-      <h1 className="text-3xl font-bold mb-6 text-center text-base-content">
+      <h1 className="text-3xl font-bold mb-2 text-center text-base-content">
         {t("verify-document-signature")}
       </h1>
+      <PageInfo i18nKey="page-info.verify-document" className="mb-6" />
 
       <div className="mb-6 p-6 border border-base-300 rounded-lg bg-base-200/30 shadow-sm">
         <label
@@ -670,7 +672,7 @@ const VerifyDocument = () => {
           id="document-upload"
           accept=".pdf"
           onChange={handleFileChange}
-          className="file-input file-input-bordered file-input-primary w-full max-w-xs"
+          className="op-file-input op-file-input-bordered op-file-input-primary w-full max-w-xs"
         />
         {selectedFile && (
           <p className="mt-2 text-sm text-base-content w-full truncate">
@@ -742,12 +744,12 @@ const VerifyDocument = () => {
                   return (
                     <div
                       key={index}
-                      className="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden"
+                      className="bg-base-100 border border-base-300 rounded-xl shadow-lg overflow-hidden"
                     >
                       {/* Header Section */}
-                      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6">
+                      <div className="bg-gradient-to-r from-primary to-indigo-600 text-white p-6">
                         <div className="flex items-center space-x-3">
-                          <span className="text-2xl">🔏</span>
+                          <i className="fa-light fa-signature text-2xl"></i>
                           <div>
                             <h4 className="text-xl font-bold">
                               Signature Details
@@ -760,27 +762,25 @@ const VerifyDocument = () => {
                       </div>
 
                       {/* Basic Info Section */}
-                      <div className="p-6 border-b border-gray-100">
+                      <div className="p-6 border-b border-base-300">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                            <span className="text-sm font-medium text-base-content/50 uppercase tracking-wide">
                               Field Name
                             </span>
-                            <p className="mt-1 text-lg font-semibold text-gray-900 font-mono">
+                            <p className="mt-1 text-lg font-semibold text-base-content font-mono">
                               {res.name}
                             </p>
                           </div>
                           <div>
-                            <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                            <span className="text-sm font-medium text-base-content/50 uppercase tracking-wide">
                               Overall Status
                             </span>
                             <div className="mt-1 flex items-center space-x-2">
-                              <span
-                                className={`text-lg ${isSuccessStatus(res.status) ? "text-green-600" : "text-red-600"}`}
-                              >
-                                {isSuccessStatus(res.status) ? "✅" : "❌"}
-                              </span>
-                              <span className="text-lg font-semibold text-gray-900">
+                              <i
+                                className={`fa-light ${isSuccessStatus(res.status) ? "fa-circle-check text-green-600" : "fa-circle-xmark text-red-600"} text-lg`}
+                              ></i>
+                              <span className="text-lg font-semibold text-base-content">
                                 {res.status}
                               </span>
                             </div>
@@ -790,20 +790,20 @@ const VerifyDocument = () => {
 
                       {/* Signer Information Section */}
                       {Object.keys(signerInfo).length > 0 && (
-                        <div className="border-b border-gray-100">
+                        <div className="border-b border-base-300">
                           <button
                             onClick={() => toggleSection(index, "signer")}
-                            className="w-full px-6 py-4 text-left hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:bg-gray-50"
+                            className="w-full px-6 py-4 text-left hover:bg-base-200 transition-colors duration-200 focus:outline-none focus:bg-base-200"
                           >
                             <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-3">
-                                <span className="text-xl">📇</span>
-                                <h5 className="text-lg font-semibold text-gray-900">
+                                <i className="fa-light fa-id-card text-xl text-primary"></i>
+                                <h5 className="text-lg font-semibold text-base-content">
                                   Signer Information
                                 </h5>
                               </div>
                               <svg
-                                className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
+                                className={`w-5 h-5 text-base-content/40 transition-transform duration-200 ${
                                   collapsedSections[`${index}-signer`]
                                     ? "transform rotate-180"
                                     : ""
@@ -828,12 +828,12 @@ const VerifyDocument = () => {
                                   ([label, value]) => (
                                     <div
                                       key={label}
-                                      className="bg-gray-50 rounded-lg p-4"
+                                      className="bg-base-200 rounded-lg p-4"
                                     >
-                                      <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                                      <span className="text-xs font-medium text-base-content/50 uppercase tracking-wide">
                                         {label}
                                       </span>
-                                      <p className="mt-1 text-sm font-mono text-gray-900 break-all">
+                                      <p className="mt-1 text-sm font-mono text-base-content break-all">
                                         {value}
                                       </p>
                                     </div>
@@ -847,20 +847,20 @@ const VerifyDocument = () => {
 
                       {/* Issuer Information Section */}
                       {Object.keys(issuerInfo).length > 0 && (
-                        <div className="border-b border-gray-100">
+                        <div className="border-b border-base-300">
                           <button
                             onClick={() => toggleSection(index, "issuer")}
-                            className="w-full px-6 py-4 text-left hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:bg-gray-50"
+                            className="w-full px-6 py-4 text-left hover:bg-base-200 transition-colors duration-200 focus:outline-none focus:bg-base-200"
                           >
                             <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-3">
-                                <span className="text-xl">🏢</span>
-                                <h5 className="text-lg font-semibold text-gray-900">
+                                <i className="fa-light fa-building text-xl text-primary"></i>
+                                <h5 className="text-lg font-semibold text-base-content">
                                   Issuer Details
                                 </h5>
                               </div>
                               <svg
-                                className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
+                                className={`w-5 h-5 text-base-content/40 transition-transform duration-200 ${
                                   collapsedSections[`${index}-issuer`]
                                     ? "transform rotate-180"
                                     : ""
@@ -885,12 +885,12 @@ const VerifyDocument = () => {
                                   ([label, value]) => (
                                     <div
                                       key={label}
-                                      className="bg-gray-50 rounded-lg p-4"
+                                      className="bg-base-200 rounded-lg p-4"
                                     >
-                                      <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                                      <span className="text-xs font-medium text-base-content/50 uppercase tracking-wide">
                                         {label}
                                       </span>
-                                      <p className="mt-1 text-sm font-mono text-gray-900 break-all">
+                                      <p className="mt-1 text-sm font-mono text-base-content break-all">
                                         {value}
                                       </p>
                                     </div>
@@ -904,23 +904,19 @@ const VerifyDocument = () => {
 
                       {/* Certificate Validity Section */}
                       {res.certificateValidity && (
-                        <div className="p-6 bg-gray-50">
+                        <div className="p-6 bg-base-200">
                           <div className="flex items-center space-x-3 mb-4">
-                            <span className="text-xl">🕒</span>
-                            <h5 className="text-lg font-semibold text-gray-900">
+                            <i className="fa-light fa-clock text-xl text-primary"></i>
+                            <h5 className="text-lg font-semibold text-base-content">
                               Certificate Validity
                             </h5>
                           </div>
-                          <div className="bg-white rounded-lg p-4 border">
+                          <div className="bg-base-100 rounded-lg p-4 border border-base-300">
                             <div className="flex items-center space-x-2">
-                              <span
-                                className={`text-lg ${isCertificateValid(res.certificateValidity) ? "text-green-600" : "text-red-600"}`}
-                              >
-                                {isCertificateValid(res.certificateValidity)
-                                  ? "✅"
-                                  : "❌"}
-                              </span>
-                              <span className="text-sm font-mono text-gray-900">
+                              <i
+                                className={`fa-light ${isCertificateValid(res.certificateValidity) ? "fa-circle-check text-green-600" : "fa-circle-xmark text-red-600"} text-lg`}
+                              ></i>
+                              <span className="text-sm font-mono text-base-content">
                                 {res.certificateValidity}
                               </span>
                             </div>
@@ -936,10 +932,13 @@ const VerifyDocument = () => {
                         res.errorDetails ||
                         res.certificateSubject ||
                         res.certificateIssuer) && (
-                        <div className="p-6 bg-gray-50 border-t">
+                        <div className="p-6 bg-base-200 border-t">
                           <details className="group">
-                            <summary className="flex items-center justify-between cursor-pointer text-sm font-medium text-gray-700 hover:text-gray-900">
-                              <span>🔧 Technical Details</span>
+                            <summary className="flex items-center justify-between cursor-pointer text-sm font-medium text-base-content/80 hover:text-base-content">
+                              <span>
+                                <i className="fa-light fa-wrench mr-1.5"></i>
+                                Technical Details
+                              </span>
                               <svg
                                 className="w-4 h-4 transition-transform group-open:rotate-180"
                                 fill="none"
@@ -957,21 +956,21 @@ const VerifyDocument = () => {
                             <div className="mt-4 space-y-3">
                               {/* Raw Certificate Data */}
                               {res.certificateSubject && (
-                                <div className="bg-white rounded p-3 border">
-                                  <span className="text-xs font-medium text-gray-500 uppercase tracking-wide block mb-1">
+                                <div className="bg-base-100 rounded p-3 border border-base-300">
+                                  <span className="text-xs font-medium text-base-content/50 uppercase tracking-wide block mb-1">
                                     Raw Certificate Subject
                                   </span>
-                                  <code className="text-xs text-gray-800 break-all bg-gray-100 p-2 rounded block">
+                                  <code className="text-xs text-base-content break-all bg-base-200 p-2 rounded block">
                                     {res.certificateSubject}
                                   </code>
                                 </div>
                               )}
                               {res.certificateIssuer && (
-                                <div className="bg-white rounded p-3 border">
-                                  <span className="text-xs font-medium text-gray-500 uppercase tracking-wide block mb-1">
+                                <div className="bg-base-100 rounded p-3 border border-base-300">
+                                  <span className="text-xs font-medium text-base-content/50 uppercase tracking-wide block mb-1">
                                     Raw Certificate Issuer
                                   </span>
-                                  <code className="text-xs text-gray-800 break-all bg-gray-100 p-2 rounded block">
+                                  <code className="text-xs text-base-content break-all bg-base-200 p-2 rounded block">
                                     {res.certificateIssuer}
                                   </code>
                                 </div>
@@ -981,11 +980,11 @@ const VerifyDocument = () => {
                                   t("not-available") &&
                                 res.calculatedDocumentHash !==
                                   t("not-calculated") && (
-                                  <div className="bg-white rounded p-3 border">
-                                    <span className="text-xs font-medium text-gray-500 uppercase tracking-wide block mb-1">
+                                  <div className="bg-base-100 rounded p-3 border border-base-300">
+                                    <span className="text-xs font-medium text-base-content/50 uppercase tracking-wide block mb-1">
                                       Calculated Document Hash
                                     </span>
-                                    <code className="text-xs text-gray-800 break-all bg-gray-100 p-2 rounded block">
+                                    <code className="text-xs text-base-content break-all bg-base-200 p-2 rounded block">
                                       {res.calculatedDocumentHash}
                                     </code>
                                   </div>
@@ -995,11 +994,11 @@ const VerifyDocument = () => {
                                   t("not-available") &&
                                 res.messageDigestInSignature !==
                                   t("not-found-in-signature") && (
-                                  <div className="bg-white rounded p-3 border">
-                                    <span className="text-xs font-medium text-gray-500 uppercase tracking-wide block mb-1">
+                                  <div className="bg-base-100 rounded p-3 border border-base-300">
+                                    <span className="text-xs font-medium text-base-content/50 uppercase tracking-wide block mb-1">
                                       Message Digest in Signature
                                     </span>
-                                    <code className="text-xs text-gray-800 break-all bg-gray-100 p-2 rounded block">
+                                    <code className="text-xs text-base-content break-all bg-base-200 p-2 rounded block">
                                       {res.messageDigestInSignature}
                                     </code>
                                   </div>
@@ -1007,11 +1006,11 @@ const VerifyDocument = () => {
                               {res.hashComparisonResult &&
                                 res.hashComparisonResult !==
                                   t("not-performed") && (
-                                  <div className="bg-white rounded p-3 border">
-                                    <span className="text-xs font-medium text-gray-500 uppercase tracking-wide block mb-1">
+                                  <div className="bg-base-100 rounded p-3 border border-base-300">
+                                    <span className="text-xs font-medium text-base-content/50 uppercase tracking-wide block mb-1">
                                       Hash Comparison
                                     </span>
-                                    <span className="text-sm text-gray-800">
+                                    <span className="text-sm text-base-content">
                                       {res.hashComparisonResult}
                                     </span>
                                   </div>
@@ -1019,11 +1018,11 @@ const VerifyDocument = () => {
                               {res.authenticatedAttributesSignatureResult &&
                                 res.authenticatedAttributesSignatureResult !==
                                   t("not-performed") && (
-                                  <div className="bg-white rounded p-3 border">
-                                    <span className="text-xs font-medium text-gray-500 uppercase tracking-wide block mb-1">
+                                  <div className="bg-base-100 rounded p-3 border border-base-300">
+                                    <span className="text-xs font-medium text-base-content/50 uppercase tracking-wide block mb-1">
                                       Attributes Signature Verification
                                     </span>
-                                    <span className="text-sm text-gray-800">
+                                    <span className="text-sm text-base-content">
                                       {
                                         res.authenticatedAttributesSignatureResult
                                       }

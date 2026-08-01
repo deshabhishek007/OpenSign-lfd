@@ -3,6 +3,7 @@ import Alert from "../primitives/Alert";
 import { useTranslation } from "react-i18next";
 import Loader from "../primitives/Loader";
 import Tooltip from "../primitives/Tooltip";
+import PageInfo from "../primitives/PageInfo";
 import {
   getTenantDetails,
   handleSignatureType,
@@ -264,6 +265,9 @@ const Preferences = () => {
               <h1 className="ml-4 mt-3 text-lg mb-2 font-semibold text-base-content">
                 {t("Preferences")}
               </h1>
+              <div className="mx-4">
+                <PageInfo i18nKey="page-info.preferences" />
+              </div>
               <div className="flex justify-center items-center mt-2">
                 <div
                   role="tablist"

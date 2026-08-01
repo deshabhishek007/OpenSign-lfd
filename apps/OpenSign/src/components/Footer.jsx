@@ -1,22 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Package from "../../package.json";
-import axios from "axios";
 import { useTranslation } from "react-i18next";
 const Footer = () => {
-  const appName = "LDF Sign";
+  const appName = "Legal Data Forensic Sign";
   const { t } = useTranslation();
   const [showButton, setShowButton] = useState(false);
-  const [version, setVersion] = useState("");
-  useEffect(() => {
-    axios
-      .get("/version.txt")
-      .then((response) => {
-        setVersion(response.data); // Set the retrieved data to the state variable
-      })
-      .catch((error) => {
-        console.error("Error reading the file:", error);
-      });
-  }, []);
 
   const handleScroll = () => {
     if (window.pageYOffset >= 50) {
@@ -45,10 +32,7 @@ const Footer = () => {
         <aside>
           <p>
             {t("all-right")} &copy; {new Date().getFullYear()} &nbsp;
-            <span>
-              {appName} ( {t("version")}:{" "}
-              {version ? version : `${Package.version} `})
-            </span>
+            <span>{appName}</span>
           </p>
         </aside>
       </footer>

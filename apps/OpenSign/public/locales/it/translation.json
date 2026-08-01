@@ -1658,5 +1658,11 @@
   "attachments-docx-size-limit": "Limite di caricamento raggiunto per i file di grandi dimensioni. Attendi fino alle {{time}} prima di riprovare.",
   "doc-quota-reached-mssg": "Hai utilizzato tutti i documenti inclusi nel tuo piano. Aggiorna il tuo piano o acquista un pacchetto di documenti aggiuntivo per continuare.",
   "account-suspended-mssg": "Questo account è stato sospeso. Contatta l'assistenza per ricevere aiuto.",
-  "seat-limit-reached-mssg": "Il tuo piano supporta un solo utente. Passa a Org per aggiungere membri del team."
+  "seat-limit-reached-mssg": "Il tuo piano supporta un solo utente. Passa a Org per aggiungere membri del team.",
+  "page-info": {
+    "dashboard": "Questa è la tua dashboard — avvia una firma da \"Firma tu stesso\" o \"Richiedi firme\" in alto, e monitora qui sotto i documenti che richiedono la tua attenzione.",
+    "managesign": "Disegna, digita o carica qui la tua firma, iniziali e timbro. Vengono salvati nel tuo profilo e riutilizzati automaticamente ogni volta che firmi un documento.",
+    "preferences": "Controlla come vengono firmati e consegnati i documenti per il tuo account — tipi di firma consentiti, notifiche, fuso orario, formato data e nomi dei file scaricati.",
+    "verify-document": "Carica qualsiasi PDF firmato per verificare in modo indipendente le sue firme digitali e i certificati — utile per confermare che un documento non sia stato alterato dopo la firma."
+  }
 }

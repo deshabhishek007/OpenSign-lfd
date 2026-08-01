@@ -170,6 +170,7 @@ function UserProfile() {
         "file"
       );
       await handleFileUpload(compressedfile);
+      setEditMode(true);
     }
   };
 
@@ -305,21 +306,30 @@ function UserProfile() {
         <div className="flex justify-center items-center w-full relative">
           <div className="bg-base-100 text-base-content flex flex-col justify-center shadow-md rounded-box w-[450px]">
             <div className="flex flex-col justify-center items-center my-4">
-              <div className="w-[200px] h-[200px] overflow-hidden rounded-full">
+              <label
+                htmlFor="profile-photo-input"
+                className="group relative w-[200px] h-[200px] overflow-hidden rounded-full cursor-pointer"
+                title={t("edit")}
+              >
                 <img
                   className="object-contain w-full h-full"
                   src={Image === "" ? dp : Image}
                   alt="dp"
                 />
-              </div>
-              {editmode && (
+                <span className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-black/0 group-hover:bg-black/50 transition-colors">
+                  <i className="fa-light fa-camera text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                  <span className="text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                    {t("edit")}
+                  </span>
+                </span>
                 <input
+                  id="profile-photo-input"
                   type="file"
-                  className="op-file-input op-file-input-bordered op-file-input-sm max-w-[270px] mt-4 text-sm"
+                  className="hidden"
                   accept="image/png, image/gif, image/jpeg"
                   onChange={fileUpload}
                 />
-              )}
+              </label>
               {percentage !== 0 && (
                 <div className="flex items-center gap-x-2">
                   <div className="h-2 rounded-full w-[200px] md:w-[400px] bg-gray-200">

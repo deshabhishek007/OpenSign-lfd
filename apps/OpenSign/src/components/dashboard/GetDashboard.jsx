@@ -1,6 +1,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { lazyWithRetry } from "../../utils";
 import { useTranslation } from "react-i18next";
+import PageInfo from "../../primitives/PageInfo";
 const DashboardButton = lazyWithRetry(() => import("./DashboardButton"));
 const DashboardCard = lazyWithRetry(() => import("./DashboardCard"));
 const DashboardReport = lazyWithRetry(() => import("./DashboardReport"));
@@ -35,7 +36,7 @@ const GetDashboard = (props) => {
           <div
             className={`${
               col?.widget?.bgColor ? col.widget.bgColor : "bg-[#2ed8b6]"
-            } op-card w-full h-[150px] px-4 pt-4 pb-4 mb-3`}
+            } op-card w-full min-h-[150px] px-4 pt-4 pb-4 mb-3`}
             data-tut={col.widget.data.tourSection}
           >
             <Suspense
@@ -79,7 +80,7 @@ const GetDashboard = (props) => {
           <div
             className={`${
               col?.widget?.bgColor ? col.widget.bgColor : "bg-[#2ed8b6]"
-            } op-card w-full h-[150px] px-4 pt-4 pb-4 mb-3`}
+            } op-card w-full min-h-[150px] px-4 pt-4 pb-4 mb-3`}
           >
             <Suspense fallback={<div>please wait</div>}>
               <DashboardCard
@@ -109,6 +110,7 @@ const GetDashboard = (props) => {
   };
   return (
     <div>
+      <PageInfo i18nKey="page-info.dashboard" />
       <div className="mb-3">
         <div
           data-tut={"tourbutton"}
