@@ -6,7 +6,13 @@ const APPID = serverAppId;
 const masterKEY = process.env.MASTER_KEY;
 
 async function saveUser(userDetails) {
-  const normalizedEmail = normalizeEmail(userDetails.email.toLowerCase().replace(/\s/g, ''));
+  // Pre-existing upstream bug: this called an undefined `normalizeEmail()`,
+  // which threw on every signup and was silently swallowed by the outer
+  // try/catch below (no rethrow) — so self-serve signup never actually
+  // worked, upstream or here, until this fix. Parse Server already
+  // maintains its own internal case-insensitive email index; this field is
+  // just a plain lowercase/trimmed copy.
+  const normalizedEmail = userDetails.email.toLowerCase().replace(/\s/g, '');
   const userQuery = new Parse.Query(Parse.User);
   userQuery.equalTo('username', userDetails.email);
   const userRes = await userQuery.first({ useMasterKey: true });
@@ -139,6 +145,14 @@ export default async function usersignup(request) {
       return { message: 'User sign up', sessionToken: user.sessionToken };
     }
   } catch (err) {
-    console.log('Err ', err);
+    // Pre-existing upstream bug: this caught-and-swallowed every error with
+    // no rethrow, so callers got `undefined` back on failure instead of a
+    // real error (this is exactly how the normalizeEmail bug above went
+    // unnoticed — Signup.jsx and the Google-onboarding modal in Login.jsx
+    // both need a thrown error to show anything to the user).
+    console.log('Err in usersignup ', err);
+    const code = err?.code || 400;
+    const message = err?.message || 'Something went wrong during signup.';
+    throw new Parse.Error(code, message);
   }
 }
