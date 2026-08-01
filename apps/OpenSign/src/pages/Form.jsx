@@ -796,7 +796,7 @@ const Forms = (props) => {
           </ModalUi>
           <form onSubmit={handleSubmit}>
             <div className="mb-[11px]">
-              <h1 className="text-[20px] font-semibold">{t(props?.title)}</h1>
+              <h1 className="text-2xl font-bold">{t(props?.title)}</h1>
               {props.title === "Sign Yourself" && (
                 <div className="text-gray-500 text-xs mt-1">
                   {t("signyour-self-description")}

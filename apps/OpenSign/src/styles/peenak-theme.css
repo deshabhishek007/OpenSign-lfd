@@ -145,6 +145,27 @@ main .shadow-md {
   background: oklch(var(--b3) / 0.6);
 }
 
+/* ---- File upload: dashed dropzone instead of the bare native control.
+ * CSS-only (no JSX/DOM changes to Form.jsx — that form is 1400+ lines of
+ * dense upload/signer/folder logic; restyling the native <input type=file>
+ * in place avoids touching any of it, in particular the required-field
+ * validation behavior, which is easy to silently break by hiding the input
+ * to fake a custom dropzone). ---- */
+.op-file-input {
+  border-style: dashed !important;
+  border-width: 2px !important;
+  height: auto !important;
+  min-height: 4.5rem;
+  padding: 1rem !important;
+  border-color: oklch(var(--bc) / 0.2) !important;
+  background: oklch(var(--b2));
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.op-file-input:hover {
+  border-color: oklch(var(--p) / 0.5) !important;
+  background: oklch(var(--p) / 0.04);
+}
+
 /* ---- Scrollbar polish (webkit) ---- */
 html[data-theme='opensigncss'] ::-webkit-scrollbar,
 html[data-theme='opensigndark'] ::-webkit-scrollbar {
