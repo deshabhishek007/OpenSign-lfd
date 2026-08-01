@@ -217,7 +217,7 @@ const WidgetsTab = () => {
             <div className="mt-3 flex flex-col gap-2">
               <div className="flex flex-row gap-2 items-center">
                 <input
-                  className="op-checkbox op-checkbox-xs"
+                  className="op-checkbox op-checkbox-xs op-checkbox-primary"
                   type="checkbox"
                   id="date-widget-signingdate"
                   name="isSigningDate"
@@ -234,7 +234,7 @@ const WidgetsTab = () => {
               </div>
               <div className="flex flex-row gap-2 items-center">
                 <input
-                  className="op-checkbox op-checkbox-xs"
+                  className="op-checkbox op-checkbox-xs op-checkbox-primary"
                   type="checkbox"
                   id="date-widget-readonly"
                   name="isReadOnly"

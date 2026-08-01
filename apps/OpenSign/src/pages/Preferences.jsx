@@ -262,7 +262,7 @@ const Preferences = () => {
                 </div>
               )}
               <h1 className="ml-4 mt-3 text-lg mb-2 font-semibold text-base-content">
-                {appName} {t("Preferences")}
+                {t("Preferences")}
               </h1>
               <div className="flex justify-center items-center mt-2">
                 <div
@@ -365,7 +365,7 @@ const Preferences = () => {
                               className="flex flex-row gap-2 items-center"
                             >
                               <input
-                                className="op-checkbox op-checkbox-xs"
+                                className="op-checkbox op-checkbox-xs op-checkbox-primary"
                                 type="checkbox"
                                 id={`signature-type-${type.name}`}
                                 name="signaturetype"
@@ -411,7 +411,7 @@ const Preferences = () => {
                           >
                             <input
                               id="notify-yes"
-                              className="op-radio op-radio-xs"
+                              className="op-radio op-radio-xs op-radio-primary"
                               type="radio"
                               onChange={() => handleNotifySignChange(true)}
                               checked={isNotifyOnSignatures === true}
@@ -430,7 +430,7 @@ const Preferences = () => {
                           >
                             <input
                               id="notify-no"
-                              className="op-radio op-radio-xs"
+                              className="op-radio op-radio-xs op-radio-primary"
                               type="radio"
                               onChange={() => handleNotifySignChange(false)}
                               checked={isNotifyOnSignatures === false}
@@ -490,7 +490,7 @@ const Preferences = () => {
                               id="order-yes"
                               type="radio"
                               value={true}
-                              className="op-radio op-radio-xs"
+                              className="op-radio op-radio-xs op-radio-primary"
                               name="SendinOrder"
                               checked={sendinOrder}
                               onChange={handleSendinOrderInput}
@@ -508,7 +508,7 @@ const Preferences = () => {
                               type="radio"
                               value={false}
                               name="SendinOrder"
-                              className="op-radio op-radio-xs"
+                              className="op-radio op-radio-xs op-radio-primary"
                               checked={!sendinOrder}
                               onChange={handleSendinOrderInput}
                             />
@@ -554,7 +554,7 @@ const Preferences = () => {
                           <input
                             id="sender-name-toggle"
                             type="checkbox"
-                            className="op-toggle checked:[--tglbg:#3368ff] transition-all checked:text-white"
+                            className="op-toggle op-toggle-primary transition-all"
                             checked={useNameAsSender}
                             onChange={() =>
                               setUseNameAsSender((prevValue) => !prevValue)
@@ -611,7 +611,7 @@ const Preferences = () => {
                               id="tour-yes"
                               type="radio"
                               value={true}
-                              className="op-radio op-radio-xs"
+                              className="op-radio op-radio-xs op-radio-primary"
                               name="IsTourEnabled"
                               checked={isTourEnabled}
                               onChange={handleTourInput}
@@ -629,7 +629,7 @@ const Preferences = () => {
                               type="radio"
                               value={false}
                               name="IsTourEnabled"
-                              className="op-radio op-radio-xs"
+                              className="op-radio op-radio-xs op-radio-primary"
                               checked={!isTourEnabled}
                               onChange={handleTourInput}
                             />

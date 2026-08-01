@@ -53,7 +53,7 @@ const DateFormatSelector = (props) => {
           <input
             type="radio"
             value={true}
-            className="op-radio op-radio-xs"
+            className="op-radio op-radio-xs op-radio-primary"
             checked={is12Hour}
             onChange={handleHrInput}
           />
@@ -63,7 +63,7 @@ const DateFormatSelector = (props) => {
           <input
             type="radio"
             value={false}
-            className="op-radio op-radio-xs"
+            className="op-radio op-radio-xs op-radio-primary"
             checked={!is12Hour}
             onChange={handleHrInput}
           />
