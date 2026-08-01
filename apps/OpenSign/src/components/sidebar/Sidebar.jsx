@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Parse from "parse";
 import Menu from "./Menu";
 import Submenu from "./SubMenu";
 import SocialMedia from "../SocialMedia";
@@ -46,12 +47,32 @@ const Sidebar = () => {
         const userRole = extClass?.[0]?.UserRole || "contracts_User";
         const isAdmin =
           userRole === "contracts_Admin" || userRole === "contracts_OrgAdmin";
+
+        // Free/Pro are single-user plans (see PlanUtils.assertCanAddTeamMember,
+        // which already blocks adding a second user server-side) — hiding the
+        // Users menu for them instead of showing a page that just rejects the
+        // add. Defaults to hidden on error so an admin never sees a menu item
+        // for a feature the server will refuse.
+        let multiUser = false;
+        if (isAdmin) {
+          try {
+            const plan = await Parse.Cloud.run("getMyPlan");
+            multiUser = !!plan?.multiUser;
+          } catch (e) {
+            console.error("getMyPlan error", e);
+          }
+        }
+
         const newSidebarList = sidebarList.map((item) => {
           if (item.title !== "Settings") return item;
           const newItem = { ...item };
-          const baseChildren = isAdmin ? subSetting : subSetting?.slice(0, 1);
+          const settingsChildren = isAdmin
+            ? multiUser
+              ? subSetting
+              : subSetting.filter((s) => s.objectId !== "users")
+            : subSetting?.slice(0, 1);
             const mysignature = newItem.children.slice(0, 1);
-            newItem.children = [...mysignature, ...baseChildren];
+            newItem.children = [...mysignature, ...settingsChildren];
           return newItem;
         });
         setmenuList(newSidebarList);

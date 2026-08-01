@@ -36,12 +36,20 @@ export async function getMyPlan(request) {
   pendingQuery.equalTo('Status', 'pending');
   const pending = await pendingQuery.first({ useMasterKey: true });
 
+  const planId = tenant.get('PlanId') || 'free';
+
   return {
-    planId: tenant.get('PlanId') || 'free',
+    planId,
     planName: tenant.get('PlanName') || 'Free',
     docLimit: tenant.get('DocLimit') ?? null, // null = unlimited
     docsUsed: tenant.get('DocsUsed') || 0,
     planStatus: tenant.get('PlanStatus') || 'active',
+    // Whether this plan allows more than one team member — see
+    // PlanUtils.assertCanAddTeamMember, which already enforces this
+    // server-side. The client uses this to hide the Settings > Users menu
+    // for single-user plans instead of showing a page that will just
+    // reject the add.
+    multiUser: planDefaults(planId).multiUser,
     pendingRequest: pending ? serializeRequest(pending) : null,
     isSaasAdmin: isSaasAdmin(request),
   };
