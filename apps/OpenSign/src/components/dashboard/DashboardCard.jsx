@@ -318,32 +318,29 @@ const DashboardCard = (props) => {
         props.Data && props.Data.Redirect_type
           ? "cursor-pointer"
           : "cursor-default"
-      }`}
+      } h-full flex flex-col justify-between`}
     >
-      <div className="flex items-center justify-start gap-5 text-white">
-        <span className="rounded-full bg-base-300 bg-opacity-20 w-[60px] h-[60px] self-start flex justify-center items-center">
+      <div className="flex items-center justify-between">
+        <span className="rounded-xl bg-white/15 w-14 h-14 flex justify-center items-center shrink-0">
           <i
             className={`${
               props.Icon ? props.Icon : "fa-light fa-info"
-            } text-[25px] lg:text-[30px]`}
+            } text-2xl text-white`}
           ></i>
         </span>
-
-        <div className="font-medium">
-          <div className="text-base lg:text-lg">
-            {t(`dashboard-card.${props.Label}`)}
-          </div>
-          <div className="text-2xl font-light">
-            {loading ? <div className="loader-01"></div> : setFormat(response)}
-          </div>
-        </div>
-      </div>
-      <div className="text-xs absolute top-3 right-2">
         <Tooltip
           id={props.Label}
           iconColor={"white"}
           message={t(`tour-mssg.${props.Label}`)}
         />
+      </div>
+      <div className="mt-3 text-white">
+        <div className="text-sm font-medium text-white/70">
+          {t(`dashboard-card.${props.Label}`)}
+        </div>
+        <div className="text-4xl font-bold mt-1">
+          {loading ? <div className="loader-01"></div> : setFormat(response)}
+        </div>
       </div>
     </div>
   );
