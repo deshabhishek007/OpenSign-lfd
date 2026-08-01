@@ -1,3 +1,5 @@
+import { planDefaults } from '../cloud/constant/plans.js';
+
 // Lifetime document-signing balance enforcement for the peenak SaaS deployment.
 // Not part of upstream OpenSign.
 //
@@ -118,5 +120,31 @@ export function isSaasAdmin(request) {
 export function requireSaasAdmin(request) {
   if (!isSaasAdmin(request)) {
     throw new Parse.Error(Parse.Error.OPERATION_FORBIDDEN, 'Admin access required.');
+  }
+}
+
+// Throws if adding another team member would exceed the tenant's plan seat
+// limit (Free and Pro are single-user; Org is multi-user — see plans.js).
+// Counts existing contracts_Users rows for the tenant rather than storing a
+// separate seat counter, since team members can also be removed and this
+// stays correct without needing to keep a counter in sync.
+export async function assertCanAddTeamMember(tenantId) {
+  if (!tenantId) return;
+
+  const tenantQuery = new Parse.Query('partners_Tenant');
+  const tenant = await tenantQuery.get(tenantId, { useMasterKey: true });
+  assertTenantActive(tenant);
+
+  const plan = planDefaults(tenant.get('PlanId'));
+  if (plan.multiUser) return;
+
+  const countQuery = new Parse.Query('contracts_Users');
+  countQuery.equalTo('TenantId', { __type: 'Pointer', className: 'partners_Tenant', objectId: tenantId });
+  const seatCount = await countQuery.count({ useMasterKey: true });
+  if (seatCount >= 1) {
+    throw new Parse.Error(
+      Parse.Error.OPERATION_FORBIDDEN,
+      `seatlimitreached: the ${plan.name} plan supports a single user. Upgrade to Org to add team members.`
+    );
   }
 }

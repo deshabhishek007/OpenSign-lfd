@@ -1205,6 +1205,7 @@
   "prefill-widget": "Prefill Widgets",
   "action-prohibited": "This action isn't allowed for your email domain. Please contact your administrator for assistance.",
   "account-suspended-mssg": "This account has been suspended. Contact support for assistance.",
+  "seat-limit-reached-mssg": "Your plan supports a single user. Upgrade to Org to add team members.",
   "must-have-at-least-one-vacant-role": "You must have at least one role unassigned before setting a template to 'public'.",
   "remove-duplicate": "Please remove duplicate option",
   "prefill-bulk-error": "Bulk send is not allowed when prefill widgets are added. Please remove the prefill widgets to proceed.",

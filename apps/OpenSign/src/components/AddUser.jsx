@@ -125,7 +125,11 @@ const AddUser = (props) => {
           } catch (err) {
             console.log("err", err);
             setIsFormLoader(false);
-            props.showAlert("danger", t("something-went-wrong-mssg"));
+            if (err?.message?.startsWith("seatlimitreached")) {
+              props.showAlert("danger", t("seat-limit-reached-mssg"));
+            } else {
+              props.showAlert("danger", t("something-went-wrong-mssg"));
+            }
           }
         } else {
           props.showAlert("danger", t("something-went-wrong-mssg"));

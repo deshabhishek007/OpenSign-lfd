@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Parse from "parse";
 import { NavLink, useNavigate } from "react-router";
 import login_img from "../assets/images/login_img.svg";
@@ -6,7 +6,7 @@ import { useWindowSize } from "../hook/useWindowSize";
 import { emailRegex } from "../constant/const";
 import Alert from "../primitives/Alert";
 import { appInfo } from "../constant/appinfo";
-import { usertimezone } from "../constant/Utils";
+import { getAppLogo, usertimezone } from "../constant/Utils";
 import { useTranslation } from "react-i18next";
 
 // New self-serve tenant signup — not part of upstream OpenSign, which only
@@ -27,6 +27,19 @@ function Signup() {
   });
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({ type: "danger", msg: "" });
+  const [logo, setLogo] = useState(appInfo?.applogo);
+
+  useEffect(() => {
+    // Same tenant-branding lookup Login.jsx uses (getlogobydomain, keyed on
+    // the current host) — falls back to the generic OpenSign logo if this
+    // domain has none set. Peenak's is already configured on partners_Tenant.
+    (async () => {
+      const app = await getAppLogo();
+      if (app?.logo) {
+        setLogo(app.logo);
+      }
+    })();
+  }, []);
 
   const handleChange = (event) => {
     let { name, value } = event.target;
@@ -95,7 +108,7 @@ function Signup() {
       <div className="md:p-4 lg:p-10 p-4 bg-base-100 text-base-content op-card">
         <div className="w-[250px] h-[66px] inline-block overflow-hidden">
           <img
-            src={appInfo?.applogo}
+            src={logo}
             className="object-contain h-full"
             alt="applogo"
           />

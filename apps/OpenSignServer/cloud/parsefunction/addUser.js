@@ -1,3 +1,5 @@
+import { assertCanAddTeamMember } from '../../utils/PlanUtils.js';
+
 export default async function addUser(request) {
   const { phone, name, password, organization, team, tenantId, timezone, role } = request.params;
   const email = request.params?.email?.toLowerCase()?.replace(/\s/g, '');
@@ -30,6 +32,9 @@ export default async function addUser(request) {
       if (!callerTenantId || tenantId !== callerTenantId || (isOrgAdmin && !callerOrgId)) {
         throw new Parse.Error(Parse.Error.OPERATION_FORBIDDEN, 'Unauthorized.');
       }
+
+      // Free/Pro are single-user plans; Org is multi-user. See PlanUtils.js.
+      await assertCanAddTeamMember(callerTenantId);
 
       // Only allow creating non-admin roles; never allow elevating to a
       // tenant Admin through this endpoint.
