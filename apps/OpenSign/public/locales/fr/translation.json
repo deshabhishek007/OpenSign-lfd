@@ -1665,5 +1665,37 @@
     "managesign": "Dessinez, tapez ou téléversez votre signature, vos initiales et votre tampon ici. Ils sont enregistrés dans votre profil et réutilisés automatiquement à chaque signature d'un document.",
     "preferences": "Contrôlez comment les documents sont signés et livrés pour votre compte — types de signature autorisés, notifications, fuseau horaire, format de date et noms de fichiers de téléchargement.",
     "verify-document": "Téléversez n'importe quel PDF signé pour vérifier indépendamment ses signatures numériques et certificats — utile pour confirmer qu'un document n'a pas été modifié après sa signature."
+  },
+  "no-results-for-search": "Aucun résultat pour « {{term}} »",
+  "empty-state": {
+    "nothing-sent-title": "Vous n'avez encore rien envoyé",
+    "nothing-sent-desc": "Les documents que vous envoyez pour signature apparaîtront ici.",
+    "nothing-to-sign-title": "Rien ne nécessite votre signature",
+    "nothing-to-sign-desc": "Vous êtes à jour — les nouvelles demandes apparaîtront ici.",
+    "no-drafts-title": "Aucun brouillon pour le moment",
+    "no-drafts-desc": "Les documents enregistrés sans être envoyés apparaîtront ici.",
+    "no-in-progress-title": "Rien en cours",
+    "no-in-progress-desc": "Les documents en attente d'autres signataires apparaîtront ici.",
+    "no-completed-title": "Aucun document terminé pour le moment",
+    "no-completed-desc": "Les documents entièrement signés apparaîtront ici.",
+    "no-declined-title": "Aucun document refusé",
+    "no-declined-desc": "Les documents refusés par un signataire apparaîtront ici.",
+    "no-expired-title": "Aucun document expiré",
+    "no-expired-desc": "Les documents ayant dépassé leur date d'expiration apparaîtront ici.",
+    "no-documents-title": "Aucun document pour le moment",
+    "no-documents-desc": "Signez un document vous-même ou envoyez-en un pour signature afin de commencer.",
+    "no-templates-title": "Aucun modèle pour le moment",
+    "no-templates-desc": "Enregistrez un document comme modèle pour le réutiliser lors de futures demandes de signature.",
+    "no-contacts-title": "Aucun contact pour le moment",
+    "no-contacts-desc": "Ajoutez des personnes avec qui vous signez ou partagez des documents pour les sélectionner rapidement la prochaine fois.",
+    "drive-empty-title": "Ce dossier est vide",
+    "drive-empty-desc": "Les documents signés et terminés sont enregistrés ici automatiquement."
+  },
+  "onboarding": {
+    "title": "Pour commencer",
+    "progress": "{{done}} sur {{total}} effectué(s)",
+    "step-signature": "Ajoutez votre signature",
+    "step-document": "Signez ou envoyez votre premier document",
+    "step-team": "Invitez votre équipe"
   }
 }

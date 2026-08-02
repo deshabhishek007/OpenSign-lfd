@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router";
 import Parse from "parse";
 import ModalUi from "../primitives/ModalUi";
+import EmptyState from "../primitives/EmptyState";
 import TourContentWithBtn from "../primitives/TourContentWithBtn";
 import Tour from "../primitives/Tour";
 import axios from "axios";
@@ -895,9 +896,11 @@ function Opensigndrive() {
           )}
           {pdfData && pdfData.length === 0 ? (
             <div className="flex justify-center items-center w-full h-[50vh]">
-              <span className="text-base-content font-bold">
-                {t("no-data")}
-              </span>
+              <EmptyState
+                icon="fa-folder-open"
+                title={t("empty-state.drive-empty-title")}
+                description={t("empty-state.drive-empty-desc")}
+              />
             </div>
           ) : (
             <div data-tut="reactourFifth">

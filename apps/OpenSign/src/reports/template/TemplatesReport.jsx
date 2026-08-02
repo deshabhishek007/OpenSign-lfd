@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import pad from "../../assets/images/pad.svg";
 import { Link, useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import ModalUi from "../../primitives/ModalUi";
 import Alert from "../../primitives/Alert";
+import EmptyState from "../../primitives/EmptyState";
 import Tooltip from "../../primitives/Tooltip";
 import ShareButton from "../../primitives/ShareButton";
 import Tour from "../../primitives/Tour";
@@ -1646,19 +1646,19 @@ const TemplatesReport = (props) => {
                   <Loader />
                   <div className="text-sm ">{t("loading-mssg")}</div>
                 </>
+              ) : props.searchTerm ? (
+                <EmptyState
+                  icon="fa-magnifying-glass"
+                  title={t("no-results-for-search", { term: props.searchTerm })}
+                />
               ) : (
-                <>
-                  <div className="w-[60px] h-[60px] overflow-hidden">
-                    <img
-                      className="w-full h-full object-contain"
-                      src={pad}
-                      alt={t("no-data-available")}
-                    />
-                  </div>
-                  <div className="text-sm font-semibold">
-                    {t("no-data-available")}
-                  </div>
-                </>
+                <EmptyState
+                  icon="fa-file-lines"
+                  title={t("empty-state.no-templates-title")}
+                  description={t("empty-state.no-templates-desc")}
+                  actionLabel={t("sidebar.Create template")}
+                  onAction={() => navigate("/form/template")}
+                />
               )}
             </div>
           )}

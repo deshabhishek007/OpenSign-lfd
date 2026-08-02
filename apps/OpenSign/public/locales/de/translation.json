@@ -1664,5 +1664,37 @@
     "managesign": "Zeichnen, tippen oder laden Sie hier Ihre Signatur, Initialen und Ihren Stempel hoch. Sie werden in Ihrem Profil gespeichert und automatisch bei jeder Dokumentsignatur wiederverwendet.",
     "preferences": "Steuern Sie, wie Dokumente für Ihr Konto signiert und zugestellt werden — erlaubte Signaturarten, Benachrichtigungen, Zeitzone, Datumsformat und Dateinamen für Downloads.",
     "verify-document": "Laden Sie ein signiertes PDF hoch, um dessen digitale Signaturen und Zertifikate unabhängig zu überprüfen — nützlich, um zu bestätigen, dass ein Dokument nach der Signatur nicht verändert wurde."
+  },
+  "no-results-for-search": "Keine Ergebnisse für „{{term}}“",
+  "empty-state": {
+    "nothing-sent-title": "Sie haben noch nichts gesendet",
+    "nothing-sent-desc": "Dokumente, die Sie zur Signatur senden, werden hier angezeigt.",
+    "nothing-to-sign-title": "Nichts erfordert Ihre Signatur",
+    "nothing-to-sign-desc": "Sie sind auf dem neuesten Stand — neue Anfragen werden hier angezeigt.",
+    "no-drafts-title": "Noch keine Entwürfe",
+    "no-drafts-desc": "Dokumente, die Sie speichern, ohne sie zu senden, werden hier angezeigt.",
+    "no-in-progress-title": "Nichts in Bearbeitung",
+    "no-in-progress-desc": "Dokumente, die auf andere Unterzeichner warten, werden hier angezeigt.",
+    "no-completed-title": "Noch keine abgeschlossenen Dokumente",
+    "no-completed-desc": "Vollständig signierte Dokumente werden hier angezeigt.",
+    "no-declined-title": "Keine abgelehnten Dokumente",
+    "no-declined-desc": "Von einem Unterzeichner abgelehnte Dokumente werden hier angezeigt.",
+    "no-expired-title": "Keine abgelaufenen Dokumente",
+    "no-expired-desc": "Dokumente, die ihr Ablaufdatum überschreiten, werden hier angezeigt.",
+    "no-documents-title": "Noch keine Dokumente",
+    "no-documents-desc": "Signieren Sie selbst ein Dokument oder senden Sie eines zur Signatur, um zu beginnen.",
+    "no-templates-title": "Noch keine Vorlagen",
+    "no-templates-desc": "Speichern Sie ein Dokument als Vorlage, um es für zukünftige Signaturanfragen wiederzuverwenden.",
+    "no-contacts-title": "Noch keine Kontakte",
+    "no-contacts-desc": "Fügen Sie Personen hinzu, mit denen Sie signieren oder Dokumente teilen, um sie beim nächsten Mal schnell auszuwählen.",
+    "drive-empty-title": "Dieser Ordner ist leer",
+    "drive-empty-desc": "Signierte und abgeschlossene Dokumente werden hier automatisch gespeichert."
+  },
+  "onboarding": {
+    "title": "Erste Schritte",
+    "progress": "{{done}} von {{total}} erledigt",
+    "step-signature": "Fügen Sie Ihre Signatur hinzu",
+    "step-document": "Signieren oder senden Sie Ihr erstes Dokument",
+    "step-team": "Laden Sie Ihr Team ein"
   }
 }

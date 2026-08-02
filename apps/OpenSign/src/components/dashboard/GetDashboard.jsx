@@ -2,6 +2,7 @@ import { useState, useEffect, Suspense } from "react";
 import { lazyWithRetry } from "../../utils";
 import { useTranslation } from "react-i18next";
 import PageInfo from "../../primitives/PageInfo";
+import OnboardingChecklist from "../../primitives/OnboardingChecklist";
 const DashboardButton = lazyWithRetry(() => import("./DashboardButton"));
 const DashboardCard = lazyWithRetry(() => import("./DashboardCard"));
 const DashboardReport = lazyWithRetry(() => import("./DashboardReport"));
@@ -111,6 +112,7 @@ const GetDashboard = (props) => {
   return (
     <div>
       <PageInfo i18nKey="page-info.dashboard" />
+      <OnboardingChecklist />
       <div className="mb-3">
         <div
           data-tut={"tourbutton"}

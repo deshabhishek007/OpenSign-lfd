@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import pad from "../../assets/images/pad.svg";
 import recreatedoc from "../../assets/images/recreatedoc.png";
 import { Link, useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import ModalUi from "../../primitives/ModalUi";
 import Alert from "../../primitives/Alert";
+import EmptyState from "../../primitives/EmptyState";
 import Tooltip from "../../primitives/Tooltip";
 import ShareButton from "../../primitives/ShareButton";
 import DatePicker from "../../components/DatePicker";
@@ -50,6 +50,75 @@ const DocumentsReport = (props) => {
   const { prefillImg, isBulkLoader } = useSelector((state) => state.widget);
   const isDashboard =
     location?.pathname === "/dashboard/35KBoSgoAK" ? true : false;
+
+  // Per-report-name empty-state copy — a filtered view being empty ("no
+  // declined documents") reads differently from the product having zero
+  // documents ever, so only the two dashboard "nothing sent/received yet"
+  // cases get a call-to-action; the rest are just clearer empty copy.
+  const getEmptyStateProps = () => {
+    if (props.searchTerm) {
+      return {
+        icon: "fa-magnifying-glass",
+        title: t("no-results-for-search", { term: props.searchTerm })
+      };
+    }
+    switch (props.ReportName) {
+      case "Recently sent for signatures":
+        return {
+          icon: "fa-paper-plane",
+          title: t("empty-state.nothing-sent-title"),
+          description: t("empty-state.nothing-sent-desc"),
+          actionLabel: t("Request Signatures"),
+          onAction: () => navigate("/form/8mZzFxbG1z")
+        };
+      case "Recent signature requests":
+      case "Need your sign":
+        return {
+          icon: "fa-pen-nib",
+          title: t("empty-state.nothing-to-sign-title"),
+          description: t("empty-state.nothing-to-sign-desc")
+        };
+      case "Draft Documents":
+      case "Drafts":
+        return {
+          icon: "fa-file-pen",
+          title: t("empty-state.no-drafts-title"),
+          description: t("empty-state.no-drafts-desc")
+        };
+      case "In-progress documents":
+        return {
+          icon: "fa-clock",
+          title: t("empty-state.no-in-progress-title"),
+          description: t("empty-state.no-in-progress-desc")
+        };
+      case "Completed Documents":
+        return {
+          icon: "fa-circle-check",
+          title: t("empty-state.no-completed-title"),
+          description: t("empty-state.no-completed-desc")
+        };
+      case "Declined Documents":
+        return {
+          icon: "fa-circle-xmark",
+          title: t("empty-state.no-declined-title"),
+          description: t("empty-state.no-declined-desc")
+        };
+      case "Expired Documents":
+        return {
+          icon: "fa-hourglass-end",
+          title: t("empty-state.no-expired-title"),
+          description: t("empty-state.no-expired-desc")
+        };
+      default:
+        return {
+          icon: "fa-file-lines",
+          title: t("empty-state.no-documents-title"),
+          description: t("empty-state.no-documents-desc"),
+          actionLabel: t("Sign Yourself"),
+          onAction: () => navigate("/form/sHAnZphf69")
+        };
+    }
+  };
   const [currentPage, setCurrentPage] = useState(1);
   const [actLoader, setActLoader] = useState({});
   const [isDeleteModal, setIsDeleteModal] = useState({});
@@ -1815,18 +1884,7 @@ const DocumentsReport = (props) => {
                   <div className="text-sm ">{t("loading-mssg")}</div>
                 </>
               ) : (
-                <>
-                  <div className="w-[72px] h-[72px] overflow-hidden opacity-40">
-                    <img
-                      className="w-full h-full object-contain"
-                      src={pad}
-                      alt={t("no-data-available")}
-                    />
-                  </div>
-                  <div className="text-sm font-semibold text-base-content/60 mt-2">
-                    {t("no-data-available")}
-                  </div>
-                </>
+                <EmptyState {...getEmptyStateProps()} />
               )}
             </div>
           )}

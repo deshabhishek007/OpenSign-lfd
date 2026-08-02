@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import pad from "../../assets/images/pad.svg";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import EditContactForm from "./EditContactForm";
 import ModalUi from "../../primitives/ModalUi";
 import Alert from "../../primitives/Alert";
+import EmptyState from "../../primitives/EmptyState";
 import Tooltip from "../../primitives/Tooltip";
 import Loader from "../../primitives/Loader";
 import { serverUrl_fn } from "../../constant/appinfo";
@@ -419,19 +419,19 @@ const Contactbook = (props) => {
                   <Loader />
                   <div className="text-sm ">{t("loading-mssg")}</div>
                 </>
+              ) : props.searchTerm ? (
+                <EmptyState
+                  icon="fa-magnifying-glass"
+                  title={t("no-results-for-search", { term: props.searchTerm })}
+                />
               ) : (
-                <>
-                  <div className="w-[60px] h-[60px] overflow-hidden">
-                    <img
-                      className="w-full h-full object-contain"
-                      src={pad}
-                      alt={t("no-data-available")}
-                    />
-                  </div>
-                  <div className="text-sm font-semibold">
-                    {t("no-data-available")}
-                  </div>
-                </>
+                <EmptyState
+                  icon="fa-address-book"
+                  title={t("empty-state.no-contacts-title")}
+                  description={t("empty-state.no-contacts-desc")}
+                  actionLabel={t("add-contact")}
+                  onAction={() => handleContactFormModal()}
+                />
               )}
             </div>
           )}

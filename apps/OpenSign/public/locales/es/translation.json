@@ -1664,5 +1664,37 @@
     "managesign": "Dibuja, escribe o sube tu firma, iniciales y sello aquí. Se guardan en tu perfil y se reutilizan automáticamente cada vez que firmas un documento.",
     "preferences": "Controla cómo se firman y entregan los documentos para tu cuenta — tipos de firma permitidos, notificaciones, zona horaria, formato de fecha y nombres de archivo de descarga.",
     "verify-document": "Sube cualquier PDF firmado para verificar de forma independiente sus firmas digitales y certificados — útil para confirmar que un documento no se alteró después de firmarlo."
+  },
+  "no-results-for-search": "Sin resultados para \"{{term}}\"",
+  "empty-state": {
+    "nothing-sent-title": "Aún no has enviado nada",
+    "nothing-sent-desc": "Los documentos que envíes para firma aparecerán aquí.",
+    "nothing-to-sign-title": "Nada requiere tu firma",
+    "nothing-to-sign-desc": "Estás al día — las nuevas solicitudes aparecerán aquí.",
+    "no-drafts-title": "Aún no hay borradores",
+    "no-drafts-desc": "Los documentos que guardes sin enviar aparecerán aquí.",
+    "no-in-progress-title": "Nada en curso",
+    "no-in-progress-desc": "Los documentos que esperan la firma de otros aparecerán aquí.",
+    "no-completed-title": "Aún no hay documentos completados",
+    "no-completed-desc": "Los documentos totalmente firmados aparecerán aquí.",
+    "no-declined-title": "Sin documentos rechazados",
+    "no-declined-desc": "Los documentos rechazados por un firmante aparecerán aquí.",
+    "no-expired-title": "Sin documentos vencidos",
+    "no-expired-desc": "Los documentos que superen su fecha de vencimiento aparecerán aquí.",
+    "no-documents-title": "Aún no hay documentos",
+    "no-documents-desc": "Firma un documento tú mismo o envía uno para firma para comenzar.",
+    "no-templates-title": "Aún no hay plantillas",
+    "no-templates-desc": "Guarda un documento como plantilla para reutilizarlo en futuras solicitudes de firma.",
+    "no-contacts-title": "Aún no hay contactos",
+    "no-contacts-desc": "Agrega personas con las que firmas o compartes documentos para elegirlas rápidamente la próxima vez.",
+    "drive-empty-title": "Esta carpeta está vacía",
+    "drive-empty-desc": "Los documentos firmados y completados se guardan aquí automáticamente."
+  },
+  "onboarding": {
+    "title": "Primeros pasos",
+    "progress": "{{done}} de {{total}} completados",
+    "step-signature": "Agrega tu firma",
+    "step-document": "Firma o envía tu primer documento",
+    "step-team": "Invita a tu equipo"
   }
 }
