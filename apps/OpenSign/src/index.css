@@ -78,6 +78,10 @@ body {
   @apply border-primary;
 }
 
+.op-border-success {
+  @apply border-success;
+}
+
 /* CSS for scrollbar customization */
 * {
   scrollbar-width: thin;

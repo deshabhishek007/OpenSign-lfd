@@ -70,7 +70,7 @@ const SignerCell = ({ reportName, item, handleRemovePrefill }) => {
                   x.Activity === "SIGNED"
                     ? "op-border-primary op-text-primary"
                     : x.Activity === "VIEWED"
-                      ? "border-green-400 text-green-400"
+                      ? "op-border-success op-text-success"
                       : "border-base-content text-base-content"
                 } focus:outline-none border-2 w-[60px] h-[30px] text-[11px] rounded-full`}
               >
@@ -84,7 +84,7 @@ const SignerCell = ({ reportName, item, handleRemovePrefill }) => {
                 title={t("document-logs")}
                 handleClose={handleCloseModal}
               >
-                <div className="pl-3 first:mt-2 border-t-[1px] border-gray-600 text-[12px] py-2">
+                <div className="pl-3 first:mt-2 border-t-[1px] border-base-300 text-[12px] py-2">
                   <p className="font-bold"> {x?.Email}</p>
                   <p>{t("viewed-on", { ViewedOn: x?.ViewedOn })}</p>
                   <p>{t("signed-on", { SignedOn: x?.SignedOn })}</p>
@@ -101,7 +101,7 @@ const SignerCell = ({ reportName, item, handleRemovePrefill }) => {
                 [item.objectId]: !isShowAllSigners[item.objectId]
               })
             }
-            className="ml-2 mt-1 text-xs font-medium text-blue-500 underline focus:outline-none"
+            className="ml-2 mt-1 text-xs font-medium op-text-primary underline focus:outline-none"
           >
             {isShowAllSigners[item.objectId] ? t("hide") : t("show-more")}
           </button>

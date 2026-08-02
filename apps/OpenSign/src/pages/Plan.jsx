@@ -175,7 +175,7 @@ function Plan() {
   return (
     <div className="flex flex-col gap-4">
       <div className="w-full bg-base-100 text-base-content shadow rounded-box p-2">
-        <div className="text-xl font-bold border-b-[1px] border-gray-300 pb-2 mb-2">
+        <div className="text-xl font-bold border-b-[1px] border-base-300 pb-2 mb-2">
           {t("plan-title")}
         </div>
 
@@ -250,7 +250,7 @@ function Plan() {
 
       {plan.isSaasAdmin && (
         <div className="w-full bg-base-100 text-base-content shadow rounded-box p-2">
-          <div className="text-xl font-bold border-b-[1px] border-gray-300 pb-2 mb-2">
+          <div className="text-xl font-bold border-b-[1px] border-base-300 pb-2 mb-2">
             {t("plan-admin-title")}
           </div>
           <div className="m-2">
@@ -258,26 +258,26 @@ function Plan() {
               <div className="text-xs text-base-content/60">{t("plan-admin-empty")}</div>
             ) : (
               <div className="overflow-x-auto">
-                <table className="op-table w-full text-xs">
+                <table className="op-table w-full">
                   <thead>
                     <tr>
-                      <th>{t("plan-admin-col-tenant")}</th>
-                      <th>{t("plan-admin-col-current")}</th>
-                      <th>{t("plan-admin-col-requested")}</th>
-                      <th>{t("plan-admin-col-note")}</th>
-                      <th>{t("plan-admin-col-actions")}</th>
+                      <th className="p-2">{t("plan-admin-col-tenant")}</th>
+                      <th className="p-2">{t("plan-admin-col-current")}</th>
+                      <th className="p-2">{t("plan-admin-col-requested")}</th>
+                      <th className="p-2">{t("plan-admin-col-note")}</th>
+                      <th className="p-2">{t("plan-admin-col-actions")}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {adminRequests.map(r => (
                       <tr key={r.objectId}>
-                        <td>{r.tenantName}</td>
-                        <td>{r.tenantCurrentPlan}</td>
-                        <td className="font-bold">
+                        <td className="p-2">{r.tenantName}</td>
+                        <td className="p-2">{r.tenantCurrentPlan}</td>
+                        <td className="p-2 font-bold">
                           {PLAN_OPTIONS.find(p => p.id === r.requestedPlanId)?.name || r.requestedPlanId}
                         </td>
-                        <td>{r.note || "—"}</td>
-                        <td className="flex gap-2">
+                        <td className="p-2">{r.note || "—"}</td>
+                        <td className="p-2 flex gap-2">
                           <button
                             type="button"
                             disabled={adminBusyId === r.objectId}
@@ -307,7 +307,7 @@ function Plan() {
 
       {plan.isSaasAdmin && (
         <div className="w-full bg-base-100 text-base-content shadow rounded-box p-2">
-          <div className="text-xl font-bold border-b-[1px] border-gray-300 pb-2 mb-2">
+          <div className="text-xl font-bold border-b-[1px] border-base-300 pb-2 mb-2">
             {t("plan-admin-tenants-title")}
           </div>
           <div className="m-2 flex flex-col gap-3">
@@ -328,22 +328,22 @@ function Plan() {
               <div className="text-xs text-base-content/60">{t("plan-admin-tenants-empty")}</div>
             ) : (
               <div className="overflow-x-auto">
-                <table className="op-table w-full text-xs">
+                <table className="op-table w-full">
                   <thead>
                     <tr>
-                      <th>{t("plan-admin-col-tenant")}</th>
-                      <th>{t("plan-admin-tenants-col-email")}</th>
-                      <th>{t("plan-admin-col-current")}</th>
-                      <th>{t("plan-admin-tenants-col-usage")}</th>
-                      <th>{t("plan-admin-tenants-col-limit")}</th>
-                      <th>{t("plan-admin-tenants-col-status")}</th>
-                      <th>{t("plan-admin-col-actions")}</th>
+                      <th className="p-2">{t("plan-admin-col-tenant")}</th>
+                      <th className="p-2">{t("plan-admin-tenants-col-email")}</th>
+                      <th className="p-2">{t("plan-admin-col-current")}</th>
+                      <th className="p-2">{t("plan-admin-tenants-col-usage")}</th>
+                      <th className="p-2">{t("plan-admin-tenants-col-limit")}</th>
+                      <th className="p-2">{t("plan-admin-tenants-col-status")}</th>
+                      <th className="p-2">{t("plan-admin-col-actions")}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {tenants.map(row => (
                       <tr key={row.objectId}>
-                        <td>
+                        <td className="p-2">
                           {row.tenantName}
                           {row.isPlatformAdmin && (
                             <span className="ml-1 op-badge op-badge-primary op-badge-xs align-middle">
@@ -351,10 +351,10 @@ function Plan() {
                             </span>
                           )}
                         </td>
-                        <td>{row.email}</td>
-                        <td>{row.planName}</td>
-                        <td>{row.docsUsed}</td>
-                        <td>
+                        <td className="p-2">{row.email}</td>
+                        <td className="p-2">{row.planName}</td>
+                        <td className="p-2">{row.docsUsed}</td>
+                        <td className="p-2">
                           <div className="flex gap-1 items-center">
                             <input
                               type="text"
@@ -383,14 +383,18 @@ function Plan() {
                             </button>
                           </div>
                         </td>
-                        <td>
+                        <td className="p-2">
                           {row.isActive ? (
-                            <span className="text-success">{t("plan-admin-tenants-active")}</span>
+                            <span className="op-badge op-badge-success op-badge-sm">
+                              {t("plan-admin-tenants-active")}
+                            </span>
                           ) : (
-                            <span className="text-error">{t("plan-admin-tenants-suspended")}</span>
+                            <span className="op-badge op-badge-error op-badge-sm">
+                              {t("plan-admin-tenants-suspended")}
+                            </span>
                           )}
                         </td>
-                        <td className="flex gap-1 flex-wrap">
+                        <td className="p-2 flex gap-1 flex-wrap">
                           <button
                             type="button"
                             disabled={tenantBusyId === row.objectId}
