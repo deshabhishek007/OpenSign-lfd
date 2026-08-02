@@ -145,12 +145,10 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
           >
             {applogo && (
               <img
-                className="object-contain h-full w-auto"
-                src={
-                      isDarkTheme
-                      ? "/static/js/assets/images/logo-dark.png"
-                      : applogo
-                }
+                className={`object-contain h-full w-auto ${
+                  isDarkTheme ? "invert" : ""
+                }`}
+                src={applogo}
                 alt="logo"
               />
             )}
