@@ -78,21 +78,27 @@ module.exports = {
   daisyui: {
     // themes: true,
     // Colors below are peenak's "clean SaaS" reskin (Linear/Notion-inspired:
-    // thin borders over shadows, one restrained indigo accent, muted
-    // neutrals) — previously injected at runtime via nginx sub_filter
+    // thin borders over shadows, one restrained accent, muted neutrals) —
+    // previously injected at runtime via nginx sub_filter
     // (opensign-peenak/brand/theme-modern.css), now baked in here instead.
     // See PR/commit history on the peenak-saas branch for the migration.
+    //
+    // primary/accent were repointed from indigo to the LDF crest's crimson
+    // + gold. primary is kept a deep WINE red (not a bright fire-engine
+    // red) deliberately, so it reads as "brand" rather than "danger" next
+    // to the error color, which stays a conventional bright red — same
+    // reasoning applies to why primary isn't literally the crest's red.
     themes: [
       {
         opensigndark: {
-          primary: "#818CF8", // indigo-400
-          "primary-content": "#0B0F19",
+          primary: "#C23B3B", // crest crimson, brightened for dark bg contrast
+          "primary-content": "#180505",
 
           secondary: "#64748B", // slate-500 — neutral, not a second hue
           "secondary-content": "#0B0F19",
 
-          accent: "#A5B4FC", // indigo-300, same family as primary
-          "accent-content": "#0B0F19",
+          accent: "#D4AF37", // crest gold
+          "accent-content": "#1C1400",
 
           neutral: "#1E293B", // slate-800
           "neutral-content": "#F1F5F9",
@@ -128,12 +134,12 @@ module.exports = {
       },
       {
         opensigncss: {
-          primary: "#4F46E5", // indigo-600, single accent
-          "primary-content": "#F8FAFC",
+          primary: "#7A1A1A", // crest crimson, deepened (wine, not fire-engine) for light-bg contrast + to stay distinct from error red
+          "primary-content": "#FFFFFF",
           secondary: "#475569", // slate-600 — neutral, not a second hue
           "secondary-content": "#F8FAFC",
-          accent: "#6366F1", // indigo-500, same family as primary
-          "accent-content": "#F8FAFC",
+          accent: "#B8860B", // crest gold
+          "accent-content": "#FFFFFF",
           neutral: "#0F172A", // slate-900
           "neutral-content": "#F1F5F9",
           "base-100": "#FFFFFF",

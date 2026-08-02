@@ -6,7 +6,7 @@ export function EmailBody(props) {
   const { t } = useTranslation();
   return (
     <form className="flex flex-col text-base-content text-lg font-normal">
-      <div className="m-2 md:m-10 p-3 md:p-10 shadow-md hover:shadow-lg border-[1px] border-indigo-800 rounded-md">
+      <div className="m-2 md:m-10 p-3 md:p-10 shadow-md hover:shadow-lg border-[1px] border-base-300 rounded-md">
         <label className="text-sm ml-2">
           {t("subject")} <Tooltip message={t("email-subject")} />
         </label>

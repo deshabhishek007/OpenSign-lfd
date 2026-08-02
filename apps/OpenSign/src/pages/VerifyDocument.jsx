@@ -747,7 +747,7 @@ const VerifyDocument = () => {
                       className="bg-base-100 border border-base-300 rounded-xl shadow-lg overflow-hidden"
                     >
                       {/* Header Section */}
-                      <div className="bg-gradient-to-r from-primary to-indigo-600 text-white p-6">
+                      <div className="bg-gradient-to-r from-primary to-red-900 text-white p-6">
                         <div className="flex items-center space-x-3">
                           <i className="fa-solid fa-signature text-2xl"></i>
                           <div>

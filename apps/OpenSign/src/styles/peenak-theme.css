@@ -124,11 +124,11 @@ aside {
  * white text on these, so they must stay a dark fill — muted rather than a saturated
  * primary/secondary block, to match the calmer "clean SaaS" surfaces used elsewhere. */
 .op-bg-primary {
-  background: oklch(33% .05 267) !important;
+  background: oklch(30% .06 25) !important;
   box-shadow: none !important;
 }
 .op-bg-secondary {
-  background: oklch(23% .015 260) !important;
+  background: oklch(20% .02 40) !important;
   box-shadow: none !important;
 }
 
