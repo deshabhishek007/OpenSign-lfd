@@ -9,7 +9,9 @@ import { getSecureUrl } from '../../Utils.js';
 import { parseUploadFile } from '../../utils/fileUtils.js';
 dotenv.config({ quiet: true });
 const eSignName = 'LDF Sign';
-const eSigncontact = 'hello@opensignlabs.com';
+// Embedded into the PDF signature dictionary as contactInfo — blank rather
+// than OpenSign Labs' address (set a real LDF Sign support address if one exists).
+const eSigncontact = '';
 
 // `uploadFile` is used to create url in from pdfFile
 async function uploadFile(pdfName, filepath) {
