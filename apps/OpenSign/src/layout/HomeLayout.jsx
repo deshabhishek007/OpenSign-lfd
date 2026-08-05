@@ -143,17 +143,19 @@ const HomeLayout = () => {
   };
 
   async function checkTourStatus() {
+    // Legacy first-login walkthrough retired — the dashboard "Get started"
+    // checklist (primitives/OnboardingChecklist) is now the sole first-run
+    // onboarding, so the 8-step reactour no longer auto-fires on top of it.
+    // Still record loginTour=true below (via closeTour on any future opt-in)
+    // and keep the Tour component wired for potential on-demand use.
     const cloudRes = await Parse.Cloud.run("getUserDetails");
     if (cloudRes) {
       const extUser = JSON.parse(JSON.stringify(cloudRes));
       localStorage.setItem("Extand_Class", JSON.stringify([extUser]));
       const tourStatus = extUser?.TourStatus || [];
       setTourStatusArr(tourStatus);
-      const loginTour = tourStatus.find((obj) => obj.loginTour)?.loginTour;
-      setIsTour(!loginTour);
-    } else {
-      setIsTour(true);
     }
+    setIsTour(false);
   }
 
   return isValidSession && localStorage.getItem("accesstoken") ? (

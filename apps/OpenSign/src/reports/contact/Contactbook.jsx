@@ -21,7 +21,6 @@ const Contactbook = (props) => {
   const [actLoader, setActLoader] = useState({});
   const [isContactform, setIsContactform] = useState(false);
   const [isDeleteModal, setIsDeleteModal] = useState({});
-  const [isOption, setIsOption] = useState({});
   const [alertMsg, setAlertMsg] = useState({ type: "success", message: "" });
   const [isModal, setIsModal] = useState({});
   const [contact, setContact] = useState({
@@ -32,6 +31,10 @@ const Contactbook = (props) => {
     Company: ""
   });
   const [sortOrder, setSortOrder] = useState("asc");
+  // Two-pane master/detail: which contact is open in the right-hand pane,
+  // and whether that pane is in inline-edit mode.
+  const [selectedId, setSelectedId] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
   const startIndex = (currentPage - 1) * props.docPerPage;
   const { isMoreDocs, setIsNextRecord } = props;
 
@@ -111,16 +114,6 @@ const Contactbook = (props) => {
     }
   }, [isMoreDocs, pageNumbers, currentPage, setIsNextRecord]);
 
-  const handleActionBtn = withSessionValidation(async (act, item) => {
-    if (act.action === "delete") {
-      setIsDeleteModal({ [item.objectId]: true });
-    } else if (act.action === "option") {
-      setIsOption({ [item.objectId]: !isOption[item.objectId] });
-    } else if (act.action === "edit") {
-      setContact(item);
-      setIsModal({ [`edit_${item.objectId}`]: true });
-    }
-  });
   // Get current list
   const indexOfLastDoc = currentPage * props.docPerPage;
   const indexOfFirstDoc = indexOfLastDoc - props.docPerPage;
@@ -137,6 +130,29 @@ const Contactbook = (props) => {
   }, [props.List, sortOrder]);
 
   const currentList = sortedList?.slice(indexOfFirstDoc, indexOfLastDoc);
+
+  // The contact currently open in the detail pane (derived from the live
+  // list so edits/deletes flow through). Clear the pane if that contact
+  // leaves the list (deleted, or filtered out by a search).
+  const selectedContact =
+    props.List?.find((x) => x.objectId === selectedId) || null;
+  useEffect(() => {
+    if (selectedId && !props.List?.some((x) => x.objectId === selectedId)) {
+      setSelectedId(null);
+      setIsEditing(false);
+    }
+  }, [props.List, selectedId]);
+
+  const getInitials = (name) => {
+    const parts = (name || "").trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return "?";
+    return (parts[0][0] + (parts[1]?.[0] || "")).toUpperCase();
+  };
+
+  const openContact = (item) => {
+    setSelectedId(item.objectId);
+    setIsEditing(false);
+  };
 
   // Change page
   const paginateFront = () => {
@@ -187,6 +203,11 @@ const Contactbook = (props) => {
           (x) => x.objectId !== item.objectId
         );
         props.setList(upldatedList);
+        // close the detail pane if the deleted contact was open
+        if (selectedId === item.objectId) {
+          setSelectedId(null);
+          setIsEditing(false);
+        }
       }
     } catch (err) {
       console.log("err", err);
@@ -295,177 +316,249 @@ const Contactbook = (props) => {
             />
           </div>
         )}
-        <div
-          className={`overflow-auto w-full border-b ${
-            props.List?.length > 0
-              ? "min-h-[317px]"
-              : currentList?.length === props.docPerPage
-                ? "h-fit"
-                : "h-screen"
-          }`}
-        >
-          <table className="op-table border-collapse w-full mb-4">
-            <thead className="text-[14px] text-center">
-              <tr className="border-y-[1px]">
-                {props.heading?.map((item, index) => (
-                  <React.Fragment key={index}>
-                    <th className="text-left p-2">
-                      {t(`report-heading.${item}`)}
-                      {item === "Name" && (
-                        <button
-                          type="button"
-                          onClick={toggleSortOrder}
-                          className="ml-1"
+        {props.searchLoader || props.List?.length <= 0 ? (
+          /* Full-width loader / empty state (no list to split into panes) */
+          <div className="flex flex-col items-center justify-center w-full bg-base-100 text-base-content rounded-xl py-8 min-h-[300px]">
+            {props.searchLoader ? (
+              <>
+                <Loader />
+                <div className="text-sm">{t("loading-mssg")}</div>
+              </>
+            ) : props.searchTerm ? (
+              <EmptyState
+                icon="fa-magnifying-glass"
+                title={t("no-results-for-search", { term: props.searchTerm })}
+              />
+            ) : (
+              <EmptyState
+                icon="fa-address-book"
+                title={t("empty-state.no-contacts-title")}
+                description={t("empty-state.no-contacts-desc")}
+                actionLabel={t("add-contact")}
+                onAction={() => handleContactFormModal()}
+              />
+            )}
+          </div>
+        ) : (
+          /* Two-pane master/detail */
+          <div className="flex flex-col md:flex-row border-t border-base-300 min-h-[440px]">
+            {/* LEFT — contact list */}
+            <div
+              className={`md:w-[320px] md:shrink-0 md:border-r border-base-300 flex-col ${
+                selectedContact ? "hidden md:flex" : "flex"
+              }`}
+            >
+              <div className="flex items-center justify-between px-3 py-2 border-b border-base-300">
+                <span className="text-[11px] font-semibold uppercase tracking-wide text-base-content/50">
+                  {props.List.length} {t("report-name.Contactbook")}
+                </span>
+                <button
+                  type="button"
+                  onClick={toggleSortOrder}
+                  className="op-btn op-btn-ghost op-btn-xs text-base-content/70"
+                  title={t("name")}
+                >
+                  <i
+                    className={
+                      sortOrder === "asc"
+                        ? "fa-solid fa-arrow-down-a-z"
+                        : "fa-solid fa-arrow-up-a-z"
+                    }
+                  ></i>
+                </button>
+              </div>
+              <div className="flex-1 overflow-auto">
+                {currentList.map((item) => {
+                  const active = item.objectId === selectedId;
+                  return (
+                    <button
+                      key={item.objectId}
+                      type="button"
+                      onClick={() => openContact(item)}
+                      className={`w-full text-left flex items-center gap-3 px-3 py-2.5 border-b border-base-300/60 transition-colors ${
+                        active ? "bg-primary/10" : "hover:bg-base-200"
+                      }`}
+                    >
+                      <span
+                        className={`shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold ${
+                          active
+                            ? "bg-primary text-primary-content"
+                            : "bg-base-300 text-base-content/70"
+                        }`}
+                      >
+                        {getInitials(item?.Name)}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span
+                          className={`block text-sm font-medium truncate ${
+                            active ? "text-primary" : "text-base-content"
+                          }`}
                         >
-                          <i
-                            className={
-                              sortOrder === "asc"
-                                ? "fa-solid fa-arrow-down-a-z"
-                                : "fa-solid fa-arrow-up-a-z"
-                            }
-                          ></i>
-                        </button>
-                      )}
-                    </th>
-                  </React.Fragment>
-                ))}
-                {props.actions?.length > 0 && (
-                  <th className="p-2 text-transparent pointer-events-none">
-                    {t("action")}
-                  </th>
-                )}
-              </tr>
-            </thead>
-            <tbody className="text-[12px]">
-              {props.List?.length > 0 &&
-                !props.searchLoader &&
-                currentList.map((item, index) => (
-                  <tr className="last:border-none border-y-[1px]" key={index}>
-                    {props.heading.includes("Sr.No") && (
-                      <td className="p-2 text-left font-semibold">
-                        {startIndex + index + 1}
-                      </td>
-                    )}
-                    {props.heading.includes("Name") && (
-                      <td className="p-2 text-left font-semibold">
-                        {item?.Name}
-                      </td>
-                    )}
-                    {props.heading.includes("Email") && (
-                      <td className="p-2 text-left">{item?.Email ?? "-"}</td>
-                    )}
-                    {props.heading.includes("Phone") && (
-                      <td className="p-2 text-left">{item?.Phone ?? "-"}</td>
-                    )}
-                    {props.heading.includes("Company") && (
-                      <td className="p-2 text-left">{item?.Company ?? "-"}</td>
-                    )}
-                    {props.heading.includes("JobTitle") && (
-                      <td className="p-2 text-left">{item?.JobTitle ?? "-"}</td>
-                    )}
-                    <td className="px-3 py-2">
-                      <div className="text-base-content min-w-max flex flex-row gap-x-2 gap-y-1 justify-start items-center">
-                        {props.actions?.length > 0 &&
-                          props.actions.map((act, index) => (
-                            <button
-                              key={index}
-                              onClick={() => handleActionBtn(act, item)}
-                              title={t(`btnLabel.${act.hoverLabel}`)}
-                              className={`${
-                                act?.btnColor ? act.btnColor : ""
-                              } op-btn op-btn-sm`}
-                            >
-                              <i className={act.btnIcon}></i>
-                            </button>
-                          ))}
-                        {isDeleteModal[item.objectId] && (
-                          <ModalUi
-                            isOpen
-                            title={t("delete-contact")}
-                            handleClose={handleClose}
-                          >
-                            <div className="m-[20px]">
-                              <div className="text-lg font-normal text-base-content">
-                                {t("contact-delete-alert")}
-                              </div>
-                              <hr className="bg-[#ccc] mt-3" />
-                              <div className="flex items-center mt-3 gap-2 text-white">
-                                <button
-                                  onClick={() => handleDelete(item)}
-                                  className="w-[100px] op-btn op-btn-primary"
-                                >
-                                  {t("yes")}
-                                </button>
-                                <button
-                                  onClick={handleClose}
-                                  className="w-[100px] op-btn op-btn-secondary"
-                                >
-                                  {t("no")}
-                                </button>
-                              </div>
-                            </div>
-                          </ModalUi>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-          {(props.searchLoader || props.List?.length <= 0) && (
-            <div className="flex flex-col items-center justify-center w-ful bg-base-100 text-base-content rounded-xl py-4">
-              {props.searchLoader ? (
-                <>
-                  <Loader />
-                  <div className="text-sm ">{t("loading-mssg")}</div>
-                </>
-              ) : props.searchTerm ? (
-                <EmptyState
-                  icon="fa-magnifying-glass"
-                  title={t("no-results-for-search", { term: props.searchTerm })}
-                />
-              ) : (
-                <EmptyState
-                  icon="fa-address-book"
-                  title={t("empty-state.no-contacts-title")}
-                  description={t("empty-state.no-contacts-desc")}
-                  actionLabel={t("add-contact")}
-                  onAction={() => handleContactFormModal()}
-                />
+                          {item?.Name || "-"}
+                        </span>
+                        <span className="block text-xs text-base-content/50 truncate">
+                          {item?.Email || "-"}
+                        </span>
+                      </span>
+                      <i
+                        className={`fa-solid fa-chevron-right text-[10px] shrink-0 ${
+                          active ? "text-primary" : "text-base-content/25"
+                        }`}
+                      ></i>
+                    </button>
+                  );
+                })}
+              </div>
+              {props.List.length > props.docPerPage && (
+                <div className="op-join flex flex-wrap items-center justify-center p-2 border-t border-base-300">
+                  <button
+                    onClick={() => paginateBack()}
+                    className="op-join-item op-btn op-btn-xs"
+                  >
+                    {t("prev")}
+                  </button>
+                  {pageNumbers.map((x, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentPage(x)}
+                      disabled={x === "..."}
+                      className={`${
+                        x === currentPage ? "op-btn-active" : ""
+                      } op-join-item op-btn op-btn-xs`}
+                    >
+                      {x}
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => paginateFront()}
+                    className="op-join-item op-btn op-btn-xs"
+                  >
+                    {t("next")}
+                  </button>
+                </div>
               )}
             </div>
-          )}
-        </div>
-        <div className="op-join flex flex-wrap items-center p-2">
-          {props.List.length > props.docPerPage && (
-            <button
-              onClick={() => paginateBack()}
-              className="op-join-item op-btn op-btn-sm"
+
+            {/* RIGHT — detail pane */}
+            <div
+              className={`flex-1 flex-col ${
+                selectedContact ? "flex" : "hidden md:flex"
+              }`}
             >
-              {t("prev")}
-            </button>
-          )}
-          {pageNumbers.map((x, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentPage(x)}
-              disabled={x === "..."}
-              className={`${
-                x === currentPage ? "op-btn-active" : ""
-              } op-join-item op-btn op-btn-sm`}
-            >
-              {x}
-            </button>
-          ))}
-          {props.List.length > props.docPerPage && (
-            <button
-              onClick={() => paginateFront()}
-              className="op-join-item op-btn op-btn-sm"
-            >
-              {t("next")}
-            </button>
-          )}
-        </div>
+              {selectedContact ? (
+                isEditing ? (
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-2 px-4 pt-3">
+                      <button
+                        type="button"
+                        onClick={() => setIsEditing(false)}
+                        className="op-btn op-btn-ghost op-btn-xs gap-1"
+                      >
+                        <i className="fa-solid fa-arrow-left"></i> {t("cancel")}
+                      </button>
+                      <span className="text-sm font-semibold">
+                        {t("edit-contact")}
+                      </span>
+                    </div>
+                    <EditContactForm
+                      contact={selectedContact}
+                      handleClose={() => setIsEditing(false)}
+                      handleEditContact={handleEditContact}
+                    />
+                  </div>
+                ) : (
+                  <div className="flex flex-col p-5">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedId(null)}
+                      className="op-btn op-btn-ghost op-btn-xs gap-1 self-start mb-3 md:hidden"
+                    >
+                      <i className="fa-solid fa-arrow-left"></i> {t("back")}
+                    </button>
+                    <div className="flex items-center gap-4 mb-5">
+                      <span className="shrink-0 w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl font-bold">
+                        {getInitials(selectedContact?.Name)}
+                      </span>
+                      <div className="min-w-0">
+                        <div className="text-lg font-semibold text-base-content truncate">
+                          {selectedContact?.Name || "-"}
+                        </div>
+                        {(selectedContact?.JobTitle ||
+                          selectedContact?.Company) && (
+                          <div className="text-sm text-base-content/60 truncate">
+                            {[
+                              selectedContact?.JobTitle,
+                              selectedContact?.Company
+                            ]
+                              .filter(Boolean)
+                              .join(" · ")}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mb-6">
+                      {[
+                        ["email", selectedContact?.Email, "fa-envelope"],
+                        ["phone", selectedContact?.Phone, "fa-phone"],
+                        ["company", selectedContact?.Company, "fa-building"],
+                        ["job-title", selectedContact?.JobTitle, "fa-briefcase"]
+                      ].map(([key, val, icon]) => (
+                        <div key={key} className="flex items-start gap-3">
+                          <i
+                            className={`fa-solid ${icon} text-base-content/40 mt-0.5 w-4 text-center`}
+                          ></i>
+                          <div className="min-w-0">
+                            <dt className="text-[11px] uppercase tracking-wide text-base-content/50">
+                              {t(key)}
+                            </dt>
+                            <dd className="text-sm text-base-content break-words">
+                              {val || "—"}
+                            </dd>
+                          </div>
+                        </div>
+                      ))}
+                    </dl>
+                    <div className="flex gap-2 border-t border-base-300 pt-4">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setContact(selectedContact);
+                          setIsEditing(true);
+                        }}
+                        className="op-btn op-btn-primary op-btn-sm gap-1"
+                      >
+                        <i className="fa-solid fa-pen"></i> {t("edit")}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setIsDeleteModal({ [selectedContact.objectId]: true })
+                        }
+                        className="op-btn op-btn-ghost op-btn-sm gap-1 text-error"
+                      >
+                        <i className="fa-solid fa-trash"></i> {t("delete")}
+                      </button>
+                    </div>
+                  </div>
+                )
+              ) : (
+                <div className="flex-1 flex flex-col items-center justify-center text-center p-8">
+                  <div className="w-14 h-14 rounded-full bg-base-200 flex items-center justify-center mb-3">
+                    <i className="fa-solid fa-address-card text-xl text-base-content/40"></i>
+                  </div>
+                  <div className="text-sm font-semibold text-base-content">
+                    {t("contact-detail-empty-title")}
+                  </div>
+                  <p className="text-xs text-base-content/60 mt-1 max-w-xs">
+                    {t("contact-detail-empty-desc")}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Add contact modal */}
         <ModalUi
           title={t("add-contact")}
           isOpen={isContactform}
@@ -478,19 +571,7 @@ const Contactbook = (props) => {
             closePopup={handleContactFormModal}
           />
         </ModalUi>
-        {isModal?.["edit_" + contact.objectId] && (
-          <ModalUi
-            isOpen
-            title={t("edit-contact")}
-            handleClose={handleCloseModal}
-          >
-            <EditContactForm
-              contact={contact}
-              handleClose={handleCloseModal}
-              handleEditContact={handleEditContact}
-            />
-          </ModalUi>
-        )}
+        {/* Bulk import modal */}
         <ModalUi
           isOpen={isModal?.export}
           title={t("bulk-import")}
@@ -509,6 +590,35 @@ const Contactbook = (props) => {
             />
           </div>
         </ModalUi>
+        {/* Delete confirm — single, driven by the selected contact */}
+        {selectedContact && isDeleteModal[selectedContact.objectId] && (
+          <ModalUi
+            isOpen
+            title={t("delete-contact")}
+            handleClose={handleClose}
+          >
+            <div className="m-[20px]">
+              <div className="text-lg font-normal text-base-content">
+                {t("contact-delete-alert")}
+              </div>
+              <hr className="bg-base-300 mt-3" />
+              <div className="flex items-center mt-3 gap-2">
+                <button
+                  onClick={() => handleDelete(selectedContact)}
+                  className="w-[100px] op-btn op-btn-primary"
+                >
+                  {t("yes")}
+                </button>
+                <button
+                  onClick={handleClose}
+                  className="w-[100px] op-btn op-btn-secondary"
+                >
+                  {t("no")}
+                </button>
+              </div>
+            </div>
+          </ModalUi>
+        )}
       </div>
     </div>
   );
