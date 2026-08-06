@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import ldfLogo from "../assets/images/legaldata-logo.png";
 import "../styles/signature.css"; // self-hosted script fonts for the mockup
 
 // Public marketing landing for LDF Sign at "/". Login is at "/login".
@@ -145,8 +146,17 @@ const Landing = () => {
             : "border-b border-transparent"
         }`}
       >
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-          <Wordmark dark={!scrolled} />
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            aria-label="Legal Data Forensic Sign"
+          >
+            <img
+              src={ldfLogo}
+              alt="Legal Data Forensic Sign"
+              className="h-11 w-auto object-contain"
+            />
+          </button>
           <div className="hidden items-center gap-7 md:flex">
             {NAV.map(([label, id]) => (
               <button

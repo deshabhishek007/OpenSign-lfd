@@ -8,6 +8,7 @@ import {
   emailRegex,
 } from "../constant/const";
 import Alert from "../primitives/Alert";
+import ldfLogo from "../assets/images/legaldata-logo.png";
 import { appInfo } from "../constant/appinfo";
 import { fetchAppInfo } from "../redux/reducers/infoReducer";
 import { showTenant } from "../redux/reducers/ShowTenant";
@@ -434,14 +435,12 @@ function Login() {
 
             <div className="relative z-10 w-full max-w-md">
               <div className="bg-base-100 text-base-content op-card shadow-2xl p-6 md:p-8 border-t-4 border-t-primary">
-                <div className="w-[200px] h-[52px] mb-4 overflow-hidden">
-                  {image && (
-                    <img
-                      src={image}
-                      className="object-contain h-full"
-                      alt="applogo"
-                    />
-                  )}
+                <div className="mb-5 flex justify-center">
+                  <img
+                    src={ldfLogo}
+                    className="h-24 w-auto object-contain"
+                    alt="Legal Data Forensic Sign"
+                  />
                 </div>
                 <form onSubmit={handleLoginBtn} aria-label="Login Form">
                   <h1 className="text-[32px] font-extrabold tracking-tight">{t("welcome")}</h1>
