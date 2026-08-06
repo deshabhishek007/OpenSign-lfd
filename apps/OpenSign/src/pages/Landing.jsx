@@ -500,20 +500,20 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* ---- Footer ---- */}
-      <footer className="border-t border-base-300">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 text-sm text-base-content/60 sm:flex-row">
+      {/* ---- Footer (dark) ---- */}
+      <footer className="bg-[#100809] text-white/60">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-9 text-sm sm:flex-row">
           <div className="flex items-center gap-2">
-            <Wordmark />
-            <span className="hidden text-base-content/40 sm:inline">· Legal Data Forensic Sign</span>
+            <Wordmark dark />
+            <span className="hidden text-white/35 sm:inline">· Legal Data Forensic Sign</span>
           </div>
           <div className="flex items-center gap-6">
-            <button onClick={() => navigate("/terms")} className="hover:text-base-content">Terms</button>
-            <button onClick={() => navigate("/privacy")} className="hover:text-base-content">Privacy</button>
-            <button onClick={() => navigate("/login")} className="hover:text-base-content">Log in</button>
+            <button onClick={() => navigate("/terms")} className="hover:text-white">Terms</button>
+            <button onClick={() => navigate("/privacy")} className="hover:text-white">Privacy</button>
+            <button onClick={() => navigate("/login")} className="hover:text-white">Log in</button>
           </div>
         </div>
-        <div className="pb-6 text-center text-xs text-base-content/40">
+        <div className="border-t border-white/10 py-6 text-center text-xs text-white/35">
           © {year} Legal Data Forensic Sign. All rights reserved.
         </div>
       </footer>
