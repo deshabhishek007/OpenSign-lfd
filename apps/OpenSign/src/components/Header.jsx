@@ -87,7 +87,7 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
     localStorage.setItem("parseAppId", appid);
     localStorage.setItem("favicon", favicon);
     setIsLoggingOut(false);
-    navigate("/");
+    navigate("/login");
   };
 
   //handle to close profile drop down menu onclick screen

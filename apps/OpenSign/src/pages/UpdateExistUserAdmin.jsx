@@ -49,7 +49,7 @@ const UpdateExistUserAdmin = () => {
         // console.log("updateUserAsAdmin ", updateUserAsAdmin);
         if (updateUserAsAdmin === "admin_created") {
           setIsAlert({ type: "success", msg: t("admin-created") });
-          navigate("/");
+          navigate("/login");
         }
       } catch (err) {
         console.log("err in updateuserasadmin", err.code);

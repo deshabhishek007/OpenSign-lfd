@@ -34,6 +34,9 @@ const UpdateExistUserAdmin = lazyWithRetry(
 );
 const Preferences = lazyWithRetry(() => import("./pages/Preferences"));
 const Login = lazyWithRetry(() => import("./pages/Login"));
+const Landing = lazyWithRetry(() => import("./pages/Landing"));
+const Terms = lazyWithRetry(() => import("./pages/Terms"));
+const Privacy = lazyWithRetry(() => import("./pages/Privacy"));
 const Signup = lazyWithRetry(() => import("./pages/Signup"));
 const Plan = lazyWithRetry(() => import("./pages/Plan"));
 const VerifyDocument = lazyWithRetry(() => import("./pages/VerifyDocument"));
@@ -68,7 +71,10 @@ function App() {
           <Title />
           <Routes>
             <Route element={<ValidateRoute />}>
-              <Route exact path="/" element={<Lazy Page={Login} />} />
+              <Route exact path="/" element={<Lazy Page={Landing} />} />
+                  <Route path="/login" element={<Lazy Page={Login} />} />
+                  <Route path="/terms" element={<Lazy Page={Terms} />} />
+                  <Route path="/privacy" element={<Lazy Page={Privacy} />} />
                   <Route path="/signup" element={<Lazy Page={Signup} />} />
                   <Route path="/addadmin" element={<Lazy Page={AddAdmin} />} />
                   <Route

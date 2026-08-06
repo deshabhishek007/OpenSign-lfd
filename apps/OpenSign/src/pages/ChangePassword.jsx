@@ -80,7 +80,7 @@ function ChangePassword() {
     }
   };
   if (localStorage.getItem("accesstoken") === null) {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   }
   return (
     <div className="w-full bg-base-100 text-base-content shadow rounded-box p-2">

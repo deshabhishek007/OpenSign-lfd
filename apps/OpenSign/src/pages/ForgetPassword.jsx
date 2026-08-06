@@ -128,7 +128,7 @@ function ForgotPassword() {
                     {t("submit")}
                   </button>
                   <button
-                    onClick={() => navigate("/", { replace: true })}
+                    onClick={() => navigate("/login", { replace: true })}
                     className="op-btn op-btn-secondary"
                   >
                     {t("login")}

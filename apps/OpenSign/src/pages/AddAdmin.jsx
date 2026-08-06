@@ -454,11 +454,12 @@ const AddAdmin = () => {
                       >
                         {t("agree")}
                       </label>
-                      {/* Terms link removed — pointed at opensignlabs.com and
-                          there's no LDF Sign ToS page yet. Kept as plain text so
-                          the agreement copy still reads; re-link when a real
-                          LDF Sign terms page exists. */}
-                      <span className="ml-1">{t("term")}</span>
+                      <span
+                        className="underline cursor-pointer ml-1"
+                        onClick={() => openInNewTab("/terms")}
+                      >
+                        {t("term")}
+                      </span>
                       <span>.</span>
                     </div>
                     <div className="mt-2.5 ml-1 flex flex-row items-center">

@@ -19,7 +19,7 @@ const SessionExpiredModal = () => {
     } finally {
       localStorage.removeItem("accesstoken");
       dispatch(sessionStatus(true));
-      navigate("/", { replace: true, state: { from: location } });
+      navigate("/login", { replace: true, state: { from: location } });
     }
   };
 

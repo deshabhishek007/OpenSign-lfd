@@ -84,7 +84,7 @@ function Signup() {
         // Login.jsx's own mount effect picks up accesstoken and does the
         // full post-login resolution (extUser, tenant, role-based redirect)
         // — reusing that instead of duplicating it here.
-        navigate("/");
+        navigate("/login");
       } else if (res?.message === "User already exist") {
         showToast("danger", t("signup-account-exists"));
       } else {
@@ -202,7 +202,7 @@ function Signup() {
             <div className="mt-3 text-xs text-center">
               {t("signup-have-account")}{" "}
               <NavLink
-                to="/"
+                to="/login"
                 className="op-link op-link-primary underline-offset-1"
               >
                 {t("login")}
