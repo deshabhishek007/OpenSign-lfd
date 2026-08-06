@@ -10,6 +10,24 @@
  * mechanisms to keep in sync.
  */
 
+/* ---- Bootstrap-collision fix ----
+ * Bootstrap 4 (loaded via CDN <link> in index.html) ships .text-primary /
+ * .bg-primary / .border-primary as its own blue (#007bff). Being plain
+ * single-class utilities, they shadow the identically-named Tailwind/DaisyUI
+ * utilities and leak blue into the crimson brand (landing wordmark, step
+ * badges, pricing accents, feature icons, any plain text-primary in the app).
+ * Force these base utilities back to the theme primary. Opacity variants
+ * (e.g. bg-primary/10) are separate class names and are unaffected. */
+.text-primary {
+  color: oklch(var(--p)) !important;
+}
+.bg-primary {
+  background-color: oklch(var(--p)) !important;
+}
+.border-primary {
+  border-color: oklch(var(--p)) !important;
+}
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
