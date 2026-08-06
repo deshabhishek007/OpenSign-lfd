@@ -443,8 +443,10 @@ function Login() {
                   />
                 </div>
                 <form onSubmit={handleLoginBtn} aria-label="Login Form">
-                  <h1 className="text-[32px] font-extrabold tracking-tight">{t("welcome")}</h1>
-                  <p className="text-xs text-base-content/60 mb-4">
+                  <h1 className="text-center text-[32px] font-extrabold tracking-tight">
+                    {t("welcome")}
+                  </h1>
+                  <p className="mb-5 text-center text-xs text-base-content/60">
                     {t("Login-to-your-account")}
                   </p>
                   <fieldset className="flex flex-col gap-2">

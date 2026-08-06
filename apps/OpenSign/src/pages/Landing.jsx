@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import ldfLogo from "../assets/images/legaldata-logo.png";
-import "../styles/signature.css"; // self-hosted script fonts for the mockup
+import "../styles/signature.css"; // bundled script fonts for the mockup
 
 // Public marketing landing for LDF Sign at "/". Login is at "/login".
 // Logged-in visitors are bounced to their dashboard. Self-contained (no
@@ -22,7 +22,7 @@ const FEATURES = [
   { icon: "fa-paper-plane", title: "Bulk send", body: "Send one document to many recipients at once, each with their own fields, and track every one from a single view." },
   { icon: "fa-shield-halved", title: "Audit trail & certificate", body: "Every action is logged. Each finished document carries a Certificate of Completion with signer identity, time, and IP." },
   { icon: "fa-users", title: "Team collaboration", body: "Invite your team, share templates and contacts, and keep everyone's documents organized under one organization." },
-  { icon: "fa-lock", title: "Private by default", body: "Your documents are yours. Files stay on your own infrastructure — not handed off to a third-party service." }
+  { icon: "fa-lock", title: "Private by default", body: "Your documents are yours. Files are kept private and never handed off to a third-party signing service." }
 ];
 
 const STEPS = [
@@ -40,7 +40,7 @@ const PLANS = [
 const FAQS = [
   { q: "Are documents signed with LDF Sign legally valid?", a: "Yes. Completed documents are sealed with a digital signature and accompanied by a Certificate of Completion recording each signer's identity, timestamp, and IP address — an auditable record of the signing event." },
   { q: "Do recipients need an account to sign?", a: "No. Signers receive a secure link and can sign from any device without creating an account. Only senders need an account." },
-  { q: "Where are my documents stored?", a: "Documents are stored on this deployment's own infrastructure rather than a shared third-party service, so your data stays under your control." },
+  { q: "Where are my documents stored?", a: "Documents are kept private and are never handed to a shared third-party signing service, so your data stays under your control." },
   { q: "Can I try it for free?", a: "Yes — create an account and start on the Free plan with 30 documents. Upgrade whenever you need more volume or team members." }
 ];
 
@@ -154,7 +154,7 @@ const Landing = () => {
             <img
               src={ldfLogo}
               alt="Legal Data Forensic Sign"
-              className="h-11 w-auto object-contain"
+              className="h-20 w-auto object-contain"
             />
           </button>
           <div className="hidden items-center gap-7 md:flex">
@@ -212,7 +212,7 @@ const Landing = () => {
               documents in minutes
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-base text-white/60 md:text-lg lg:mx-0">
-              A self-hosted e-signature platform for legally binding agreements —
+              A secure e-signature platform for legally binding agreements —
               with templates, bulk send, a full audit trail, and a Certificate of
               Completion on every document.
             </p>
@@ -254,7 +254,7 @@ const Landing = () => {
             ["fa-bolt", "Sign in minutes"],
             ["fa-file-shield", "Tamper-evident"],
             ["fa-infinity", "No per-seat fees"],
-            ["fa-server", "Self-hosted"]
+            ["fa-mobile-screen", "Sign on any device"]
           ].map(([icon, label]) => (
             <div key={label} className="flex items-center justify-center gap-2.5 text-sm font-medium">
               <i className={`fa-solid ${icon} text-primary`}></i>
@@ -343,7 +343,7 @@ const Landing = () => {
                 "Tamper-evident digital signature on every completed PDF",
                 "Certificate of Completion with signer identity, time & IP",
                 "Independent signature verification, built in",
-                "Documents stored on your own infrastructure"
+                "Documents kept private, never shared with third parties"
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm text-white/80">
                   <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">

@@ -15,7 +15,7 @@ const SECTIONS = [
   },
   {
     heading: "Document storage",
-    body: "Documents and their signing records are stored on this deployment's own infrastructure rather than a shared third-party signing service. Access is limited to what is necessary to operate the Service."
+    body: "Documents and their signing records are kept private and are not handed to a shared third-party signing service. Access is limited to what is necessary to operate the Service."
   },
   {
     heading: "Sharing",
