@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Parse from "parse";
 import { useTranslation } from "react-i18next";
 import Loader from "../primitives/Loader";
+import PageHeader from "../primitives/PageHeader";
 
 // Plan & Billing — not part of upstream OpenSign. Single page serving two
 // roles:
@@ -174,6 +175,7 @@ function Plan() {
 
   return (
     <div className="flex flex-col gap-4">
+      <PageHeader icon="fa-gauge-high" title={t("sidebar.Plan & Billing")} />
       <div className="w-full bg-base-100 text-base-content shadow rounded-box p-2">
         <div className="text-xl font-bold border-b-[1px] border-base-300 pb-2 mb-2">
           {t("plan-title")}

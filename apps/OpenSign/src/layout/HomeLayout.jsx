@@ -10,7 +10,8 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import Parse from "parse";
 import {
-  Outlet
+  Outlet,
+  useLocation
 } from "react-router";
 import Loader from "../primitives/Loader";
 import { useTranslation } from "react-i18next";
@@ -31,6 +32,23 @@ const HomeLayout = () => {
   const [tourConfigs, setTourConfigs] = useState([]);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const tenantId = localStorage.getItem("TenantId");
+  const location = useLocation();
+
+  // Content pages get a centered max-width so they don't stretch edge-to-edge
+  // on wide monitors (reads as a designed product, not a full-bleed admin
+  // panel). The PDF editor/signing routes are left full-width — they need the
+  // whole canvas for placement and page rendering.
+  const fullWidthPrefixes = [
+    "/form/",
+    "/template/",
+    "/signaturePdf/",
+    "/draftDocument",
+    "/placeHolderSign/",
+    "/recipientSignPdf/"
+  ];
+  const isFullWidth = fullWidthPrefixes.some((p) =>
+    location.pathname.startsWith(p)
+  );
 
   useEffect(() => {
     const language = localStorage.getItem("i18nextLng");
@@ -186,7 +204,13 @@ const HomeLayout = () => {
             >
               <div className="flex flex-col min-h-full">
                 {/* your page content */}
-                <div className="p-3">{<Outlet />}</div>
+                <div
+                  className={`p-3 ${
+                    isFullWidth ? "" : "mx-auto w-full max-w-[1400px]"
+                  }`}
+                >
+                  {<Outlet />}
+                </div>
                 {/* sticky-but-scrollable footer */}
                 <div className="mt-auto z-30">
                   <Footer />
