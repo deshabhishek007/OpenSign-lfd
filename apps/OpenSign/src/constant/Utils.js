@@ -4222,7 +4222,7 @@ function _removeWidgetAnnotations(pdfDoc) {
 
 export const mailTemplate = (param) => {
   const appName = "LDF Sign";
-  const logo = `<div style='padding:10px'><img src='https://qikinnovation.ams3.digitaloceanspaces.com/logo.png' height='50' /></div>`;
+  const logo = `<div style='padding:10px'><img src='https://esign.peenak.com/logo192.png' height='50' alt='LDF Sign' /></div>`;
 
   const subject = `${param.senderName} has requested you to sign "${param.title}"`;
   const body =

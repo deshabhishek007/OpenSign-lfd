@@ -15,7 +15,7 @@ const getRequestEmail = (
               props: {
                 width: null,
                 height: 50,
-                url: "https://qikinnovation.ams3.digitaloceanspaces.com/logo.png",
+                url: "https://esign.peenak.com/logo192.png",
                 alt: "logo",
                 linkHref: null,
                 contentAlignment: "middle"
@@ -51,7 +51,7 @@ const getRequestEmail = (
       data: {
         style: {
           color: "#FFFFFF",
-          backgroundColor: "#47A3AD",
+          backgroundColor: "#7A1A1A",
           fontSize: 20,
           fontWeight: "bold",
           padding: {
