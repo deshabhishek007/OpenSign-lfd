@@ -223,3 +223,37 @@ html[data-theme='opensigndark'] ::-webkit-scrollbar-thumb {
   background: oklch(var(--bc) / 0.14);
   border-radius: 999px;
 }
+
+/* ---- Brand loader ----
+ * Replaces DaisyUI's default loading-infinity (the OpenSign-era ∞ mark)
+ * with a crimson→gold comet ring that matches the brand. Rendered by
+ * primitives/Loader.jsx, which every loader in the app routes through. */
+.ldf-spinner {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    oklch(var(--p) / 0.15) 40deg,
+    oklch(var(--p)) 280deg,
+    #d4af37 345deg,
+    #e8c874 360deg
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    #0000 calc(100% - 4.5px),
+    #000 calc(100% - 4px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    #0000 calc(100% - 4.5px),
+    #000 calc(100% - 4px)
+  );
+  animation: ldf-spin 0.8s linear infinite;
+}
+@keyframes ldf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
