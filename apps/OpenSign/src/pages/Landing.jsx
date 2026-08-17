@@ -517,6 +517,22 @@ const Landing = () => {
           © {year} Legal Data Forensic Sign. All rights reserved.
         </div>
       </footer>
+
+      {/* Floating WhatsApp support/enquiry button */}
+      <a
+        href="https://wa.me/918766618976?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20LDF%20Sign."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with us on WhatsApp"
+        title="Chat on WhatsApp"
+        className="group fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/30 ring-1 ring-black/10 transition-transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#25D366]/40"
+      >
+        <span className="pointer-events-none absolute inset-0 rounded-full bg-[#25D366] opacity-50 animate-ping" style={{ animationDuration: "2.4s" }} />
+        <i className="fa-brands fa-whatsapp relative text-3xl" aria-hidden="true" />
+        <span className="pointer-events-none absolute right-16 whitespace-nowrap rounded-lg bg-[#100809] px-3 py-1.5 text-sm font-medium text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+          Need help? Chat with us
+        </span>
+      </a>
     </div>
   );
 };

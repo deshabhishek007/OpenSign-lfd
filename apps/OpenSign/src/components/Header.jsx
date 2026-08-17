@@ -5,12 +5,8 @@ import ThemeToggle from "./ThemeToggle";
 import { useNavigate } from "react-router";
 import Parse from "parse";
 import { useWindowSize } from "../hook/useWindowSize";
-import {
-  getAppLogo,
-  saveLanguageInLocal
-} from "../constant/Utils";
+import { saveLanguageInLocal } from "../constant/Utils";
 import { useTranslation } from "react-i18next";
-import { appInfo } from "../constant/appinfo";
 import { useDispatch } from "react-redux";
 import { toggleSidebar } from "../redux/reducers/sidebarReducer";
 import { sessionStatus } from "../redux/reducers/userReducer";
@@ -23,8 +19,6 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
   const username = localStorage.getItem("username") || "";
   const image = localStorage.getItem("profileImg") || dp;
   const [isOpen, setIsOpen] = useState(false);
-  const [applogo, setAppLogo] = useState("");
-  const [isDarkTheme, setIsDarkTheme] = useState();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -37,11 +31,6 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
   };
 
   useEffect(() => {
-    initializeHead();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     closeSidebar();
   }, [width]);
 
@@ -49,16 +38,6 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
     dispatch(toggleSidebar());
   };
 
-
-  async function initializeHead() {
-      const applogo = await getAppLogo();
-      if (applogo?.logo) {
-        setAppLogo(applogo?.logo);
-      } else {
-        const logo = localStorage.getItem("appLogo") || appInfo.applogo;
-        setAppLogo(logo);
-      }
-  }
   const handleLogout = async () => {
     setIsOpen(false);
     setIsLoggingOut(true);
@@ -107,26 +86,6 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
   }, [isOpen]);
 
 
-  useEffect(() => {
-    const updateThemeStatus = () => {
-      const isDarkTheme =
-        document.documentElement.getAttribute("data-theme") === "opensigndark";
-      setIsDarkTheme(isDarkTheme);
-    };
-    updateThemeStatus();
-
-    const observer = new MutationObserver(() => {
-      updateThemeStatus();
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"]
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <>
       <div className="op-navbar bg-base-100 shadow touch-none">
@@ -141,17 +100,11 @@ const Header = ({ isConsole, setIsLoggingOut }) => {
         <div className="flex-1 ml-2">
           <div
             onClick={() => navigate("/dashboard/35KBoSgoAK")}
-            className="h-[25px] md:h-[40px] w-auto overflow-hidden cursor-pointer"
+            className="cursor-pointer select-none text-xl md:text-2xl font-extrabold tracking-tight leading-none"
+            aria-label="LDF Sign"
           >
-            {applogo && (
-              <img
-                className={`object-contain h-full w-auto ${
-                  isDarkTheme ? "invert" : ""
-                }`}
-                src={applogo}
-                alt="logo"
-              />
-            )}
+            <span className="text-primary">LDF</span>{" "}
+            <span className="text-base-content">Sign</span>
           </div>
         </div>
         <div id="profile-menu" className="flex-none gap-2">
