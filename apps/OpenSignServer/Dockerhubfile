@@ -21,6 +21,12 @@ RUN npm install
 # Copy the current directory contents into the container
 COPY apps/OpenSignServer/ .
 
+# Brand the Parse Server password-reset pages (LDF Sign). The legacy PublicAPIRouter
+# always reads node_modules/parse-server/views/choose_password (customPages does not
+# override the form template), so overwrite the defaults here, after npm install.
+RUN cp branding/choose_password node_modules/parse-server/views/choose_password \
+ && cp branding/password_reset_success.html node_modules/parse-server/public_html/password_reset_success.html
+
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
 
