@@ -76,7 +76,6 @@ function ForgotPassword() {
     } catch (err) {
       console.log("err while logging out ", err);
     }
-      setImage(appInfo?.applogo || undefined);
   };
   return (
     <div>
