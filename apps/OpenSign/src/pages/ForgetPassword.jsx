@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import login_img from "../assets/images/login_img.svg";
+import ldfLogo from "../assets/images/legaldata-logo.png";
 import Parse from "parse";
 import Alert from "../primitives/Alert";
 import { appInfo } from "../constant/appinfo";
@@ -19,7 +20,6 @@ function ForgotPassword() {
   const [state, setState] = useState({ email: "", password: "", hideNav: "" });
   const [toast, setToast] = useState({ type: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
-  const [image, setImage] = useState();
 
   const handleChange = (event) => {
     let { name, value } = event.target;
@@ -42,7 +42,6 @@ function ForgotPassword() {
       alert(t("valid-email-alert"));
     } else {
       setIsLoading(true);
-      localStorage.setItem("appLogo", appInfo.applogo);
       localStorage.setItem("userSettings", JSON.stringify(appInfo.settings));
       if (state.email) {
         const username = state.email;
@@ -89,14 +88,12 @@ function ForgotPassword() {
       {toast?.message && <Alert type={toast.type}>{toast.message}</Alert>}
       <div className="md:p-10 lg:p-16">
         <div className="md:p-4 lg:p-10 p-4 bg-base-100 text-base-content op-card">
-          <div className="w-[250px] h-[66px] inline-block overflow-hidden">
-            {image && (
-              <img
-                src={image}
-                className="object-contain h-full"
-                alt="applogo"
-              />
-            )}
+          <div className="mb-2 flex justify-center md:justify-start">
+            <img
+              src={ldfLogo}
+              className="h-20 w-auto object-contain"
+              alt="LDF Sign"
+            />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2">
             <div>
