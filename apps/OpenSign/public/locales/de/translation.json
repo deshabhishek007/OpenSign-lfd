@@ -803,6 +803,7 @@
   "quota-mail-info": "Um die Servicequalität aufrechtzuerhalten und Spam zu verhindern, erlaubt LDF Sign bis zu 15 E-Mails pro Monat im kostenlosen Plan. Upgraden Sie jetzt für unbegrenzten E-Mail-Versand.",
   "quota-mail-reset": "Ihre Credits für Signaturanfragen per E-Mail werden zurückgesetzt am",
   "quota-mail": "Sie haben Ihr monatliches Limit von 15 Signaturanfragen per E-Mail erreicht. Jetzt upgraden, um weiter E-Mails direkt zu senden.",
+  "quota-mail-limit-reached": "Sie haben Ihr monatliches Limit von 15 E-Mail-Credits erreicht. Bitte upgraden Sie Ihren Tarif, um weiterhin E-Mails direkt zu senden.\nIhre E-Mail-Credits werden am {{resetDate}} zurückgesetzt.",
   "quota-mail-tip": "Tipp: Sie können weiterhin <1>unbegrenzt Dokumente</1> signieren, indem Sie den Signaturanfragelink manuell teilen.",
   "quota-mail-head": "Kontingent erreicht",
   "unauthorized-modal": "Sie haben keine Berechtigung, diese Aktion auszuführen. Bitte kontaktieren Sie {{adminEmail}}.",
@@ -1606,7 +1607,7 @@
   "access-code-save": "Speichern",
   "access-code-required": "Der Absender hat diesem Empfänger einen Zugangscode zugewiesen. Geben Sie ihn ein, um fortzufahren.",
   "access-code-invalid": "Falscher Zugangscode. Bitte beim Absender nachfragen.",
-  "access-code-too-short": "Der Zugangscode muss mindestens 6 Ziffern lang sein.",
+  "access-code-too-short": "Der Zugangscode muss mindestens 6 Zeichen lang sein.",
   "access-code-verify": "Zugangscode überprüfen",
   "access-code-verified": "Zugangscode verifiziert.",
   "access-code-warning": "Dieser Zugangscode kann nicht geändert oder abgerufen werden, sobald das Dokument versendet wurde.",
@@ -1698,5 +1699,7 @@
     "step-signature": "Fügen Sie Ihre Signatur hinzu",
     "step-document": "Signieren oder senden Sie Ihr erstes Dokument",
     "step-team": "Laden Sie Ihr Team ein"
-  }
+  },
+  "show-access-code": "Zugangscode anzeigen",
+  "hide-access-code": "Zugangscode ausblenden"
 }
