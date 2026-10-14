@@ -1506,7 +1506,7 @@ export const embedDocId = async (pdfOriginalWH, pdfDoc, documentId) => {
   const appName = "LDF Sign";
   // `fontBytes` is used to embed custom font in pdf
   const fontBytes = await fileasbytes(
-    "/fonts/Tinos-Regular.ttf"
+    "/fonts/LiberationSerif-Regular.ttf"
   );
   pdfDoc.registerFontkit(fontkit);
   const font = await pdfDoc.embedFont(fontBytes, { subset: true });
@@ -2052,7 +2052,7 @@ export const embedWidgetsToDoc = async (
 ) => {
   // `fontBytes` is used to embed custom font in pdf
   const fontBytes = await fileasbytes(
-    "/fonts/Tinos-Regular.ttf"
+    "/fonts/LiberationSerif-Regular.ttf"
   );
   pdfDoc.registerFontkit(fontkit);
   const font = await pdfDoc.embedFont(fontBytes, { subset: true });
